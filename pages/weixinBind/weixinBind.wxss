@@ -1,0 +1,59 @@
+/* pages/weixinBind/weixinBind.wxss */
+.wechatContainer .header {
+  width: 100%;
+  height: 140rpx;
+  background-color: #9cc0fe;
+  padding-top: 10rpx;
+}
+
+.wechatContainer .header text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  font-size: 30rpx;
+  line-height: 30rpx;
+}
+
+.wechatContainer .body {
+  margin-top: -13%;
+  height: 1000rpx;
+  background-color: white;
+}
+
+.wechatContainer .wechat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.wechatContainer .wechat .iconfont {
+  margin-top: 150rpx;
+  font-size: 150rpx;
+  color: #28c445;
+}
+
+.noWechatTitle {
+  font-size: 30rpx;
+  color: #333;
+  margin-top: 20rpx;
+}
+
+.isBind {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 180rpx 30rpx;
+  font-size: 30rpx;
+  color: white;
+  padding: 30rpx;
+  background-color: #4d80fd;
+  border-radius: 50rpx;
+}
+
+.avatarImg {
+  width: 150rpx;
+  height: 150rpx;
+  margin-top: 150rpx;
+  border-radius: 50%;
+}

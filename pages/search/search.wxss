@@ -1,0 +1,118 @@
+/* pages/search/search.wxss */
+
+.header {
+  display: flex;
+  height: 80rpx;
+  line-height: 80rpx;
+  padding: 20rpx;
+}
+
+.searchInput {
+  position: relative;
+  flex: 1;
+  background-color: rgba(237, 237, 237, 0.3);
+  border-radius: 50rpx;
+}
+
+.clear {
+  position: absolute;
+  right: 20rpx;
+  top: 0;
+  font-size: 30rpx;
+  color: #888a88;
+  z-index: 999;
+}
+
+.cancel {
+  font-size: 38rpx;
+ width: 100rpx;
+ text-align: center;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 12rpx;
+}
+
+.searchInput input {
+  margin-left: 55rpx;
+  height: 80rpx;
+}
+
+/* 搜索内容展示 */
+.showSearchContent {
+  margin: 0 25rpx;
+}
+
+.searchContent {
+  color: #d8b2fb;
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: 30rpx;
+  border-bottom: 1rpx solid #d8b2fb;
+}
+
+.searchItem {
+  height: 100rpx;
+  line-height: 100rpx;
+  display: flex;
+}
+
+.searchItem .content {
+  flex: 1;
+  margin-left: 20rpx;
+  border-bottom: 1rpx solid #eee;
+  font-size: 30rpx;
+}
+
+.noSearhList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 190rpx 0;
+  margin-top: 80rpx;
+}
+
+.noSearhList .iconfont {
+  font-size: 160rpx;
+  color: #d8b2fb;
+}
+
+.noSearhList .text {
+  margin-top: 10rpx;
+  font-size: 35rpx;
+  color: #333;
+}
+
+/* 搜索历史展示 */
+.history {
+  display: flex;
+  flex-wrap: wrap;
+  line-height: 50rpx;
+  margin-top: 15rpx;
+  margin-left: 20rpx;
+}
+
+.history .title {
+  height: 50rpx;
+  font-size: 36rpx;
+  color: #888a88;
+}
+
+.history .historyItem {
+  height: 50rpx;
+  font-size: 32rpx;
+  color: #888a88;
+  background-color: #ededed;
+  margin-left: 20rpx;
+  padding: 0 30rpx;
+  border-radius: 25rpx;
+  margin-bottom: 20rpx;
+}
+
+.delete {
+  float: right;
+  margin-right: 29rpx;
+  color: #888a88;
+  font-size: 38rpx;
+}

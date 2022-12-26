@@ -1,0 +1,112 @@
+<view class="personContainer">
+    <view class="header">
+      <text>healthcare预约挂号</text>
+    </view>
+    <view class="body">
+      <view class="login" wx:if="{{!isLogin}}">
+        <view wx:if="{{flag}}">
+          <text class="title">登录</text>
+          <view class="input-content">
+            <view class="input-item">
+              <input type="text" placeholder="请输入您的手机号码" placeholder-class="placeholder-style" bindinput="handlePhoneInput"/>
+            </view>
+            <view class="line"></view>
+          </view>
+          <button class="confirm-btn" bindtap="{{bindtapClick}}" style="background-color: {{beforeBindtapClickBtn}};color: {{beforeBindtapClickBtnText}};border: {{beforeBindtapClickBtnBorder}};">获取验证码</button>
+        </view>
+        <view wx:if="{{!flag}}">
+          <text class="title">输入验证码</text>
+          <view><text class="phone">验证码已发送至 {{phone}}</text><text class="fixPhone" bindtap="fixPhone">修改</text></view>
+          <view class="input-code-content">
+            <view class="input-code-item">
+                <view class="content"> 
+                  <block wx:for="{{Length}}" wx:key="item"> 
+                    <input class="input" style="border: {{code[index]?codeInputBorder[1] : codeInputBorder[0]}};"  password="{{ispassword}}" value="{{code.length>=index+1?code[index] : ''}}" disabled="" catchtap="codeTap"/> 
+                  </block>
+                </view>
+                <input name="password" password="{{ispassword}}" class="inputBox" maxlength="{{Length}}" focus="{{isFocus}}" bindinput="codeFocus" /> 
+            </view>
+          </view>
+          <button class="confirm-btn" bindtap="{{bindtapClick}}" style="background-color: {{beforeBindtapClickBtn}};color: {{beforeBindtapClickBtnText}};border: {{beforeBindtapClickBtnBorder}};">{{times}}重新获取</button>
+        </view>
+        <view class="agreement" wx:if="{{flag}}">
+          <text wx:if="{{!isAgree}}" class="iconfont icon-radio-unchecked-b-o" bindtap="agreeStatus"></text>
+          <text wx:if="{{isAgree}}" class="iconfont icon-xuanzhongduigou" bindtap="agreeStatus"></text>
+          我同意《<text class="agree">预约挂号服务协议</text>》和《<text class="agree">隐私协议</text>》
+        </view>
+        <view class="otherLogin">
+            <text class="text">微信登录</text>
+            <text class="iconfont icon-weixin" bindtap="weixinLogin"></text>
+        </view>
+      </view>
+      <view class="isLogin" wx:if="{{isLogin}}">
+        <!-- 用户信息 -->
+        <view 
+          class="userInfo"
+          bind:touchstart="handleTouchStart"
+          bind:touchmove="handleTouchMove"
+          bind:touchend="handleTouchEnd"
+          style="transform: {{coverTransform}};transition: {{coverTransition}};"
+          >
+          <view class="isAuthStatus" wx:if="{{userInfo.authStatus === 2}}" bindtap="handleAuthStatusModal">
+            <view class="status" style="border:1px solid #657ac8">
+              <text class="iconfont icon-renzheng"></text>
+              <text>已认证</text>
+            </view>
+            <text class="iconfont icon-xiayiyeqianjinchakangengduo"></text>
+          </view>
+          <view class="isAuthStatus" wx:if="{{userInfo.authStatus === 0}}" bindtap="handleNoAuthStatusModal">
+            <view class="status" style="border:1px solid #cc717a">
+              <text class="iconfont icon-weirenzheng" style="color: #cc717a;"></text>
+              <text style="color: #cc717a;">未认证</text>
+            </view>
+            <text class="iconfont icon-xiayiyeqianjinchakangengduo"></text>
+          </view>
+          <view class="isAuthStatus" wx:if="{{userInfo.authStatus === 1}}" bindtap="handleAuthStatusModal">
+            <view class="status" style="border:1px solid #cc717a">
+              <text class="iconfont icon-weirenzheng" style="color: #cc717a"></text>
+              <text style="color: #cc717a">认证中</text>
+            </view>
+            <text class="iconfont icon-xiayiyeqianjinchakangengduo"></text>
+          </view>
+          <view class="userName">
+            <text>{{userInfo.name}}</text>
+          </view>
+        </view>
+        <!-- 就诊人和挂号订单 -->
+        <!-- 绑定微信号 -->
+        <view class="bindWechat" style="margin: 30rpx;">
+          <text class="bindWechatTitle" bindtap="handleBindWechat">绑定微信</text>
+          <text class="isBind">{{userMessage.openid? '已绑定': '未绑定'}}</text>
+        </view>
+        <!-- 更多信息 -->
+        <!-- 退出登录 -->
+        <view class="logout" style="margin: 30rpx;">
+          <text class="title" bindtap="handleLogout">退出登录</text>
+        </view>
+
+
+        <!-- 认证信息弹框 -->
+        <view class="modal modal-bottom-dialog" hidden="{{hiddenDialog}}">
+          <view class="modal-cancel" bindtap="hideModal"></view>
+          <view class="bottom-dialog-body bottom-position" animation="{{animationData}}">
+            <view class="authStatusModal">
+              <view class="title">
+                <text class="iconfont icon-renzheng renzheng" wx:if="{{userMessage.authStatus === 2}}"></text>
+                <text class="iconfont icon-weirenzheng renzheng" wx:if="{{userMessage.authStatus === 1}}"></text>
+                <text class="iconfont icon-shanchu2" bindtap="hideModal"></text>
+                <text class="text">{{userMessage.authStatus === 2? '实名认证成功' : '正在审核中...'}}</text>
+              </view>
+              <view class="authMessage">
+                <view class="auth">实名姓名:<text class="authIndex">{{userMessage.name}}</text></view>
+                <text class="line"></text>
+                <view class="auth">证件类型:<text class="authIndex">{{userMessage.certificatesType}}</text></view>
+                <text class="line"></text>
+                <view class="auth">证件号码:<text class="authIndex">{{userMessage.certificatesNo}}</text></view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>    
+    </view>      
+</view>

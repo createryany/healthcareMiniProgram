@@ -1,0 +1,121 @@
+/* pages/person/person.wxss */
+
+.weixinLoginContainer .body .login {
+  background-color: white;
+  padding: 0 40rpx;
+}
+
+.weixinLoginContainer .body .login .title {
+  line-height: 200rpx;
+  font-size: 50rpx;
+  font-weight: bold;
+  color: #555;
+}
+
+.weixinLoginContainer .body .login .phone {
+line-height: 100rpx;
+font-size: 30rpx;
+color: #555;
+}
+
+.weixinLoginContainer .body .login .fixPhone {
+color: #839bfb;
+font-size: 28rpx;
+margin-left: 15rpx;
+}
+
+.input-content{
+  padding: 0 60rpx;
+}
+.input-item{
+  display:flex;
+  flex-direction: column;
+  align-items:flex-start;
+  justify-content: center;
+  background:white;
+  height: 120rpx;
+  width: 600rpx;
+}
+
+.input-item .placeholder-style {
+font-size: 40rpx;
+color: rgba(0,0,0,0.3);
+}
+
+.agreement {
+margin-left: 30rpx;
+margin-top: 40rpx;
+padding: 0 30rpx;
+font-size: 28rpx;
+color: #6b6b6b;
+}
+
+.agreement .icon-radio-unchecked-b-o {
+font-size: 30rpx;
+}
+
+.agreement .icon-xuanzhongduigou {
+font-size: 30rpx;
+color: #1a86fb;
+}
+
+.agreement .agree {
+color: #1a86fb;
+}
+
+.input-content .line {
+flex: 1;
+border-bottom: 1rpx solid #eee;
+font-size: 30rpx;
+margin-bottom: 50rpx;
+}
+
+.input-item:last-child{
+margin-bottom: 0;
+}
+
+.input-item input{
+height: 60rpx;
+font-size: 30rpx;
+color: #303133;
+width: 100%;
+}
+.confirm-btn{
+  width: 630rpx;
+  height: 76rpx;
+  line-height: 76rpx;
+  border-radius: 50rpx;
+  margin-top: 70rpx;
+  font-size: 32rpx;
+  padding: 0;
+}
+.confirm-btn2:after{
+  border-radius: 100px;
+}
+
+.input-code-content .input-code-item {
+position: relative;
+}
+
+.input-code-content .input-code-item .content { 
+display: flex; 
+justify-content: space-around; 
+align-items: center; 
+margin-top: 30rpx; 
+}
+
+.content .input { 
+width: 80rpx; 
+height: 80rpx; 
+border-radius: 20rpx; 
+display: flex; 
+justify-content: center; 
+align-items: center; 
+text-align: center;
+} 
+
+.input-code-content .input-code-item .inputBox { 
+  position: absolute;
+  width: 0;
+  height: 0;
+} 

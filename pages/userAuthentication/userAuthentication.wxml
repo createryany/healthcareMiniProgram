@@ -1,0 +1,79 @@
+<!--pages/userAuthentication/userAuthentication.wxml-->
+<view class="authContainer">
+    <view class="header">
+      <text>healthcare预约挂号</text>
+    </view>  
+    <view class="body">
+      <!-- 证件信息区 -->
+      <view class="certificatesInfo">
+        <view>
+          <text class="title">实名姓名</text>
+          <input class="input"  type="text" placeholder="请输入真实姓名" value="{{certificatesName}}" bindinput="handleCertificatesNameInput" focus="{{isFocus}}" bindblur="handleCertificatesNameInputBlur"/>
+          <text class="special" bindtap="addSpecial" wx:if="{{certificatesSpecialStatus}}">特殊字符</text>
+          <text class="special" bindtap="addSpecialShow" wx:if="{{!certificatesSpecialStatus}}">添加特殊字符</text>
+        </view>
+        <view class="certificatesNameInfo" wx:if="{{certificatesSpecialStatus}}">
+          <text>如果姓名中含有特殊字符“·”，请点击右侧「特殊字符」添加</text>
+        </view>
+        <view class="certificatesTypeNumInfo" wx:if="{{certificatesNameStatus}}">
+          <text>请填写您的真实姓名</text>
+        </view>
+        <view class="line" style="margin-bottom: 10rpx;"></view>
+        <view bindtap="handleCertificatesTypeModal" style="background-color: {{ertificatesTypeModal}};padding: 20rpx 0;">
+          <text class="title">证件类型</text>
+          <input type="text" class="certificatesTypeInput"  value="{{certificatesType}}" placeholder="点击选择证件类型"/>
+          <!-- <text class="certificatesTypeInput" >{{certificatesType? certificatesType : '点击选择证件类型'}}</text> -->
+          <text class="iconfont icon-xiayiyeqianjinchakangengduo"></text>
+        </view>
+        <view class="certificatesTypeNumInfo" wx:if="{{certificatesTypeStatus}}">
+          <text>请选择证件类型</text>
+        </view>
+        <view class="line" style="margin-top: 10rpx;"></view>
+        <view>
+          <text class="title">证件号码</text>
+          <input class="input"  type="idcard" placeholder="请输入证件号码" bindinput="handleCertificatesNoInput" value="{{certificatesNo}}" bindblur="handleCertificatesNoInputBlur" maxlength="18"/>
+        </view>
+        <view class="certificatesTypeNumInfo" wx:if="{{certificatesNumStatus}}">
+          <text>请填写证件号码</text>
+        </view>
+      </view>
+      <!-- 证件图片 -->
+      <view class="certificatesImg">
+        <view class="img">
+          <view class="uploadImg" bindtap="handleUploadImage" wx:if="{{certificatesImgUploadImgStatus}}">
+            <text class="iconfont icon-xiangji"></text>
+            <text class="uploadInfo">上传人证合一照片</text>
+          </view>
+          <canvas type="2d" id="healthcare" bindtap="handleChangeUploadImage" class="uploadImg" wx:if="{{!certificatesImgUploadImgStatus}}"/>
+          <view class="exampleImg">
+            <image src="/static/images/authImage/auth_example.png"/>
+          </view>
+        </view>
+        <view class="certificatesImgInfo" wx:if="{{certificatesImgUploadStatus}}">
+          <text>请上传人证合一照片</text>
+        </view>
+        <view class="infoText">
+          <text>隐私提示：您提交的所有信息都会自动增加水印，仅供healthcare预约挂号平台实名认证使用。</text>
+        </view>
+      </view>
+      <!-- 提交按钮 -->
+      <view class="certificatesSubmit" bindtap="handleSubmit">
+        <text>提交</text>
+      </view>
+      <!-- 证件选择弹窗 -->
+      <view class="modal modal-bottom-dialog" hidden="{{hiddenDialog}}">
+          <view class="modal-cancel" bindtap="hideModal"></view>
+          <view class="bottom-dialog-body bottom-position" animation="{{animationData}}">
+            <view class="certificatesType">
+              <view class="option">
+                <text class="cancel" bindtap="hideModal">取消</text>
+                <text class="confirm" bindtap="confirmSelection">确认</text>
+              </view>
+              <view class="selection" wx:for="{{certificatesTypeList}}" wx:key="id" >
+                <view class="selectionText {{currentTab === item.id?'selectionBackground':''}}" data-current="{{item.id}}" bindtap="handleCertificatesTypeSelection">{{item.name}}</view>
+              </view>
+            </view>
+          </view>
+        </view>
+    </view>
+</view>

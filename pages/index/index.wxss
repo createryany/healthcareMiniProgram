@@ -1,0 +1,136 @@
+/* pages/index/index.wxss */
+
+/* 搜索框 */
+.indexContainer .search {
+  margin: 35rpx 8%;
+  padding: 20rpx 25rpx;
+  height: 100%;
+  border-radius: 60rpx;
+  background-color: white;
+  box-shadow: 5rpx 5rpx 10rpx 5rpx rgb(235, 226, 226);
+}
+
+.indexContainer .search text {
+  font-size: 35rpx;
+  line-height: 50rpx;
+  color: #989898;
+  margin-right: 10rpx;
+}
+
+/* 首页图样式 */
+.indexContainer .indexImage {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.indexContainer .indexImage image {
+  width: 90%;
+  height: 160rpx;
+  text-align: center;
+  border-radius: 20rpx;
+}
+
+/* 通知导航区样式 */
+.indexContainer .notifyNav {
+  margin: 20rpx 3%;
+  display: flex;
+}
+
+.indexContainer .notifyNav .navItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 25%;
+}
+
+.indexContainer .notifyNav .navItem .iconfont {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 100rpx;
+  color: white;
+  font-size: 20px;
+  background: radial-gradient(circle, #99b2f1 1%, #7698fa 75%, #829afb 100%);
+  margin: 20rpx 0;
+}
+
+.indexContainer .notifyNav .navItem text {
+  font-size: 30rpx;
+}
+
+/* 分割线 */
+.indexContainer .line {
+  width: 100%;
+  height: 20rpx;
+  background-color: #f6f6f6;
+}
+
+/* 医院信息区 */
+.indexContainer .hospitalInfo {
+  margin: 0 5%;
+}
+
+.indexContainer .hospitalInfo .header {
+  font-size: 37rpx;
+  line-height: 80rpx;
+}
+
+.indexContainer .hospitalInfo .header .area .iconfont {
+  font-size: 12px;
+  color: #dddddd;
+  margin-left: 10rpx;
+}
+
+.indexContainer .hospitalInfo .header .sort {
+  font-size: 32rpx;
+  line-height: 80rpx;
+  float: right;
+}
+
+.indexContainer .hospitalInfo .header .sort .iconfont {
+  margin-left: 5rpx;
+}
+
+.indexContainer .hospitalInfo .inner image {
+  position: relative;
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 50%;
+  margin-top: 3.5%;
+  margin-left: 0.3%;
+}
+
+.indexContainer .hospitalInfo .inner .avatar .avatarBackground {
+  position: absolute;
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 50%;
+  margin-top: 3%;
+  margin-left: 0.5%;
+  box-shadow: 0 0 20rpx 15rpx #f7f7f7;
+}
+
+.indexContainer .hospitalInfo .inner .hospital {
+  width: 520rpx;
+  float: right;
+}
+
+.indexContainer .hospitalInfo .inner .hospital .hospitalName {
+  font-size: 42rpx;
+  font-weight: bold;
+  line-height: 120rpx;
+  white-space: nowrap;
+}
+
+.indexContainer .hospitalInfo .inner .hospital .hospitalOtherInfo {
+  font-size: 30rpx;
+  color: #999999;
+}
+
+.indexContainer .hospitalInfo .inner .hospital .hospitalOtherInfo text {
+  margin-right: 20rpx;
+}

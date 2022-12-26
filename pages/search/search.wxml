@@ -1,0 +1,39 @@
+<view class="searchContainer">
+  <!-- 头部搜索区 -->
+  <view class="header">
+    <view class="searchInput">
+      <text class="searchIcon iconfont icon-BAI-fangdajing"></text>
+      <input type="text" value="{{searchContent}}" placeholder="请输入医院名称" bindinput="handleInputChange" autofocus/>
+      <text wx:if="{{searchContent}}" class="clear iconfont icon-shanchu2" bindtap="clearSearchContent"></text>
+    </view>
+    <text class="cancel">取消 </text>
+  </view>
+  <!-- 搜索历史记录 -->
+  <block wx:if="{{historyList.length}}">
+    <view class="history">
+    <view class="title">历史</view>
+    <view class="historyItem" wx:for="{{historyList}}" wx:key="item">
+      {{item}}
+    </view>
+  </view>
+  <text class="iconfont icon-shanchu delete" bindtap="deleteSearchHistory"></text>
+  </block>
+  <!-- 搜索内容展示 -->
+  <view class="showSearchContent">
+    <block wx:if='{{searchList.length}}'>
+      <view class="searchContent">搜索内容：{{searchContent}}</view>
+      <view class="searchList">
+        <view class="searchItem" wx:for="{{searchList}}" wx:key="id">
+          <text class="iconfont icon-BAI-fangdajing"></text>
+          <text class="content">{{item.hosname}}</text>
+        </view>
+      </view>
+    </block>
+    <block wx:if="{{isSearchResult}}">
+      <view class="noSearhList">
+        <text class="iconfont icon-zanwusousuolishi"></text>
+        <text class="text">暂无搜索结果</text>
+      </view>
+    </block>
+  </view>
+</view>

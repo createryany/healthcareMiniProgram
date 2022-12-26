@@ -1,0 +1,38 @@
+<!--pages/weixinLogin/weixinLogin.wxml-->
+<view class="weixinLoginContainer">
+    <view class="body">
+      <view class="login">
+        <view wx:if="{{flag}}">
+          <text class="title">首次登录需要绑定手机号码</text>
+          <view class="input-content">
+            <view class="input-item">
+              <input type="text" placeholder="请输入您的手机号码" placeholder-class="placeholder-style" bindinput="handlePhoneInput"/>
+            </view>
+            <view class="line"></view>
+          </view>
+          <button class="confirm-btn" bindtap="{{bindtapClick}}" style="background-color: {{beforeBindtapClickBtn}};color: {{beforeBindtapClickBtnText}};border: {{beforeBindtapClickBtnBorder}};">获取验证码</button>
+        </view>
+        <view wx:if="{{!flag}}">
+          <text class="title">输入验证码</text>
+          <view><text class="phone">验证码已发送至 {{phone}}</text><text class="fixPhone" bindtap="fixPhone">修改</text></view>
+          <view class="input-code-content">
+            <view class="input-code-item">
+                <view class="content"> 
+                  <block wx:for="{{Length}}" wx:key="item"> 
+                    <input class="input" style="border: {{code[index]?codeInputBorder[1] : codeInputBorder[0]}};"  password="{{ispassword}}" value="{{code.length>=index+1?code[index] : ''}}" disabled="" catchtap="codeTap"/> 
+                  </block>
+                </view>
+                <input name="password" password="{{ispassword}}" class="inputBox" maxlength="{{Length}}" focus="{{isFocus}}" bindinput="codeFocus" /> 
+            </view>
+          </view>
+          <button class="confirm-btn" bindtap="{{bindtapClick}}" style="color: {{beforeBindtapClickBtnText}};background-color: {{beforeBindtapClickBtn}};">{{times}}重新获取</button>
+        </view>
+        <view class="agreement" wx:if="{{flag}}">
+          <text wx:if="{{!isAgree}}" class="iconfont icon-radio-unchecked-b-o" bindtap="agreeStatus"></text>
+          <text wx:if="{{isAgree}}" class="iconfont icon-xuanzhongduigou" bindtap="agreeStatus"></text>
+          我同意《<text class="agree">预约挂号服务协议</text>》和《<text class="agree">隐私协议</text>》
+        </view>
+      </view>    
+    </view>      
+</view>
+

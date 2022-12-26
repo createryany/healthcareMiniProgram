@@ -1,0 +1,17 @@
+<view class="wechatContainer">
+  <view class="header">
+      <text>healthcare预约挂号</text>
+  </view>  
+  <view class="body">
+    <view class="wechat">
+      <text class="iconfont icon-weixin" bindtap="handleBindWechat" wx:if="{{!avatarUrl}}"></text>
+      <text class="noWechatTitle" wx:if="{{!avatarUrl}}">你还没有绑定微信号</text>
+      <image class="avatarImg" src="{{avatarUrl}}" wx:if="{{avatarUrl}}"/>
+      <text class="noWechatTitle" wx:if="{{userName}}">{{userName}}</text>
+    </view>
+    <view class="isBind">
+      <text bindtap="handleBindWechat" wx:if="{{!avatarUrl}}">点击绑定微信号</text>
+      <text bindtap="handleNoBindWechat" wx:if="{{avatarUrl}}">解除绑定微信号</text>
+    </view>
+  </view>
+</view>

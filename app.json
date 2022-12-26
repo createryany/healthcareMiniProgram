@@ -1,0 +1,43 @@
+{
+  "lazyCodeLoading": "requiredComponents",
+  "pages": [
+    "pages/index/index",
+    "pages/person/person",
+    "pages/weixinBind/weixinBind",
+    "pages/userAuthentication/userAuthentication",
+    "pages/search/search",
+    "pages/department/department",
+    "pages/weixinLogin/weixinLogin"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#e1dcf1",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "healthcare预约挂号"
+  },
+  "tabBar": {
+    "color": "#333",
+    "selectedColor": "#839bfb",
+    "borderStyle": "white",
+    "backgroundColor": "#e1dcf1",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "/static/images/selection/index.png",
+        "selectedIconPath": "/static/images/selection/index-current.png"
+      },
+      {
+        "pagePath": "pages/department/department",
+        "text": "全部科室",
+        "iconPath": "/static/images/selection/department.png",
+        "selectedIconPath": "/static/images/selection/department-current.png"
+      },
+      {
+        "pagePath": "pages/person/person",
+        "text": "个人中心",
+        "iconPath": "/static/images/selection/people.png",
+        "selectedIconPath": "/static/images/selection/people-current.png"
+      }
+    ]
+  }
+}

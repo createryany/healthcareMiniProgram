@@ -1,0 +1,241 @@
+/* pages/userAuthentication/userAuthentication.wxss */
+
+.authContainer .header {
+  width: 100%;
+  height: 140rpx;
+  background-color: #9cc0fe;
+  padding-top: 10rpx;
+}
+
+.authContainer .header text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  font-size: 30rpx;
+  line-height: 30rpx;
+}
+
+.authContainer .body {
+  margin-top: -13%;
+  height: 1000rpx;
+  background-color: white;
+}
+
+/* 证件信息区 */
+.authContainer .body .certificatesInfo {
+  padding: 40rpx 30rpx;
+}
+
+.authContainer .body .certificatesInfo .certificatesNameInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 23rpx;
+  color: #b6b6b6;
+  margin-top: 10rpx;
+  padding: 5rpx 10rpx;
+  border-radius: 5rpx;
+  background-color: #f7f5f6;
+}
+
+.authContainer .body .certificatesInfo .line {
+  flex: 1;
+  border: 2rpx solid #eee;
+  font-size: 30rpx;
+  margin: 30rpx 0;
+}
+
+.authContainer .body .certificatesInfo .title {
+  font-size: 35rpx;
+  color: #000021;
+}
+
+.authContainer .body .certificatesInfo view {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+}
+
+.authContainer .body .certificatesInfo view .iconfont {
+  /* margin-left: 250rpx; */
+  position: absolute;
+  top: 25rpx;
+  right: 0;
+  color: #000021;
+}
+
+.authContainer .body .certificatesInfo .input {
+  display: inline-block;
+  margin-left: 40rpx;
+}
+
+.authContainer .body .certificatesInfo .special {
+  position: absolute;
+  right: 0;
+  line-height: 51rpx;
+  font-size: 30rpx;
+  color: #88a6e1;
+}
+
+.authContainer .body .certificatesInfo .certificatesTypeInput {
+  margin-left: 40rpx;
+  line-height: 42rpx;
+}
+
+.authContainer .body .certificatesInfo .inputText {
+  font-size: 30rpx;
+  line-height: 30rpx;
+  color: #dfdfdf;
+}
+
+/* 证件图片 */
+.certificatesImg {
+  padding: 40rpx 30rpx;
+  background-color: #f6f6f6;
+}
+
+.certificatesImg .img {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: space-between;
+}
+
+.certificatesImg .img .uploadImg {
+  width: 330rpx;
+  height: 258rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content:center;
+  background-color: white;
+  border: 1rpx solid #8fa6d9;
+}
+
+.certificatesImg .img .uploadImg text {
+  margin: 30rpx 0;
+  color: #4c80fd;
+  font-size: 32rpx;
+}
+
+.certificatesImg .img .uploadImg .icon-xiangji {
+  font-size: 55rpx;
+}
+
+.certificatesImg .img .exampleImg image {
+  width: 330rpx;
+  height: 258rpx;
+}
+
+.certificatesImg .infoText {
+  margin-top: 20rpx;
+  font-size: 25rpx;
+  color: red;
+}
+
+/* 提交按钮 */
+.certificatesSubmit {
+  margin: 40rpx 30rpx;
+  height: 80rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #4d80fd;
+  border-radius: 50rpx;
+}
+
+.certificatesSubmit text {
+  line-height: 80rpx;
+  color: white;
+}
+
+/* 证件选择弹窗 */
+.certificatesType {
+  width: 100%;
+  background-color: white;
+  border-top-right-radius: 38rpx;
+  border-top-left-radius: 38rpx;
+}
+
+.certificatesType .option {
+  padding: 20rpx 25rpx;
+  margin-bottom: 30rpx;
+}
+
+.certificatesType .confirm {
+  margin-left: 580rpx;
+  font-size: 30rpx;
+  color: #6183d8;
+}
+
+.certificatesType .cancel {
+  font-size: 30rpx;
+  color: #a6a6a6;
+}
+
+.certificatesType .selection {
+  padding-bottom: 20rpx;
+}
+
+.certificatesType .selection .selectionText {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 50rpx;
+  padding: 10rpx 0;
+}
+
+.selectionBackground {
+  background-color: #f7f5f6;
+}
+
+/*模态框*/
+.modal{
+  position: fixed;
+  top:0; 
+  right:0; 
+  bottom:0; 
+  left:0; 
+  z-index:1000;
+}
+.modal-cancel{
+  position:absolute; 
+  z-index:2000; 
+  top:0; 
+  right:0; 
+  bottom: 0; 
+  left:0; 
+  background:rgba(0,0,0,0.3);
+}
+.bottom-dialog-body{
+  width:100%; 
+  position: absolute; 
+  z-index:3000; 
+  bottom:0; 
+  left:0;
+  background:rgba(178, 178, 178,0.3);
+}
+/*动画前初始位置*/
+.bottom-positon{
+  -webkit-transform:translateY(100%);transform:translateY(100%);
+}
+
+/* 底部弹出框 */
+.bottom-positon{
+  text-align: center;
+}
+
+/* 提示信息 */
+.certificatesTypeNumInfo {
+  margin-top: 10rpx;
+  margin-left: 170rpx;
+  font-size: 28rpx;
+  color: red;
+}
+
+.certificatesImgInfo {
+  font-size: 28rpx;
+  color: red;
+}
