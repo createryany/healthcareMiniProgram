@@ -1,2 +1,6 @@
 <!--pages/department/department.wxml-->
-<text>pages/department/department.wxml</text>
+<view class="departmentContainer">
+  <view class="title">
+    <text>该页面正在开发中...</text>
+  </view>
+</view>
