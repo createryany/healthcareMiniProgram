@@ -1,5 +1,8 @@
 // pages/person/person.js
 import request from '../../utils/request'
+const {
+  $Message
+} = require('../../dist/base/index');
 let startY = 0;
 let moveY = 0;
 let moveDistance = 0;
@@ -37,6 +40,18 @@ Page({
   agreeStatus() {
     this.setData({
       isAgree: !this.data.isAgree
+    })
+  },
+  // 账号信息
+  fixUserInfo() {
+    wx.navigateTo({
+      url: '/pages/person/fixUserInfo/fixUserInfo',
+    })
+  },
+  // 更多
+  more() {
+    wx.navigateTo({
+      url: '/pages/more/more',
     })
   },
   // 收集登录信息
@@ -103,6 +118,7 @@ Page({
       return
     }
     countDowmStop = true
+    currentTime = 60
     this.countdown()
     this.setData({
       flag: false,
@@ -113,6 +129,7 @@ Page({
       beforeBindtapClickBtnBorder: '1rpx solid #999'
     })
     await request('/api/msm/sendCode/' + this.data.phone)
+    this.codeTap()
   },
   // 倒计时
   countdown() {
@@ -134,6 +151,10 @@ Page({
         beforeBindtapClickBtn: '#839bfb',
         beforeBindtapClickBtnBorder: ''
       })
+    } else {
+      this.setData({
+        times: ''
+      })
     }
   },
   // 登录
@@ -152,46 +173,72 @@ Page({
       phone,
       code
     }, 'POST')
-    if (result.code === 200) {
-      let userMessageResult = await request('/api/user/auth/getUserInfo', {}, 'GET', result.data.token)
-      let userMessage = userMessageResult.data
-      wx.setStorageSync('userMessage', JSON.stringify(userMessage))
-      this.setData({
-        userMessage
-      })
-      wx.setStorageSync('userInfo', JSON.stringify(result.data))
-      // 更新用户信息
-      this.setData({
-        userInfo: result.data,
-        flag: true,
-        isLogin: true
-      })
-      wx.setNavigationBarTitle({
-        title: '个人中心'
-      })
-      wx.hideLoading()
-      wx.showToast({
-        title: '登录成功',
-        icon: 'success'
-      })
-    } else if (result.code === 210) {
-      wx.hideLoading()
-      wx.showToast({
-        title: '验证码不正确',
-        icon: 'error'
-      })
-    } else {
-      wx.hideLoading()
-      wx.showToast({
-        title: result.message,
-        icon: 'error'
-      })
-    }
+    setTimeout(async () => {
+      if (result.code === 200) {
+
+        let userMessageResult = await request('/api/user/auth/getUserInfo', {}, 'GET', result.data.token)
+        if (userMessageResult.code === 200) {
+          let userMessage = userMessageResult.data
+          wx.setStorageSync('userMessage', JSON.stringify(userMessage))
+          this.setData({
+            userMessage
+          })
+          wx.setStorageSync('userInfo', JSON.stringify(result.data))
+          // 更新用户信息
+          this.setData({
+            userInfo: result.data,
+            flag: true,
+            isLogin: true
+          })
+          wx.setNavigationBarTitle({
+            title: '个人中心'
+          })
+          wx.hideLoading()
+          wx.showToast({
+            title: '登录成功',
+            icon: 'success'
+          })
+        } else {
+          wx.hideLoading()
+          wx.showToast({
+            title: '登录失败',
+            icon: 'error'
+          })
+          countDowmStop = false
+          this.setData({
+            bindtapClick: 'sendCode',
+            beforeBindtapClickBtnText: 'white',
+            beforeBindtapClickBtn: '#839bfb',
+            beforeBindtapClickBtnBorder: '',
+            times: ''
+          })
+        }
+
+      } else if (result.code === 210) {
+        wx.hideLoading()
+        wx.showToast({
+          title: '验证码不正确',
+          icon: 'error'
+        })
+      } else if (result.code === 23005) {
+        wx.hideLoading()
+        $Message({
+          content: '账号已在其它地方登录',
+          type: 'warning'
+        })
+      } else {
+        wx.hideLoading()
+        $Message({
+          content: result.message,
+          type: 'warning'
+        })
+      }
+    }, 500)
   },
   // 绑定微信号
   handleBindWechat() {
     wx.navigateTo({
-      url: '/pages/weixinBind/weixinBind'
+      url: '/pages/weixinBind/weixinBind',
     })
   },
   // 退出登录
@@ -265,76 +312,70 @@ Page({
   },
   // 微信登录
   weixinLogin() {
-    if(!this.data.isAgree) {
+    if (!this.data.isAgree) {
       wx.showToast({
         title: '请确认已同意《预约挂号服务协议》和《隐私协议》',
         icon: 'none'
       })
       return
     }
-    wx.showModal({
-      title: '提示',
-      content: '是否授权登录?',
-      complete: (res) => {
-        if (res.confirm) {
-          wx.showLoading({
-            title: '正在登录...',
-          })
-          wx.getUserInfo({
-            success: res => {
-              let avatarUrl = res.userInfo.avatarUrl
-              let nickName = res.userInfo.nickName
-              let wxInfo = {
-                avatarUrl,
-                userName: nickName
+    wx.getUserProfile({
+      desc: '是否授权healthcare平台微信登录',
+      success: res => {
+        wx.showLoading({
+          title: '正在登录...',
+        })
+        let avatarUrl = res.userInfo.avatarUrl
+        let userName = res.userInfo.nickName
+        let wxInfo = {
+          avatarUrl,
+          userName
+        }
+        wx.login({
+          success: async (res) => {
+            let wxLoginResult = await request('/api/ucenter/wx/callback/' + res.code + '/' + Date.parse(new Date()), wxInfo, 'POST')
+            let openid = wxLoginResult.data.openid
+            if (wxLoginResult.data.phone) {
+              if (wxLoginResult.data.token) {
+                let userMessageResult = await request('/api/user/auth/getUserInfo', {}, 'GET', wxLoginResult.data.token)
+                let userMessage = userMessageResult.data
+                wx.setStorageSync('userMessage', JSON.stringify(userMessage))
+                this.setData({
+                  userMessage
+                })
               }
-              wx.login({
-                success: async (res) => {
-                  let wxLoginResult = await request('/api/ucenter/wx/callback/' + res.code + '/' + 'wxLogin', wxInfo, 'POST')
-                  let openid = wxLoginResult.data.openid
-                  if (wxLoginResult.data.phone) {
-                    if (wxLoginResult.data.token) {
-                      let userMessageResult = await request('/api/user/auth/getUserInfo', {}, 'GET', wxLoginResult.data.token)
-                      let userMessage = userMessageResult.data
-                      wx.setStorageSync('userMessage', JSON.stringify(userMessage))
-                      this.setData({
-                        userMessage
-                      })
-                    }
-                    if (wxLoginResult.code === 200) {
-                      wx.showToast({
-                        title: '登录成功',
-                        icon: 'success'
-                      })
-                      wx.setStorageSync('userInfo', JSON.stringify(wxLoginResult.data))
-                      // 更新用户信息
-                      this.setData({
-                        userInfo: wxLoginResult.data,
-                        flag: true,
-                        isLogin: true
-                      })
-                      wx.hideLoading()
-                      wx.setNavigationBarTitle({
-                        title: '个人中心'
-                      })
-                    } else {
-                      wx.showToast({
-                        title: wxLoginResult.message,
-                        icon: 'error'
-                      })
-                    }
-                  } else {
-                    wx.reLaunch({
-                      url: `/pages/weixinLogin/weixinLogin?openid=${openid}`,
-                    })
-                  }
-                },
+              if (wxLoginResult.code === 200) {
+                wx.showToast({
+                  title: '登录成功',
+                  icon: 'success'
+                })
+                wx.setStorageSync('userInfo', JSON.stringify(wxLoginResult.data))
+                // 更新用户信息
+                this.setData({
+                  userInfo: wxLoginResult.data,
+                  flag: true,
+                  isLogin: true
+                })
+                wx.hideLoading()
+                wx.setNavigationBarTitle({
+                  title: '个人中心'
+                })
+              } else {
+                wx.showToast({
+                  title: wxLoginResult.message,
+                  icon: 'error'
+                })
+              }
+            } else {
+              wx.reLaunch({
+                url: `/pages/weixinLogin/weixinLogin?openid=${openid}`,
               })
             }
-          })
-        }
+          },
+        })
       }
     })
+
   },
   // 未实名认证
   handleNoAuthStatusModal() {
@@ -382,7 +423,10 @@ Page({
     // 从storage中拿用户信息
     let userInfo = wx.getStorageSync('userInfo')
     let userMessage = wx.getStorageSync('userMessage')
-    if (userInfo) {
+    if (userInfo && userMessage) {
+      wx.setNavigationBarTitle({
+        title: '个人中心'
+      })
       // 更新用户信息
       this.setData({
         userInfo: JSON.parse(userInfo.trim()),
@@ -392,7 +436,17 @@ Page({
       })
     }
   },
-
+  // 查看协议
+  userAgree() {
+    wx.navigateTo({
+      url: '/pages/agreement/user/user',
+    })
+  },
+  privacyAgree() {
+    wx.navigateTo({
+      url: '/pages/agreement/privacy/privacy',
+    })
+  },
   /**
    * 生命周期函数--监听页面隐藏
    */

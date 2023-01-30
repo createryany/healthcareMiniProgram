@@ -27,6 +27,13 @@
   align-items: center;
 }
 
+.wechat .avatarImg {
+  width: 150rpx;
+  height: 150rpx;
+  margin-top: 150rpx;
+  border-radius: 50%;
+}
+
 .wechatContainer .wechat .iconfont {
   margin-top: 150rpx;
   font-size: 150rpx;
@@ -44,16 +51,26 @@
   flex-direction: column;
   align-items: center;
   margin: 180rpx 30rpx;
+  
+}
+
+.isBind .bind {
+  width: 600rpx;
   font-size: 30rpx;
+  text-align: center;
   color: white;
-  padding: 30rpx;
+  padding: 30rpx 0;
   background-color: #4d80fd;
   border-radius: 50rpx;
 }
 
-.avatarImg {
-  width: 150rpx;
-  height: 150rpx;
-  margin-top: 150rpx;
-  border-radius: 50%;
+.isBind .back {
+  width: 600rpx;
+  font-size: 30rpx;
+  text-align: center;
+  color: #333;
+  padding: 25rpx 0;
+  margin-top: 20rpx;
+  border-radius: 50rpx;
+  border: 1rpx solid #999;
 }

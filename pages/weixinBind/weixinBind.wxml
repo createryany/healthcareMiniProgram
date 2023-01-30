@@ -4,14 +4,15 @@
   </view>  
   <view class="body">
     <view class="wechat">
-      <text class="iconfont icon-weixin" bindtap="handleBindWechat" wx:if="{{!avatarUrl}}"></text>
-      <text class="noWechatTitle" wx:if="{{!avatarUrl}}">你还没有绑定微信号</text>
-      <image class="avatarImg" src="{{avatarUrl}}" wx:if="{{avatarUrl}}"/>
-      <text class="noWechatTitle" wx:if="{{userName}}">{{userName}}</text>
+      <text class="iconfont icon-weixin" bindtap="handleBindWechat" wx:if="{{!userMessage.avatarUrl}}"></text>
+      <text class="noWechatTitle" wx:if="{{!userMessage.avatarUrl}}">你还没有绑定微信号</text>
+      <image class="avatarImg" src="{{userMessage.avatarUrl}}" wx:if="{{userMessage.avatarUrl}}"/>
+      <text class="noWechatTitle" wx:if="{{userMessage.userName}}">{{userMessage.userName}}</text>
     </view>
     <view class="isBind">
-      <text bindtap="handleBindWechat" wx:if="{{!avatarUrl}}">点击绑定微信号</text>
-      <text bindtap="handleNoBindWechat" wx:if="{{avatarUrl}}">解除绑定微信号</text>
+      <text class="bind" bindtap="handleBindWechat" wx:if="{{!userMessage.avatarUrl}}">点击绑定微信号</text>
+      <text class="bind" bindtap="handleNoBindWechat" wx:if="{{userMessage.avatarUrl}}">解除绑定微信号</text>
+      <text class="back" bindtap="backPerson">返回</text>
     </view>
   </view>
 </view>

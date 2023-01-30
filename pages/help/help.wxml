@@ -1,0 +1,40 @@
+<view class="helpContainer">
+  <view class="header">
+    <text>healthcare预约挂号</text>
+  </view>
+  <view class="body">
+    <view class="problem">
+      <view class="rightLine"></view>
+      <view class="leftLine"></view>
+      <view class="title">
+        <text>常见问题</text>
+      </view>
+      <view class="line"></view>
+      <view class="problemText" bindtap="toCommon">
+        <text>常见问题</text>
+        <text class="iconfont icon-xiayiyeqianjinchakangengduo"></text>
+      </view>
+    </view>
+
+    <view class="guide">
+      <view class="rightLine"></view>
+      <view class="leftLine"></view>
+      <view class="title">
+        <text>预约指南</text>
+      </view>
+      <view class="line"></view>
+      <view class="problemText" bindtap="toGenera">
+        <text>预约挂号须知总则</text>
+        <text class="iconfont icon-xiayiyeqianjinchakangengduo"></text>
+      </view>
+      <view class="problemText" bindtap="toProcess">
+        <text>预约挂号流程</text>
+        <text class="iconfont icon-xiayiyeqianjinchakangengduo"></text>
+      </view>
+      <view class="problemText" bindtap="toSearch">
+        <text>如何查询/取消预约</text>
+        <text class="iconfont icon-xiayiyeqianjinchakangengduo"></text>
+      </view>
+    </view>
+  </view>
+</view>

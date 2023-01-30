@@ -300,6 +300,92 @@
 
 .authStatusModal .authMessage .auth .authIndex {
   font-size: 30rpx;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   margin-left: 130rpx;
+}
+
+/* 就诊人和挂号订单 */
+.patient {
+  margin: 25rpx;
+  display: flex;
+  flex-direction: row;
+}
+
+.patient .visitor {
+  padding: 40rpx 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 90rpx;
+}
+
+.patient .text {
+  font-size: 30rpx;
+  color: #333;
+}
+
+.patient .order {
+  padding: 40rpx 0 ;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 310rpx;
+}
+
+.patient .iconfont {
+  font-size: 100rpx;
+  color: #3e84f6;
+}
+
+.linea {
+  margin: 0rpx 20rpx;
+  border: 1rpx solid #deeefd;
+}
+
+/* 修改信息 绑定微信号 意见反馈 */
+.options {
+  padding: 60rpx 20rpx 60rpx 40rpx;
+}
+
+.options .iconfont {
+  font-size: 45rpx;
+  margin-right: 20rpx;
+  color: #7487cd;
+}
+
+.options .text {
+  font-size: 38rpx;
+  color: #333;
+}
+
+.options .info {
+  margin-bottom: 30rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.options .info .icona {
+  margin-left: auto;
+}
+
+.logout {
+  width: 100%;
+  height: 100rpx;
+  font-size: 38rpx;
+  color: #333;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 100rpx;
+  margin-top: 20rpx;
+}
+
+.background {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background-color: #f6f6f6;
 }

@@ -1,0 +1,18 @@
+<!--pages/userFeedback/userFeedback.wxml-->
+<view class="feedbackContainer">
+  <view class="header">
+      <text>healthcare预约挂号</text>
+    </view>  
+  <view class="body">
+    <view class="input">
+      <textarea type="text" maxlength="200" placeholder-style="font-size:30rpx;color: #dddddd;" value="{{feedbackContent}}" placeholder="请输入您的意见" bindinput="handleFeedbackInput" focus="{{isFocus}}"/>
+      <view class="textNum">
+        <text>{{feedbackContent.length}}</text>/<text>200</text>
+      </view>
+    </view>
+    <view class="submit">
+      <view class="submitText" bindtap="handleSubmit">提交</view>
+      <view class="back" bindtap="reset">重置</view>
+    </view>
+  </view>
+</view>

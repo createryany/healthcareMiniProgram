@@ -1,13 +1,25 @@
 {
   "lazyCodeLoading": "requiredComponents",
   "pages": [
-    "pages/index/index",
     "pages/person/person",
+    "pages/index/index",
+    "pages/search/search",
+    "pages/userFeedback/userFeedback",
     "pages/weixinBind/weixinBind",
     "pages/userAuthentication/userAuthentication",
-    "pages/search/search",
+    "pages/weixinLogin/weixinLogin",
     "pages/department/department",
-    "pages/weixinLogin/weixinLogin"
+    "pages/notice/notice",
+    "pages/check/check",
+    "pages/help/help",
+    "pages/help/common/common",
+    "pages/help/guide/genera/genera",
+    "pages/help/guide/process/process",
+    "pages/help/guide/search/search",
+    "pages/agreement/privacy/privacy",
+    "pages/agreement/user/user",
+    "pages/more/more",
+    "pages/person/fixUserInfo/fixUserInfo"
   ],
   "window": {
     "navigationBarBackgroundColor": "#e1dcf1",

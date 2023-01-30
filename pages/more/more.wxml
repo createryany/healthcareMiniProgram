@@ -1,0 +1,21 @@
+<view class="moreContainer">
+  <view class="header">
+    <text>healthcare预约挂号</text>
+  </view>
+  <view class="body">
+    <view class="more">
+      <view class="userFeedback" bindtap="userFeedback">
+        <text>意见反馈</text>
+        <text class="iconfont icon-xiayiyeqianjinchakangengduo"></text>
+      </view>
+      <view class="user" bindtap="user">
+        <text>预约挂号服务协议</text>
+        <text class="iconfont icon-xiayiyeqianjinchakangengduo"></text>
+      </view>
+      <view class="privacy" bindtap="toPrivacy">
+        <text>隐私协议</text>
+        <text class="iconfont icon-xiayiyeqianjinchakangengduo"></text>
+      </view>
+    </view>
+  </view>
+</view>

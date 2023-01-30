@@ -19,7 +19,7 @@
             <view class="input-code-item">
                 <view class="content"> 
                   <block wx:for="{{Length}}" wx:key="item"> 
-                    <input class="input" style="border: {{code[index]?codeInputBorder[1] : codeInputBorder[0]}};"  password="{{ispassword}}" value="{{code.length>=index+1?code[index] : ''}}" disabled="" catchtap="codeTap"/> 
+                    <input class="input" style="border: {{code[index]?codeInputBorder[1] : codeInputBorder[0]}};"  password="{{ispassword}}" value="{{code.length>=index+1?code[index] : ''}}" disabled="" catchtap="codeTap"/>
                   </block>
                 </view>
                 <input name="password" password="{{ispassword}}" class="inputBox" maxlength="{{Length}}" focus="{{isFocus}}" bindinput="codeFocus" /> 

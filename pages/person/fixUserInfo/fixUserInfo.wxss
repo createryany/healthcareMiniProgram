@@ -1,0 +1,109 @@
+/* pages/person/fixUserInfo/fixUserInfo.wxss */
+
+.fixUserInfoContainer {
+  width: 100%;
+  height: 100%;
+  background-color: #f6f6f6;
+}
+
+.fixUserInfoContainer .header {
+  width: 100%;
+  height: 140rpx;
+  background-color: #9cc0fe;
+  padding-top: 10rpx;
+}
+
+.fixUserInfoContainer .header text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  font-size: 30rpx;
+  line-height: 30rpx;
+}
+
+.fixUserInfoContainer .body {
+  height: 100%;
+  margin: -13% 0 0;
+  background-color: #f6f6f6;
+}
+
+.userInfo {
+  padding: 3% 5%;
+  background-color: white;
+}
+
+.currentPhone {
+  font-size: 25rpx;
+  line-height: 25rpx;
+  margin-bottom: 100rpx;
+}
+
+.line {
+  flex: 1;
+  border: 1rpx solid #f8f8f8;
+  margin: 45rpx 0;
+}
+
+.fixPhone {
+  padding-bottom: 50rpx;
+}
+
+.fixPhone .phone {
+  display: flex;
+  flex-direction: row;
+}
+
+.fixPhone .phone .title {
+  font-size: 30rpx;
+  line-height: 30rpx;
+  color: #999999;
+}
+
+.inputPhone {
+  font-size: 30rpx;
+  color: #dddddd;
+}
+
+.warning {
+  font-size: 25rpx;
+  line-height: 25rpx;
+  color: #ff5f5f;
+  margin-left: 190rpx;
+}
+
+.sendCode {
+  margin-left: auto;
+  margin-top: auto;
+  font-size: 30rpx;
+  line-height: 30rpx;
+  color: #4b80ff;
+}
+
+.sendCodeDown {
+  margin-left: auto;
+  margin-top: auto;
+  font-size: 30rpx;
+  line-height: 30rpx;
+  color: #999999;
+}
+
+.fixPhone .phone .input {
+  margin-left: 100rpx;
+}
+
+.fix {
+  margin: 40rpx 30rpx;
+  height: 80rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #4d80fd;
+  border-radius: 50rpx;
+}
+
+.fix text {
+  font-size: 30rpx;
+  line-height: 80rpx;
+  color: white;
+}

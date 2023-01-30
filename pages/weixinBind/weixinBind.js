@@ -7,55 +7,50 @@ Page({
    * 页面的初始数据
    */
   data: {
-    avatarUrl: '',
-    userName: ''
+    userMessage: {}
   },
   // 绑定微信号
   handleBindWechat() {
-    wx.showModal({
-      title: '提示',
-      content: '是否授权绑定微信号',
-      complete: (res) => {
-        if (res.confirm) {
-          wx.showLoading({
-            title: '正在绑定',
-          })
-          wx.getUserInfo({
-            success: res => {
-              let avatarUrl =  res.userInfo.avatarUrl
-              let userName =  res.userInfo.nickName
-              let userInfo = {avatarUrl, userName}
-              wx.login({
-                success: async (res) => {
-                  if (res.code) {
-                    //发起网络请求
-                    let token = JSON.parse(wx.getStorageSync('userInfo').trim()).token
-                    let result = await request('/api/ucenter/wx/bindWechat/' + res.code + '/bindWechat', userInfo, 'POST', token)
-                    if(result.code === 200) {
-                      let userMessage = result.data
-                      wx.removeStorageSync('userMessage')
-                      wx.setStorageSync('userMessage', userMessage)
-                      wx.setStorageSync('avatarUrl', avatarUrl)
-                      this.setData({
-                        avatarUrl,
-                        userName
-                      })
-                      wx.hideLoading()
-                      wx.showToast({
-                        title: '绑定成功'
-                      })
-                    } else {
-                      wx.showToast({
-                        title: '服务异常',
-                        icon: 'error'
-                      })
-                    }
-                  }
-                }
-              })
+    wx.getUserProfile({
+      desc: '是否授权healthcare平台微信登录',
+      success: res => {
+        wx.showLoading({
+          title: '正在绑定',
+        })
+        let avatarUrl =  res.userInfo.avatarUrl
+        let userName =  res.userInfo.nickName
+        let userInfo = {avatarUrl, userName}
+        wx.login({
+          success: async (res) => {
+            if (res.code) {
+              //发起网络请求
+              let token = JSON.parse(wx.getStorageSync('userInfo').trim()).token
+              let result = await request('/api/ucenter/wx/bindWechat/' + res.code + '/123', userInfo, 'POST', token)
+              if(result.code === 200) {
+                let userMessage = result.data
+                wx.removeStorageSync('userMessage')
+                wx.setStorageSync('userMessage', userMessage)
+                this.setData({
+                  userMessage
+                })
+                wx.hideLoading()
+                wx.showToast({
+                  title: '绑定成功'
+                })
+              } else if (result.code === 2130) {
+                wx.showToast({
+                  title: '微信已被绑定',
+                  icon: 'error'
+                })
+              } else {
+                wx.showToast({
+                  title: '服务异常',
+                  icon: 'error'
+                })
+              }
             }
-          })
-        }
+          }
+        })
       }
     })
   },
@@ -79,10 +74,8 @@ Page({
                   let userMessage = result.data
                   wx.removeStorageSync('userMessage')
                   wx.setStorageSync('userMessage', userMessage)
-                  wx.removeStorageSync('avatarUrl')
                   this.setData({
-                    avatarUrl: '',
-                    userName: ''
+                    userMessage
                   })
                   wx.hideLoading()
                   wx.showToast({
@@ -101,11 +94,19 @@ Page({
       }
     })
   },
+  // 回到用户中心
+  backPerson() {
+    wx.reLaunch({
+      url: '/pages/person/person',
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    wx.setNavigationBarTitle({
+      title: '绑定微信'
+    })
   },
 
   /**
@@ -120,11 +121,10 @@ Page({
    */
   onShow() {
     // 获取头像信息
-    let userMessage = JSON.parse(wx.getStorageSync('userMessage'))
-    if (userMessage.avatarUrl) {
+    let userMessage = wx.getStorageSync('userMessage')
+    if (userMessage) {
       this.setData({
-        avatarUrl: userMessage.avatarUrl,
-        userName: userMessage.userName
+        userMessage: JSON.parse(userMessage)
       })
     }
   },

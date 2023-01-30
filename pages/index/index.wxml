@@ -1,33 +1,28 @@
-<view class="indexContainer"
-      bind:touchstart="handleTouchStart"
-      bind:touchmove="handleTouchMove"
-      bind:touchend="handleTouchEnd"
-      style="transform: {{coverTransform}};transition: {{coverTransition}};"
->
+<view class="indexContainer">
   <!-- 搜索框 -->
   <view class="search" bindtap="toSearch">
     <text class="iconfont icon-BAI-fangdajing"></text>
     <text>搜索医院</text>
   </view>
   <!-- 首页图 -->
-  <view class="indexImage">
+  <view class="indexImage" bindtap="help">
     <image src="/static/images/banner.png"/>
   </view>
   <!-- 通知导航区 -->
   <view class="notifyNav">
-    <view class="navItem">
+    <view class="navItem" bindtap="check">
       <text class="iconfont icon-hesuanjiance"></text>
       <text>核酸检测</text>
     </view>
-    <view class="navItem">
+    <view class="navItem" bindtap="notice">
       <text class="iconfont icon-tongzhi2"></text>
       <text>平台公告</text>
     </view>
-    <view class="navItem">
+    <view class="navItem" bindtap="appointment">
       <text class="iconfont icon-zichan-quanbushebei"></text>
       <text>挂号攻略</text>
     </view>
-    <view class="navItem">
+    <view class="navItem" bindtap="help">
       <text class="iconfont icon-wenhao"></text>
       <text>帮助中心</text>
     </view>
@@ -37,20 +32,25 @@
   <!-- 医院信息区 -->
   <view class="hospitalInfo">
     <view class="header">
-      <view class="sort">
-        <text>综合排序</text>
-        <text class="iconfont icon-RectangleCopy"  style="color: #323232;"></text>
-      </view>
-      <view class="area">
-        <text>按区域</text>
-        <text class="iconfont icon-xiangxia"></text>
+      <view class="area" bindtap="filterHospital">
+        <text>筛选</text>
+        <text class="iconfont icon-xiangxia {{isShowFilter?  'filterRote' : ''}}"></text>
       </view>
     </view>
-    <view class="inner" wx:for="{{hospitalList}}" wx:key="id">
+    <view class="filter" wx:if="{{isShowFilter}}">
+      
+    </view>
+    <view class="inner" wx:for="{{hospitalList}}" wx:key="id" wx:if="{{!isShowFilter}}">
       <view class="hospital">
-        <text class="hospitalName">{{item.hosname}}</text>
-        <view class="hospitalOtherInfo"><text>{{item.param.hosptypeString}}</text><text>每天 {{item.bookingRule.releaseTime}} 放号</text></view>
-      </view>
+        <view class="hospName">
+          <text class="hospitalName">{{item.hosname}}</text>
+        </view>
+        <view class="hospitalOtherInfo">
+          <text class="iconfont icon-shijian" style="margin-right: 5rpx;"></text>
+          <text>{{item.param.hosptypeString}}</text>
+          <text class="iconfont icon-RectangleCopy" style="margin-right: 5rpx;margin-left: 15rpx;"></text>
+          <text>每天 {{item.bookingRule.releaseTime}} 放号</text></view>
+        </view>
       <view class="avatar">
         <view class="avatarBackground"></view>
         <view class="avatarImg"><image src="data:image/png;base64, {{item.logoData}}"/></view>

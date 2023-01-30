@@ -25,8 +25,9 @@
 
 .cancel {
   font-size: 38rpx;
- width: 100rpx;
- text-align: center;
+  width: 100rpx;
+  text-align: center;
+  color: #d8b2fb;
 }
 
 .searchIcon {

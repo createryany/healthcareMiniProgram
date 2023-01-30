@@ -27,6 +27,11 @@
   padding: 40rpx 30rpx;
 }
 
+.inputText {
+  font-size: 30rpx;
+  color: #999;
+}
+
 .authContainer .body .certificatesInfo .certificatesNameInfo {
   display: flex;
   flex-direction: column;
@@ -41,14 +46,14 @@
 
 .authContainer .body .certificatesInfo .line {
   flex: 1;
-  border: 2rpx solid #eee;
+  border: 1rpx solid #f8f8f8;
   font-size: 30rpx;
   margin: 30rpx 0;
 }
 
 .authContainer .body .certificatesInfo .title {
-  font-size: 35rpx;
-  color: #000021;
+  font-size: 30rpx;
+  color: #333;
 }
 
 .authContainer .body .certificatesInfo view {
@@ -66,7 +71,6 @@
 }
 
 .authContainer .body .certificatesInfo .input {
-  display: inline-block;
   margin-left: 40rpx;
 }
 

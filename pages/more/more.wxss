@@ -1,0 +1,47 @@
+/* pages/more/more.wxss */
+
+.moreContainer {
+  height: 100%;
+}
+
+.moreContainer .header {
+  width: 100%;
+  height: 140rpx;
+  background-color: #9cc0fe;
+  padding-top: 10rpx;
+}
+
+.moreContainer .header text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  font-size: 30rpx;
+  line-height: 30rpx;
+}
+.moreContainer .body {
+  height: 100%;
+  margin: -13% 0 0;
+  background-color: #f6f6f6;
+}
+
+.more {
+  padding: 30rpx;
+  background-color: white;
+}
+
+.user {
+  margin: 8% 0;
+}
+
+.more text {
+  font-size: 30rpx;
+  line-height: 30rpx;
+  color: #333;
+}
+
+text.iconfont {
+  float: right;
+  margin-left: auto;
+  color: #999999;
+}

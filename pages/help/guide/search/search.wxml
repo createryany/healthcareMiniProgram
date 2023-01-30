@@ -1,0 +1,28 @@
+<view class="searchContainer">
+  <view class="header">
+    <text>healthcare预约挂号</text>
+  </view>
+  <view class="body">
+    <view class="title">
+      <text>如何查询/取消预约</text>
+    </view>
+    <view class="content">
+      <text>在医院规定的取消预约时限内，用户可登录统一平台网站的”个人中心”进行查询/退号操作，退号时需凭”预约识别码”进行取消。如果您在就诊当天不能前往医院取号就诊，请提前退号，否则会因造成号源的浪费，影响其他患者的就诊而被记录爽约档案，由此会影响到您今后的预约行为，请您谅解。</text>
+    
+      <view class="contentTitle">
+        <text>方法一：</text>
+      </view>
+      <view class="contents">
+        <text>进入healthcare统一平台网站用户的”个人中心”，进入”个人中心>预约信息”中的预约挂号列表，查看或取消您的预约订单，点击取消即可。</text>
+      </view>
+
+      <view class="contentTitle">
+        <text>方法二：</text>
+      </view>
+      <view class="contents" style="padding-bottom: 100rpx;">
+        <text>进入healthcare微信小程序，查询方法和网站类似</text>
+      </view>
+
+    </view>
+  </view>
+</view>

@@ -1,0 +1,21 @@
+/* pages/check/check.wxss */
+.checkContainer .header {
+  width: 100%;
+  height: 140rpx;
+  background-color: #9cc0fe;
+  padding-top: 10rpx;
+}
+
+.checkContainer .header text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  font-size: 30rpx;
+  line-height: 30rpx;
+}
+.checkContainer .body {
+  margin-top: -13%;
+  height: 1000rpx;
+  background-color: white;
+}

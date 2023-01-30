@@ -8,7 +8,7 @@
           <text class="title">登录</text>
           <view class="input-content">
             <view class="input-item">
-              <input type="text" placeholder="请输入您的手机号码" placeholder-class="placeholder-style" bindinput="handlePhoneInput"/>
+              <input placeholder="请输入您的手机号码" maxlength="11" placeholder-class="placeholder-style" bindinput="handlePhoneInput"/>
             </view>
             <view class="line"></view>
           </view>
@@ -21,10 +21,10 @@
             <view class="input-code-item">
                 <view class="content"> 
                   <block wx:for="{{Length}}" wx:key="item"> 
-                    <input class="input" style="border: {{code[index]?codeInputBorder[1] : codeInputBorder[0]}};"  password="{{ispassword}}" value="{{code.length>=index+1?code[index] : ''}}" disabled="" catchtap="codeTap"/> 
+                    <input type="number" class="input" style="border: {{code[index]?codeInputBorder[1] : codeInputBorder[0]}};"  password="{{ispassword}}" value="{{code.length>=index+1?code[index] : ''}}" disabled="" catchtap="codeTap"/> 
                   </block>
                 </view>
-                <input name="password" password="{{ispassword}}" class="inputBox" maxlength="{{Length}}" focus="{{isFocus}}" bindinput="codeFocus" /> 
+                <input type="number" name="password" password="{{ispassword}}" class="inputBox" maxlength="{{Length}}" focus="{{isFocus}}" bindinput="codeFocus" /> 
             </view>
           </view>
           <button class="confirm-btn" bindtap="{{bindtapClick}}" style="background-color: {{beforeBindtapClickBtn}};color: {{beforeBindtapClickBtnText}};border: {{beforeBindtapClickBtnBorder}};">{{times}}重新获取</button>
@@ -32,7 +32,7 @@
         <view class="agreement" wx:if="{{flag}}">
           <text wx:if="{{!isAgree}}" class="iconfont icon-radio-unchecked-b-o" bindtap="agreeStatus"></text>
           <text wx:if="{{isAgree}}" class="iconfont icon-xuanzhongduigou" bindtap="agreeStatus"></text>
-          我同意《<text class="agree">预约挂号服务协议</text>》和《<text class="agree">隐私协议</text>》
+          我同意《<text class="agree" bindtap="userAgree">预约挂号服务协议</text>》和《<text class="agree" bindtap="privacyAgree">隐私协议</text>》
         </view>
         <view class="otherLogin">
             <text class="text">微信登录</text>
@@ -74,18 +74,42 @@
           </view>
         </view>
         <!-- 就诊人和挂号订单 -->
-        <!-- 绑定微信号 -->
-        <view class="bindWechat" style="margin: 30rpx;">
-          <text class="bindWechatTitle" bindtap="handleBindWechat">绑定微信</text>
-          <text class="isBind">{{userMessage.openid? '已绑定': '未绑定'}}</text>
+        <view class="patient">
+          <view class="visitor">
+            <text class="iconfont icon-yonghu"></text>
+            <text class="text">就诊人</text>
+          </view>
+          <view class="order">
+            <text class="iconfont icon-order-fill"></text>
+            <text class="text">挂号订单</text>
+          </view>
         </view>
-        <!-- 更多信息 -->
+        <view class="linea"></view>
+        <!-- 修改信息 绑定微信号 意见反馈 -->
+        <view class="options">
+          <view class="info" bindtap="fixUserInfo">
+            <text class="iconfont icon-lunkuohua_yonghuxinxi"></text>
+            <text class="text">账号信息</text>
+            <text class="iconfont icon-xiayiyeqianjinchakangengduo icona"></text>
+          </view>
+          <view class="info" bindtap="handleBindWechat">
+            <text class="iconfont icon-weixin1"></text>
+            <text class="text">绑定微信</text>
+            <text style="font-size: 30rpx;margin-left: 320rpx;">{{userMessage.openid? '已绑定': '未绑定'}}</text>
+            <text class="iconfont icon-xiayiyeqianjinchakangengduo icona"></text>
+          </view>
+          <view class="info" bindtap="more">
+            <text class="iconfont icon-gengduo"></text>
+            <text class="text">更多</text>
+            <text class="iconfont icon-xiayiyeqianjinchakangengduo icona"></text>
+          </view>
+        </view>
         <!-- 退出登录 -->
-        <view class="logout" style="margin: 30rpx;">
-          <text class="title" bindtap="handleLogout">退出登录</text>
+        <view class="background">
+          <view class="logout" bindtap="handleLogout">
+            <text class="title">退出登录</text>
+          </view>
         </view>
-
-
         <!-- 认证信息弹框 -->
         <view class="modal modal-bottom-dialog" hidden="{{hiddenDialog}}">
           <view class="modal-cancel" bindtap="hideModal"></view>

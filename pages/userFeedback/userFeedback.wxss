@@ -1,0 +1,80 @@
+/* pages/userFeedback/userFeedback.wxss */
+.feedbackContainer {
+  width: 100%;
+  height: 100%;
+  background-color: #f6f6f6;
+}
+
+.feedbackContainer .header {
+  width: 100%;
+  height: 140rpx;
+  background-color: #9cc0fe;
+  padding-top: 10rpx;
+}
+
+.feedbackContainer .header text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  font-size: 30rpx;
+  line-height: 30rpx;
+}
+
+.feedbackContainer .body {
+  margin-top: -13%;
+}
+
+.input {
+  position: relative;
+  padding: 15rpx;
+  background-color: white;
+}
+
+.input textarea {
+  width: 100%;
+  height: 300rpx;
+  background-color: white;
+}
+
+.textNum {
+  position: absolute;
+  bottom: 10rpx;
+  right: 25rpx;
+  font-size: 20rpx;
+  color: #999;
+}
+
+.submit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 30rpx 0;
+  font-size: 30rpx;
+}
+
+.submit .submitText {
+  width: 90%;
+  height: 80rpx;
+  line-height: 80rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 50rpx;
+  color: white;
+  background-color: #4d80fd;
+  margin-bottom: 20rpx;
+}
+
+.submit .back {
+  width: 90%;
+  height: 80rpx;
+  line-height: 80rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 50rpx;
+  color: #333;
+  background-color: white;
+  border: 1rpx solid #333;
+}

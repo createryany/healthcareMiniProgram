@@ -1,0 +1,31 @@
+<!--pages/userFeedback/userFeedback.wxml-->
+<view class="fixUserInfoContainer">
+  <view class="header">
+      <text>healthcare预约挂号</text>
+    </view>  
+  <view class="body">
+    <view class="userInfo">
+      <view class="currentPhone">
+        <text>当前登录手机号：{{currentPhone}}</text>
+      </view>
+      <view class="fixPhone">
+        <view class="phone">
+          <text class="title">手机号</text>
+          <input class="input"  type="number" placeholder-class="inputPhone" value="{{phone}}" maxlength="11" placeholder="请输入新手机号" bindblur="isPhoneEmptyBlur" bindinput="phoneInput"/>
+        </view>
+        <text class="warning" wx:if="{{isPhoneWarning}}">请填写新手机号</text>
+        <view class="line"></view>
+        <view class="phone">
+          <text class="title">验证码</text>
+          <input class="input"  type="number" placeholder-class="inputPhone" value="{{code}}" maxlength="6" placeholder="请输入验证码" focus="{{isCodeFocus}}" bindblur="isCodeEmptyBlur" bindinput="codeInput"/>
+          <text class="sendCode" wx:if="{{!isSendCode}}" bindtap="sendCode">{{sendCodeText}}</text>
+          <text class="sendCodeDown" wx:if="{{isSendCode}}">{{currentTime}}s</text>
+        </view>
+        <text class="warning" wx:if="{{isCodeWarning}}">请填写短信验证码</text>
+      </view>
+    </view>
+    <view class="fix" bindtap="fixPhone">
+      <text>确认修改</text>
+    </view>
+  </view>
+</view>

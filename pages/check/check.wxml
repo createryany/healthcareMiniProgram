@@ -1,0 +1,9 @@
+<!--pages/check/check.wxml-->
+<view class="checkContainer">
+  <view class="header">
+    <text>healthcare预约挂号</text>
+  </view> 
+  <view class="body">
+    <i-notice-bar loop speed="2000">核酸检测预约挂号功能已关闭...</i-notice-bar>
+  </view>
+</view>
