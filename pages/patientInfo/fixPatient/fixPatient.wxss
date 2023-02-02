@@ -1,0 +1,163 @@
+/* pages/patientInfo/fixPatient/fixPatient.wxss */
+
+page {
+  background-color: #f6f6f6;
+}
+
+.fixPatientContainer {
+  height: 100%;
+}
+
+.fixPatientContainer .header {
+  width: 100%;
+  height: 140rpx;
+  background-color: #9cc0fe;
+  padding-top: 10rpx;
+}
+
+.fixPatientContainer .header text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  font-size: 30rpx;
+  line-height: 30rpx;
+}
+
+.fixPatientContainer .body {
+  margin: -13% 0 0;
+  height: 100%;
+  background-color: #f6f6f6;
+}
+
+.title {
+  padding: 30rpx 5%;
+}
+
+.title .titleText {
+  font-size: 28rpx;
+  line-height: 28rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.info {
+  padding: 4% 5%;
+  background-color: white;
+}
+
+.line {
+  flex: 1;
+  width: 100%;
+  height: 1rpx;
+  margin: 30rpx 0;
+  background-color: #eee;
+}
+
+.star {
+  color: red;
+  margin-right: 2rpx;
+}
+
+.infoText .name {
+  font-size: 28rpx;
+  color: #999;
+}
+
+.infoText .input {
+  float: right;
+  margin-right: 25%;
+  z-index: 1200;
+}
+
+.man {
+  position: absolute;
+  width: 38px;
+  height: 20px;
+  right: 60%;
+  top: 0;
+  z-index: 1300;
+}
+
+.woman {
+  position: absolute;
+  width: 38px;
+  height: 20px;
+  right: 36%;
+  top: 0;
+  z-index: 1300;
+}
+
+.certificatesType {
+  position: absolute;
+  width: 70%;
+  height: 38rpx;
+  right: 0;
+  top: 19%;
+  z-index: 1300;
+}
+
+.certificatesTypeIconfont {
+  position: absolute;
+  right: 0;
+  top: 19.4%;
+  font-size: 28rpx;
+  line-height: 28rpx;
+  color: #999;
+  margin-left: 1%;
+}
+
+.mask {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.2;
+  overflow: hidden;
+}
+
+.infoText .inputText {
+  font-size: 28rpx;
+  line-height: 28rpx;
+  color: #e0e0e0;
+}
+
+.infoText .special {
+  position: absolute;
+  right: 5%;
+  font-size: 30rpx;
+  color: #88a6e1;
+  z-index: 999999;
+}
+
+.specialNameInfo {
+  left: 7.5%;
+  font-size: 23rpx;
+  color: #b6b6b6;
+  margin-top: 10rpx;
+  padding: 5rpx 10rpx;
+  border-radius: 5rpx;
+  background-color: #f7f5f6;
+}
+
+.submit {
+  width: 96%;
+  height: 80rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 30rpx;
+  line-height: 80rpx;
+  color: white;
+  border-radius: 50rpx;
+  background-color: #4d80fd;
+  margin: 50rpx 0;
+}
+
+.dataInfo {
+  margin-top: 10rpx;
+  margin-left: 200rpx;
+  font-size: 28rpx;
+  color: red;
+}

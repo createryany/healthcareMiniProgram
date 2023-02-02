@@ -1,6 +1,6 @@
 {
   "navigationBarTitleText": "登录",
   "usingComponents": {
-    "i-message": "../../dist/message/index"
+    "i-drawer": "../../dist/drawer/index"
   }
 }

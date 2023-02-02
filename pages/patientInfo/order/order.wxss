@@ -1,0 +1,206 @@
+/* pages/patientInfo/order/order.wxss */
+
+page {
+  background-color: #f6f6f6;
+}
+
+.orderContainer {
+  height: 100%;
+}
+
+.orderContainer .header {
+  width: 100%;
+  height: 140rpx;
+  background-color: #9cc0fe;
+  padding-top: 10rpx;
+}
+
+.orderContainer .header text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  font-size: 30rpx;
+  line-height: 30rpx;
+}
+.orderContainer .body {
+  margin: -13% 0 0;
+  height: 100%;
+  background-color: #f6f6f6;
+}
+
+.status {
+  width: 100%;
+  height: 100rpx;
+  padding: 2% 4%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: white;
+}
+
+.status .iconfont {
+  font-size: 60rpx;
+  line-height: 60rpx;
+  color: #4490f1;
+}
+
+.status .statusInfo {
+  float: right;
+  margin-left: 10rpx;
+  font-size: 40rpx;
+  line-height: 60rpx;
+  color: #4490f1;
+}
+
+.patientInfo {
+  margin-top: 1rpx;
+  width: 100%;
+  height: 10rpx;
+  padding: 4%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: white;
+}
+
+.patientInfo text {
+  font-size: 28rpx;
+  line-height: 28rpx;
+  color: #999999;
+}
+
+.patientInfo text.typeString {
+  margin-left: 20rpx;
+}
+
+.registrationTitle {
+  width: 100%;
+  height: 50rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 28rpx;
+  line-height: 28rpx;
+  color: #9e8d8d;
+  padding: 1% 4%;
+}
+
+.matterTitle {
+  width: 100%;
+  height: 50rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 28rpx;
+  line-height: 28rpx;
+  padding: 1% 4%;
+  font-weight: bold;
+  color: #333333;
+}
+
+.orderInfo {
+  width: 100%;
+  padding: 4%;
+  background-color: white;
+}
+
+.orderInfo .orderInfoName .selection {
+  margin: 20rpx 0;
+}
+
+.orderInfo .orderInfoName .selection .name {
+  font-size: 28rpx;
+  line-height: 28rpx;
+  color: #999;
+}
+
+.orderInfo .orderInfoName .selection .info {
+  font-size: 28rpx;
+  line-height: 28rpx;
+  color: #333;
+  margin-left: 100rpx;
+}
+
+.orderInfo .orderInfoName .amount {
+  margin-top: 60rpx;
+  margin-bottom: 10rpx;
+}
+
+.orderInfo .orderInfoName .amount .amountName {
+  font-size: 28rpx;
+  line-height: 28rpx;
+  color: #999;
+}
+
+.orderInfo .orderInfoName .amount .amountInfo {
+  margin-left: 75rpx;
+  font-size: 30rpx;
+  line-height: 30rpx;
+  font-weight: bold;
+}
+
+.matter {
+  margin-top: 5rpx;
+  margin-bottom: 20rpx;
+  font-size: 25rpx;
+  padding: 0 4%;
+}
+
+.otherInfo {
+  width: 100%;
+  padding: 4%;
+  background-color: white;
+}
+
+.otherInfo .name {
+  font-size: 28rpx;
+  line-height: 28rpx;
+  color: #999;
+}
+
+.otherInfo .info {
+  font-size: 28rpx;
+  line-height: 28rpx;
+  color: #333;
+  margin-left: 100rpx;
+}
+
+.otherInfo .selection {
+  margin: 20rpx 0;
+}
+
+.visiblePatienInfo {
+  width: 475rpx;
+  padding: 5%;
+  background-color: white;
+  border-top-left-radius: 30rpx;
+  border-bottom-left-radius: 30rpx;
+}
+
+.ml {
+  margin-left: 55rpx;
+}
+
+.inner {
+  color: #333;
+}
+
+.visiblePatienInfo .patient .title {
+  margin-left: 25%;
+  margin-top: 10%;
+  font-size: 40rpx;
+  line-height: 40rpx;
+  color: #333;
+}
+
+.visiblePatienInfo .patient .content {
+  margin-top: 10%;
+  font-size: 28rpx;
+  line-height: 28rpx;
+  color: #999;
+}
+
+.visiblePatienInfo .patient .content .selection {
+  margin: 50rpx 0;
+}

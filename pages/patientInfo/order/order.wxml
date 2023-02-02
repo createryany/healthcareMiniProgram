@@ -1,0 +1,125 @@
+<view class="orderContainer">
+  <view class="header">
+    <text>healthcare预约挂号</text>
+  </view>
+  <view class="body">
+    <view class="status">
+      <view wx:if="{{order.param.orderStatusString == '已支付'}}">
+        <text class="iconfont icon-zhifuchenggong"></text>
+        <text class="statusInfo">预约成功</text>
+      </view>
+      <view wx:if="{{order.param.orderStatusString == '取消预约'}}">
+        <text class="iconfont icon-zhifushibai"></text>
+        <text class="statusInfo">取消预约</text>
+      </view>
+      <view wx:if="{{order.param.orderStatusString == '预约成功，待支付'}}">
+        <text class="iconfont icon-zhifuzhong"></text>
+        <text class="statusInfo">预约成功，待支付</text>
+      </view>
+    </view>
+    <view class="patientInfo">
+      <text>就诊人:</text>
+      <text class="typeString" bindtap="showPatient">{{patient.param.certificatesTypeString}}</text>
+      <text class="iconfont icon-xiayiyeqianjinchakangengduo" bindtap="showPatient"></text>
+    </view>
+    <!-- 就诊人信息 -->
+    <i-drawer i-class="visible" mode="right" visible="{{isShow}}" bind:close="showPatient">
+      <view class="visiblePatienInfo">
+        <view class="patient">
+          <view class="title">
+            <text>就诊人信息</text>
+          </view>
+          <view class="content">
+            <view class="selection">
+              <text>姓名：</text>
+              <text class="ml inner">{{patient.name}}</text>
+            </view>
+            <view class="selection">
+              <text>性别：</text>
+              <text class="ml inner">{{patient.sex == 0? '女' : '男'}}</text>
+            </view>
+            <view class="selection">
+              <text>出生日期：</text>
+              <text class="inner">{{patient.birthdate}}</text>
+            </view>
+            <view class="selection">
+              <text>民族：</text>
+              <text class="ml inner">{{patient.param.nationString}}</text>
+            </view>
+            <view class="selection">
+              <text>手机号码：</text>
+              <text class="inner">{{patient.phone}}</text>
+            </view>
+            <view class="selection">
+              <text>婚姻状况：</text>
+              <text class="inner">{{patient.isMarry == 0? '未婚' : '已婚'}}</text>
+            </view>
+            <view class="selection">
+              <text>证件号码：</text>
+              <text class="inner">{{patient.certificatesNo}}</text>
+            </view>
+            <view class="selection">
+              <text>当前住址：</text>
+              <text class="inner">{{patient.param.provinceString}}/{{patient.param.cityString}}/{{patient.param.districtString}}</text>
+            </view>
+            <view class="selection">
+              <text>详细地址：</text>
+              <text class="inner">{{patient.address}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </i-drawer>
+    <view class="registrationTitle">
+      <text>挂号信息</text>
+    </view>
+    <view class="orderInfo">
+      <view class="orderInfoName">
+        <view class="selection">
+          <text class="name">就诊日期</text>
+          <text class="info">{{order.reserveDate}}{{order.reserveTime == 0? ' 上午' : '下午'}}</text>
+        </view>
+        <view class="selection">
+          <text class="name">就诊医院</text>
+          <text class="info">{{order.hosname}}</text>
+        </view>
+        <view class="selection">
+          <text class="name">就诊科室</text>
+          <text class="info">{{order.depname}}</text>
+        </view>
+        <view class="selection">
+          <text class="name">医师名称</text>
+          <text class="info">{{order.docname}}</text>
+        </view>
+        <view class="selection">
+          <text class="name">医师职称</text>
+          <text class="info">{{order.title}}</text>
+        </view>
+        <view class="amount">
+          <text class="amountName">医师服务费</text>
+          <text class="amountInfo">{{order.amount}}元</text>
+        </view>
+      </view>
+    </view>
+    <view class="matterTitle">
+      <text>注意事项</text>
+    </view>
+    <view class="matter">
+      <text user-select>1、请确认就诊人信息是否准确，若填写错误将无法取号就诊，损失由本人承担 \n<text style="color: red;">2、【取号】就诊当天需在 {{order.fetchTime}} 在医院取号，未取号视为爽约，该号不退不换；</text>
+      3、【退号】在 {{order.quitTime}} 前可在线退号，逾期将不可办理退号退费；
+      4、healthcare预约挂号支持自费患者使用身份证预约，同时支持郑州市医保患者使用郑州社保卡在平台预约挂号。请于就诊当日，携带预约挂号所使用的有效身份证件到院取号；
+      5、请注意郑州市医保患者在住院期间不能使用社保卡在门诊取号。
+      </text>
+    </view>
+    <view class="otherInfo">
+      <view class="selection">
+        <text class="name">挂号单号</text>
+        <text class="info">{{order.outTradeNo}}</text>
+      </view>
+      <view class="selection">
+        <text class="name">挂号时间</text>
+        <text class="info">{{order.createTime}}</text>
+      </view>
+    </view>
+  </view>
+</view>

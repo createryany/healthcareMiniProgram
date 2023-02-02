@@ -1,0 +1,103 @@
+/* pages/patientInfo/socialCard/index.wxss */
+
+.socialCardContainer .header {
+  width: 100%;
+  height: 180rpx;
+  background-color: #9cc0fe;
+  padding-top: 10rpx;
+}
+
+.socialCardContainer .header text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  font-size: 30rpx;
+  line-height: 30rpx;
+}
+
+.socialCardContainer .patientInfo {
+  position: absolute;
+  top: 4%;
+  left: 5%;
+  width: 90%;
+  height: 110rpx;
+  border-radius: 18rpx;
+  background-color: white;
+}
+
+.patientInfo .name {
+  margin-top: 15rpx;
+  margin-left: 5%;
+  font-size: 32rpx;
+  line-height: 32rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.patientInfo .info {
+  margin-top: 15rpx;
+  margin-left: 5%;
+  font-size: 28rpx;
+  line-height: 28rpx;
+  color: #999;
+}
+
+.socialCard {
+  padding: 5% 4%;
+}
+
+.socialCard text {
+  font-size: 28rpx;
+  line-height: 28rpx;
+  color: #999;
+}
+
+.socialCard .input {
+  float: right;
+  margin-right: 25%;
+}
+
+.inputText {
+  font-size: 28rpx;
+  line-height: 28rpx;
+  color: #ddd;
+}
+
+.line {
+  width: 90%;
+  margin-left: 5%;
+  margin-top: 10rpx;
+  height: 1rpx;
+  background-color: #f7f7f7;
+}
+
+.bindButton {
+  width: 84%;
+  margin-left: 5%;
+  margin-top: 50rpx;
+  height: 40rpx;
+  padding: 3%;
+  background-color: #4d80fd;
+  border-radius: 50rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 30rpx;
+  line-height: 30rpx;
+  color: white;
+}
+
+.inputInfo {
+  position: absolute;
+  font-size: 28rpx;
+  line-height: 28rpx;
+  color: red;
+  margin: 10rpx 28% 0;
+}
+
+.img {
+  width: 80%;
+  margin-top: 50rpx;
+  margin-left: 10%;
+}

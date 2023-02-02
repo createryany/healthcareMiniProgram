@@ -1,0 +1,8 @@
+var subCertificatesNo = function(val) {
+  if (val.length == 0 || val == undefined) return
+  var val1 = val.slice(0, 3)
+  var val2 = val.substring((val.length - 4))
+  return val1 + '*****' + val2
+}
+
+module.exports.subCertificatesNo = subCertificatesNo

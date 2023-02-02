@@ -119,12 +119,6 @@ Page({
         sendCodeText: '重新获取',
         isSendCode: false
       })
-    } else {
-      currentTime = 60
-      this.setData({
-        sendCodeText: '获取验证码',
-        isSendCode: false
-      })
     }
   },
   // 确认修改
@@ -188,14 +182,6 @@ Page({
             })
           }
         }, 500)
-      } else if (result.code == 213) {
-        wx.hideLoading()
-        wx.showToast({
-          title: result.message,
-          icon: 'error'
-        })
-        currentTime = 60
-        countDowmStop = false
       } else {
         wx.hideLoading()
         wx.showToast({

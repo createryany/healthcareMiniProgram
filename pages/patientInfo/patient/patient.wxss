@@ -1,0 +1,99 @@
+
+.patientContainer .header {
+  width: 100%;
+  height: 140rpx;
+  background-color: #9cc0fe;
+  padding-top: 10rpx;
+}
+
+.patientContainer .header text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  font-size: 30rpx;
+  line-height: 30rpx;
+}
+.patientContainer .title {
+  margin: -13% 0 0;
+  height: 25rpx;
+  padding: 5%;
+  background-color: #f6f6f6;
+  font-size: 28rpx;
+  line-height: 28rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.content {
+  padding: 5%;
+}
+
+.content .patient {
+  width: 90%;
+  padding: 5%;
+  border-radius: 20rpx;
+  box-shadow: 5rpx 5rpx 10rpx 5rpx rgb(235, 226, 226);
+}
+
+.content .patient .name {
+  font-size: 35rpx;
+  line-height: 35rpx;
+  color: #333;
+  font-weight: bold;
+  margin-bottom: 10rpx;
+}
+
+.content .patient .no {
+  color: #999;
+}
+
+.content .patientInfo {
+  margin: 50rpx 0;
+}
+
+.content .patientInfo .item {
+  font-size: 30rpx;
+  line-height: 30rpx;
+  margin: 60rpx 0;
+}
+
+.content .patientInfo .item .itemTitle {
+  color: #999;
+}
+
+.content .patientInfo .item .text {
+  margin-left: 100rpx;
+}
+
+.textInner {
+  margin-right: 62rpx;
+}
+
+.edit {
+  padding: 5% 0;
+}
+
+.edit .editPatient {
+  width: 100%;
+  height: 80rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 80rpx;
+  color: white;
+  border-radius: 80rpx;
+  background-color: #4d80fd;
+}
+
+.edit .deletePatient {
+  width: 100%;
+  height: 80rpx;
+  margin-top: 10rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 80rpx;
+  color: #999;
+  border-radius: 80rpx;
+}

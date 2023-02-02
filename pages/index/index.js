@@ -11,22 +11,30 @@ Page({
     isShowFilter: false,
     page: 1,
     limit: 5,
-    total: 0
+    total: 0,
+    spinShow: true,
+    scrollTop: 0,
+  },
+  onChange(event){
+      console.log(event.detail,'click right menu callback data')
+  },
+  //页面滚动执行方式
+  onPageScroll(event){
+      this.setData({
+          scrollTop : event.scrollTop
+      })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: async function(options) {
-    wx.showLoading({
-      title: '正在加载数据...',
-    })
     let hospitalInfoList = await request('/api/hosp/hospital/list/1/' + this.data.limit)
     if(hospitalInfoList.code === 200) {
+      let currentPage = this.data.page - 1
       this.setData({
         total: hospitalInfoList.data.totalElements,
-        hospitalList: hospitalInfoList.data.content
+        ['hospitalList[' + currentPage + ']']: hospitalInfoList.data.content
       })
-      wx.hideLoading()
     }
   },
   
@@ -72,7 +80,17 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
+    // let count = 0
+    // for (let i = 0; i < this.data.hospitalList.length; i++) {
+    //   for (let j = 0; j < this.data.hospitalList[i].length; j++) {
+    //     count++
+    //   }
+    // }
+    // if (count == this.data.total) {
+    //   this.setData({
+    //     // spinShow: false
+    //   })
+    // }
   },
 
   /**
@@ -100,21 +118,26 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   async onReachBottom() {
-    if ( this.data.hospitalList.length < this.data.total) {
+    let count = 0
+    for (let i = 0; i < this.data.hospitalList.length; i++) {
+      for (let j = 0; j < this.data.hospitalList[i].length; j++) {
+        count++
+      }
+    }
+    if (count == this.data.total) {
+      this.setData({
+        spinShow: false
+      })
+    }
+    if ( count < this.data.total) {
       this.setData({
         page: this.data.page + 1
       })
       let hospitalInfoList = await request('/api/hosp/hospital/list/'+ this.data.page + '/5')
       if(hospitalInfoList.code === 200) {
-        const hospResult = hospitalInfoList.data.content
-        let hospitalList = this.data.hospitalList
-        for (let index = 0; index < hospResult.length; index++) {
-          const element = hospResult[index];
-          hospitalList.push(element)
-        }
-        hospitalList.push()
+        let currentPage = this.data.page - 1
         this.setData({
-          hospitalList
+          ['hospitalList[' + currentPage + ']']: hospitalInfoList.data.content
         })
       }
     }

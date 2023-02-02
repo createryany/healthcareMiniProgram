@@ -89,6 +89,7 @@
 }
 
 .fixPhone .phone .input {
+  width: 220rpx;
   margin-left: 100rpx;
 }
 

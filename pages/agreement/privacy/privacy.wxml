@@ -7,32 +7,32 @@
       <text>隐私协议</text>
     </view>
     <view class="content">  
-      <text><text style="color: #666666;font-weight: bold;">您在使用我们的预约挂号服务时，我们可能会收集和使用您的相关信息，希望您仔细阅读，在需要时，按照本《隐私政策》的指引，作出您认为适当的选择。我们对本政策中涉及您个人的敏感信息，采用粗体字进行标注以提示您注意。
+      <text user-select><text style="color: #666666;font-weight: bold;" user-select>您在使用我们的预约挂号服务时，我们可能会收集和使用您的相关信息，希望您仔细阅读，在需要时，按照本《隐私政策》的指引，作出您认为适当的选择。我们对本政策中涉及您个人的敏感信息，采用粗体字进行标注以提示您注意。
 您在使用或继续使用我们的服务时，即意味着同意我们按照本《隐私政策》收集、使用、存储您的相关信息</text>
 本隐私政策规定了如何收集、使用和保护您在使用我们的服务时提供给我们的信息；若我们要求您提供个人信息，以便在使用预约挂号服务时验证您的身份，我们将严格遵守本隐私政策和/或《预约挂号服务协议》来使用这些信息</text>  
       <view class="contentTitle">
         <text>服务主体</text>
       </view>
       <view class="contents">
-        <text><text style="color: #666666;font-weight: bold;">healthcare预约挂号小程序、healthcare预约挂号统一平台</text>
-        指的是预约挂号的网站平台（域名是<text style="color: #0000ee;">www.healthcareyygh.com</text>）。
-        管理员联系方式：<text style="color: #0000ee;">createryan@163.com</text>
+        <text user-select><text style="color: #666666;font-weight: bold;" user-select>healthcare预约挂号小程序、healthcare预约挂号统一平台</text>
+        指的是预约挂号的网站平台（域名是<text style="color: #0000ee;" user-select>www.healthcareyygh.com</text>）。
+        管理员联系方式：<text style="color: #0000ee;" user-select>createryan@163.com</text>
         </text>
       </view>
 
       <view class="contentTitle">
-        <text>个人信息</text>
+        <text user-select>个人信息</text>
       </view>
       <view class="contents">
-        <text>指以电子或者其他方式记录的能够单独或者与其他信息结合识别特定自然人身份或者反映特定自然人活动情况的各种信息。</text>
+        <text user-select>指以电子或者其他方式记录的能够单独或者与其他信息结合识别特定自然人身份或者反映特定自然人活动情况的各种信息。</text>
       </view>
 
       <view class="contentTitle">
-        <text>一、收集用户个人信息手段</text>
+        <text user-select>一、收集用户个人信息手段</text>
       </view>
       <view class="contents">
-        <text>
-        <text style="font-weight: bold;font-size: 30rpx;color: #333;">我们可能收集的信息</text>
+        <text user-select>
+        <text style="font-weight: bold;font-size: 30rpx;color: #333;" user-select>我们可能收集的信息</text>
 
 我们提供预约挂号服务时，可能会收集、储存和使用下列与个人（以下简称“您”）有关的信息。如果您不提供相关信息，可能无法注册成为我们的用户或无法享受我们提供的预约挂号服务。
 
@@ -40,7 +40,7 @@
 当您使用预约挂号服务时，我们可能收集和汇总用户的来源途径、访问顺序、停留时间，记录使用预约挂号服务的每个用户来源途径、浏览器软件信息。
 
 与个人身份有关信息
-<text style="font-weight: bold;">当您使用预约挂号服务时，我们可能收集和汇总或要求您提供有关个人身份的信息，包括：
+<text style="font-weight: bold;" user-select>当您使用预约挂号服务时，我们可能收集和汇总或要求您提供有关个人身份的信息，包括：
 
 个人身份信息（包括居民身份证、医保卡、护照、军官证、港澳通行证、台胞证、外国人永久居留身份证）；
 出生日期、性别、手机号码/固话号码、居住地；
@@ -54,22 +54,22 @@
       </view>
 
       <view class="contentTitle">
-        <text>二、我们如何收集和使用您的个人信息</text>
+        <text user-select>二、我们如何收集和使用您的个人信息</text>
       </view>
       <view class="contents">
-        <text>我们出于本声明和政策所述的以下目的，收集、储存和使用您的个人信息：
+        <text user-select>我们出于本声明和政策所述的以下目的，收集、储存和使用您的个人信息：
 
-          <text style="font-size: 30rpx;color: #333;font-weight: bold;">帮助您成为我们的用户</text>
+          <text style="font-size: 30rpx;color: #333;font-weight: bold;" user-select>帮助您成为我们的用户</text>
 
-          您需要注册一个账户，以便于我们为您提供服务。当您注册时，通过<text style="font-weight: bold;">您提供的姓名、身份证件号、手机号码及输入发送短信验证码的方式</text>帮您注册成为我们的用户。
+          您需要注册一个账户，以便于我们为您提供服务。当您注册时，通过<text style="font-weight: bold;" user-select>您提供的姓名、身份证件号、手机号码及输入发送短信验证码的方式</text>帮您注册成为我们的用户。
 
 您的登录账号包括但不限于您的手机号、用户名，可以完善密码、头像。补充上述信息将有助于我们为您提供更便捷的服务。
 
-您需要向我们<text style="font-weight: bold;">提供真实姓名和有效身份证件（包括但不限于北京社保卡、居民身份证（包含现役军人、人民武装警察）、港澳居民居住证、台湾居民居住证、港澳居民来往内地通行证、台湾居民来往大陆通行证、外国人永久居留身份证、护照）号码</text>，以便于我们进行实名认证。如果您不提供这些信息，可能会影响您在该应用部分功能（预约挂号服务）的正常使用，但不会影响您进行基础的浏览、搜索。
+您需要向我们<text style="font-weight: bold;" user-select>提供真实姓名和有效身份证件（包括但不限于北京社保卡、居民身份证（包含现役军人、人民武装警察）、港澳居民居住证、台湾居民居住证、港澳居民来往内地通行证、台湾居民来往大陆通行证、外国人永久居留身份证、护照）号码</text>，以便于我们进行实名认证。如果您不提供这些信息，可能会影响您在该应用部分功能（预约挂号服务）的正常使用，但不会影响您进行基础的浏览、搜索。
 
 在您主动注销账号时，我们将根据相关法律法规的要求尽快删除您的个人信息。
 
-<text style="font-size: 30rpx;color: #333;font-weight: bold;">为您提供更舒适的服务体验</text>
+<text style="font-size: 30rpx;color: #333;font-weight: bold;" user-select>为您提供更舒适的服务体验</text>
 
 为向您提供更契合您需求的页面展示和搜索结果、了解产品适配性、识别账号异常状态，我们会收集关于您使用的预约挂号服务以及使用方式的信息，并将这些信息进行关联，这些信息包括：
 
@@ -80,42 +80,42 @@
 位置：您需要授权我们使用位置权限，以便于我们基于位置向您展示、推送医院信息。您在首次打开移动客户端时会看到弹窗提醒，询问您是否授权。如您拒绝授权，可能无法正常使用基于地理位置的信息展示与推送功能。
 通知：您需要授权我们使用通知权限，以便于使用所有基于此权限实现的功能，包括预约挂号状态及各类消息提醒。您在首次打开移动客户端时会看到弹窗提醒，询问您是否授权。如您拒绝授权，可能无法正常获取各类消息提醒。
 
-<text style="font-size: 30rpx;color: #333;font-weight: bold;">为您提供便捷的健康信息展示</text>
+<text style="font-size: 30rpx;color: #333;font-weight: bold;" user-select>为您提供便捷的健康信息展示</text>
 
 为展示您的健康信息，我们会收集您在使用预约挂号服务过程中产生的预约挂号记录，用于向您展示及便于您对信息进行管理。
 
-<text style="font-size: 30rpx;color: #333;font-weight: bold;">为您提供更优质的服务</text>
+<text style="font-size: 30rpx;color: #333;font-weight: bold;" user-select>为您提供更优质的服务</text>
 
 当您与我们联系时，我们可能会保存与您的通信内容或您留下的联系方式，以便与您联系或帮助您解决问题，或记录相关问题的处理方案及结果。
 
-<text style="font-size: 30rpx;color: #333;font-weight: bold;">为您提供安全保障</text>
+<text style="font-size: 30rpx;color: #333;font-weight: bold;" user-select>为您提供安全保障</text>
 
 为提高您使用预约挂号服务的安全性，保护您或其他用户或公众的人身财产安全免遭侵害，更好地预防钓鱼网站、欺诈、网络漏洞、病毒、网络攻击、网络侵入等安全风险，更准确地识别违反法律法规或《预约挂号服务协议》，我们可能使用或整合您的账户信息、设备信息、网络日志，来综合判断您账户风险、进行身份验证、检测及防范安全事件，并依法采取必要的记录、审计、分析、处置措施。
         </text>        
       </view>
 
       <view class="contentTitle">
-        <text>三、我们如何处理儿童的个人信息</text>
+        <text user-select>三、我们如何处理儿童的个人信息</text>
       </view>
       <view class="contents">
-        <text>我们非常重视对未成年人个人信息的保护。我们将根据国家相关法律法规及监管政策的规定保护未成年人的个人信息。
+        <text user-select>我们非常重视对未成年人个人信息的保护。我们将根据国家相关法律法规及监管政策的规定保护未成年人的个人信息。
 对于经父母或法定监护人同意而收集未成年人个人信息的情况，我们只会在受到法律允许、父母或监护人明确同意或者保护未成年人所必要的情况下使用或公开披露此信息。</text>
       </view>
 
       <view class="contentTitle">
-        <text>四、我们如何使用 Cookie 和同类技术</text>
+        <text user-select>四、我们如何使用 Cookie 和同类技术</text>
       </view>
       <view class="contents">
-        <text>
-        <text style="color: #333;font-size: 30rpx;font-weight: bold;">Cookie</text>
+        <text user-select>
+        <text style="color: #333;font-size: 30rpx;font-weight: bold;" user-select>Cookie</text>
 
         为确保该应用正常运转、为您获得更轻松的访问体验，我们会在您的移动设备上存储名为 Cookie 的小数据文件。Cookie 通常包含标识符、站点名称以及号码和字符。借助于 Cookie，该应用能够记住您的选择，提供个性化增强服务。 您可以管理或删除Cookie。有关详情，请参见 AboutCookies.org。
         
-        <text style="color: #333;font-size: 30rpx;font-weight: bold;">网站信标</text>
+        <text style="color: #333;font-size: 30rpx;font-weight: bold;" user-select>网站信标</text>
 
         除Cookie外，我们还会在该应用上使用网站信标同类技术。我们向您发送的短信可能含有链接至我们该应用内容的地址链接，如果您点击该链接，我们则会跟踪此次点击，帮助我们了解您的服务偏好以便于我们主动改善客户服务体验。
 
-        <text style="color: #333;font-size: 30rpx;font-weight: bold;">对外共享、转让、公开披露个人信息规则：</text>
+        <text style="color: #333;font-size: 30rpx;font-weight: bold;" user-select>对外共享、转让、公开披露个人信息规则：</text>
 
         收集个人信息的目的在于向您提供预约挂号服务，并且保证我们遵守适用法律。您特此同意我们出于本隐私政策规定的目的处理个人信息并向为您提供服务的相关医院及实名认证系统披露个人信息。
 
@@ -128,17 +128,17 @@
       </view>
 
       <view class="contentTitle">
-        <text>五、个人信息存储和超期处理方式</text>
+        <text user-select>五、个人信息存储和超期处理方式</text>
       </view>
       <view class="contents">
-        <text>您的个人信息全都储存在中华人民共和国境内本地安全的服务器上，并在受控设施中受到保护。我们依据重要性和敏感性对您的数据进行分类，并且保证您的个人信息具有最高的安全等级。我们保证通过访问这些信息来帮助向您提供服务的员工具有严格的合同保密义务。同样，我们对数据存储设有专门的访问控制措施。我们会定期审查信息收集、储存和处理实践，包括物理安全措施，以防止任何未经授权的访问和使用。我们将会按照相关法律规定的期限保存您的个人信息。</text>
+        <text user-select>您的个人信息全都储存在中华人民共和国境内本地安全的服务器上，并在受控设施中受到保护。我们依据重要性和敏感性对您的数据进行分类，并且保证您的个人信息具有最高的安全等级。我们保证通过访问这些信息来帮助向您提供服务的员工具有严格的合同保密义务。同样，我们对数据存储设有专门的访问控制措施。我们会定期审查信息收集、储存和处理实践，包括物理安全措施，以防止任何未经授权的访问和使用。我们将会按照相关法律规定的期限保存您的个人信息。</text>
       </view>
 
       <view class="contentTitle">
-        <text>六、个人信息安全保护措施和能力</text>
+        <text user-select>六、个人信息安全保护措施和能力</text>
       </view>
       <view class="contents">
-        <text>我们承诺保证您的个人信息安全。为了防止未经授权的访问、披露或其他类似风险，我们落实了合理的管理措施流程，保护您提供的个人信息。我们将采取所有合理的措施保护您的个人信息。
+        <text user-select>我们承诺保证您的个人信息安全。为了防止未经授权的访问、披露或其他类似风险，我们落实了合理的管理措施流程，保护您提供的个人信息。我们将采取所有合理的措施保护您的个人信息。
 
 我们已采取符合业界标准、合理可行的安全防护措施保护您提供的个人信息安全，防止个人信息遭到未经授权访问、公开披露、使用、修改、损坏或丢失。
 
@@ -148,10 +148,10 @@
       </view>
 
       <view class="contentTitle">
-        <text>七、用户权利保障机制</text>
+        <text user-select>七、用户权利保障机制</text>
       </view>
       <view class="contents">
-        <text>在您使用预约挂号服务期间，为了您可以更加便捷地访问和管理您的信息，同时保障您注销账户的权利，我们在客户端中为您提供了相应的操作设置，您可以参考下面的指引进行操作：
+        <text user-select>在您使用预约挂号服务期间，为了您可以更加便捷地访问和管理您的信息，同时保障您注销账户的权利，我们在客户端中为您提供了相应的操作设置，您可以参考下面的指引进行操作：
 
 个⼈信息查询
 您可以登录账号，在“个人中心”→“账号管理”中，以及从“个人中心”→“就诊人管理”中查询您的个人信息。
@@ -165,17 +165,17 @@
       </view>
 
       <view class="contentTitle">
-        <text>八、用户申诉渠道和反馈机制</text>
+        <text user-select>八、用户申诉渠道和反馈机制</text>
       </view>
       <view class="contents">
-        <text>如果您对本隐私政策有任何意见或问题，或者您对平台收集、使用或披露您的个人信息有任何问题，登录后点击反馈进行意见反馈以及发送邮件(<text style="color: #0000ee;">createryan@163.com</text>)的方式联系我们。</text>
+        <text user-select>如果您对本隐私政策有任何意见或问题，或者您对平台收集、使用或披露您的个人信息有任何问题，登录后点击反馈进行意见反馈以及发送邮件(<text style="color: #0000ee;" user-select>createryan@163.com</text>)的方式联系我们。</text>
       </view>
 
       <view class="contentTitle">
-        <text>九、隐私政策时效及更新</text>
+        <text user-select>九、隐私政策时效及更新</text>
       </view>
       <view class="contents" style="padding-bottom: 100rpx;">
-        <text>平台预约挂号服务发生下列情形时，我们会适时对本政策进行更新：
+        <text user-select>平台预约挂号服务发生下列情形时，我们会适时对本政策进行更新：
 
 收集、存储、使用个人信息的范围、目的、规则发生变化；
 对外提供个人信息的对象、范围、目的发生变化；

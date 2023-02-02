@@ -1,14 +1,18 @@
 {
   "lazyCodeLoading": "requiredComponents",
   "pages": [
-    "pages/person/person",
+    "pages/patientInfo/patientInfo",
     "pages/index/index",
+    "pages/patientInfo/fixPatient/fixPatient",
+    "pages/person/person",
+    "pages/patientInfo/patient/patient",
+    "pages/patientInfo/order/order",
+    "pages/patientInfo/socialCard/index",
     "pages/search/search",
     "pages/userFeedback/userFeedback",
     "pages/weixinBind/weixinBind",
     "pages/userAuthentication/userAuthentication",
     "pages/weixinLogin/weixinLogin",
-    "pages/department/department",
     "pages/notice/notice",
     "pages/check/check",
     "pages/help/help",
@@ -39,8 +43,8 @@
         "selectedIconPath": "/static/images/selection/index-current.png"
       },
       {
-        "pagePath": "pages/department/department",
-        "text": "全部科室",
+        "pagePath": "pages/patientInfo/patientInfo",
+        "text": "就诊信息",
         "iconPath": "/static/images/selection/department.png",
         "selectedIconPath": "/static/images/selection/department-current.png"
       },
@@ -51,5 +55,9 @@
         "selectedIconPath": "/static/images/selection/people-current.png"
       }
     ]
+  },
+  "usingComponents": {
+    "i-toast": "./dist/toast/index",
+    "i-modal": "./dist/modal/index"
   }
 }

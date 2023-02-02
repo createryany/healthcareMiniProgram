@@ -22,8 +22,7 @@ Page({
     coverTransition: '',
     flag: true, // 标记登录
     isLogin: false, // 标记是否登录
-    hiddenDialog: true, //true-隐藏  false-显示
-    animationData: {},
+    visibleAuth: false,
     bindtapClick: '',
     beforeBindtapClickBtn: '#f8f6fc', // 按钮背景颜色
     beforeBindtapClickBtnText: '#a6a6a6', // 按钮文字颜色
@@ -34,7 +33,7 @@ Page({
     codeInputBorder: ['1rpx solid #999', '1rpx solid #1a86fb'], // 输入框边框
     isFocus: true, //聚焦 
     ispassword: false, //是否密文显示 true为密文， false为明文。 
-    isAgree: false // 是否接受协议
+    isAgree: true // 是否接受协议
   },
   // 是否接受协议
   agreeStatus() {
@@ -175,7 +174,6 @@ Page({
     }, 'POST')
     setTimeout(async () => {
       if (result.code === 200) {
-
         let userMessageResult = await request('/api/user/auth/getUserInfo', {}, 'GET', result.data.token)
         if (userMessageResult.code === 200) {
           let userMessage = userMessageResult.data
@@ -258,8 +256,7 @@ Page({
           wx.setNavigationBarTitle({
             title: '登录'
           })
-          wx.removeStorageSync('userInfo')
-          wx.removeStorageSync('userMessage')
+          wx.clearStorageSync()
           wx.reLaunch({
             url: '/pages/index/index',
           })
@@ -268,46 +265,10 @@ Page({
       }
     })
   },
-  // 显示认证信息弹窗
-  handleAuthStatusModal() {
-    let that = this
-    that.setData({
-      hiddenDialog: false
-    })
-    // 创建动画实例
-    let animation = wx.createAnimation({
-      duration: 200, //动画的持续时间
-      timingFunction: 'ease', //动画的效果 默认值是linear->匀速，ease->动画以低速开始，然后加快，在结束前变 慢
-    })
-    this.animation = animation; //将animation变量赋值给当前动画
-    that.slideIn();
-  },
-  // 隐藏遮罩层
-  hideModal() {
-    let that = this
-    let animation = wx.createAnimation({
-      duration: 200, //动画的持续时间 默认400ms
-      timingFunction: 'ease', //动画的效果 默认值是linear
-    })
-    this.animation = animation
-    that.slideDown(); //调用动画--滑出
-    that.setData({
-      hiddenDialog: true
-    })
-  },
-  //动画 -- 滑入
-  slideIn: function () {
-    this.animation.translateY(0).step() // 在y轴偏移，然后用step()完成一个动画
+  // 显示认证信息
+  handleAuthStatus() {
     this.setData({
-      //动画实例的export方法导出动画数据传递给组件的animation属性
-      animationData: this.animation.export()
-    })
-  },
-  //动画 -- 滑出
-  slideDown: function () {
-    this.animation.translateY(300).step()
-    this.setData({
-      animationData: this.animation.export(),
+      visibleAuth: !this.data.visibleAuth
     })
   },
   // 微信登录
@@ -335,42 +296,51 @@ Page({
           success: async (res) => {
             let wxLoginResult = await request('/api/ucenter/wx/callback/' + res.code + '/' + Date.parse(new Date()), wxInfo, 'POST')
             let openid = wxLoginResult.data.openid
-            if (wxLoginResult.data.phone) {
-              if (wxLoginResult.data.token) {
-                let userMessageResult = await request('/api/user/auth/getUserInfo', {}, 'GET', wxLoginResult.data.token)
-                let userMessage = userMessageResult.data
-                wx.setStorageSync('userMessage', JSON.stringify(userMessage))
-                this.setData({
-                  userMessage
-                })
-              }
-              if (wxLoginResult.code === 200) {
-                wx.showToast({
-                  title: '登录成功',
-                  icon: 'success'
-                })
-                wx.setStorageSync('userInfo', JSON.stringify(wxLoginResult.data))
-                // 更新用户信息
-                this.setData({
-                  userInfo: wxLoginResult.data,
-                  flag: true,
-                  isLogin: true
-                })
-                wx.hideLoading()
-                wx.setNavigationBarTitle({
-                  title: '个人中心'
-                })
+              if (wxLoginResult.data.phone) {
+                setTimeout(async () => {
+                  if (wxLoginResult.code === 200) {
+                    if (wxLoginResult.data.token) {
+                      let userMessageResult = await request('/api/user/auth/getUserInfo', {}, 'GET', wxLoginResult.data.token)
+                      if (userMessageResult.code == 200) {
+                        let userMessage = userMessageResult.data
+                        wx.setStorageSync('userMessage', JSON.stringify(userMessage))
+                        this.setData({
+                          userMessage
+                        })
+                        wx.showToast({
+                          title: '登录成功',
+                          icon: 'success'
+                        })
+                        wx.setStorageSync('userInfo', JSON.stringify(wxLoginResult.data))
+                        // 更新用户信息
+                        this.setData({
+                          userInfo: wxLoginResult.data,
+                          flag: true,
+                          isLogin: true
+                        })
+                        wx.hideLoading()
+                        wx.setNavigationBarTitle({
+                          title: '个人中心'
+                        })
+                      } else {
+                        wx.showToast({
+                          title: userMessageResult.message,
+                          icon: 'error'
+                        })
+                      }
+                    }
+                  } else {
+                    wx.showToast({
+                      title: wxLoginResult.message,
+                      icon: 'error'
+                    })
+                  }
+                }, 500)
               } else {
-                wx.showToast({
-                  title: wxLoginResult.message,
-                  icon: 'error'
+                wx.reLaunch({
+                  url: `/pages/weixinLogin/weixinLogin?openid=${openid}`,
                 })
               }
-            } else {
-              wx.reLaunch({
-                url: `/pages/weixinLogin/weixinLogin?openid=${openid}`,
-              })
-            }
           },
         })
       }
@@ -378,7 +348,7 @@ Page({
 
   },
   // 未实名认证
-  handleNoAuthStatusModal() {
+  handleNoAuthStatus() {
     wx.navigateTo({
       url: '/pages/userAuthentication/userAuthentication'
     })

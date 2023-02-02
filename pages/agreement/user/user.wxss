@@ -17,7 +17,6 @@
   align-items: center;
   color: white;
   font-size: 30rpx;
-  line-height: 30rpx;
 }
 .userContainer .body {
   height: 100%;
@@ -37,13 +36,11 @@
 
 .content {
   font-size: 28rpx;
-  line-height: 28rpx;
   color: #666666;
 }
 
 .app {
   font-size: 30rpx;
-  line-height: 30rpx;
   color: #666666;
   font-weight: bold;
 }
@@ -51,7 +48,6 @@
 .contentTitle {
   margin-top: 30rpx;
   font-size: 35rpx;
-  line-height: 35rpx;
   color: #333;
   font-weight: bold;
 }

@@ -1,64 +1,64 @@
 <view class="processContainer">
   <view class="header">
-    <text>healthcare预约挂号</text>
+    <text user-select >healthcare预约挂号</text>
   </view>
   <view class="body">
     <view class="title">
-      <text>healthcare网站挂号流程</text>
+      <text user-select >healthcare网站挂号流程</text>
     </view>
     <view class="content">
-      <text>使用healthcare统一平台网站预约挂号服务前请仔细阅读以下使用说明。</text>
+      <text user-select >使用healthcare统一平台网站预约挂号服务前请仔细阅读以下使用说明。</text>
     
       <view class="contentTitle">
-        <text>一、注册登录</text>
+        <text user-select >一、注册登录</text>
       </view>
       <view class="contents">
-        <text>登录网上预约挂号统一平台<text style="color: #0000ee;">www.healthcareyygh.com</text>，首次预约挂号须进行在线实名制注册，通过注册账号登录，进入预约挂号流程。（已注册用户直接登录开始预约挂号）</text>
+        <text user-select >登录网上预约挂号统一平台<text user-select  style="color: #0000ee;">www.healthcareyygh.com</text>，首次预约挂号须进行在线实名制注册，通过注册账号登录，进入预约挂号流程。（已注册用户直接登录开始预约挂号）</text>
       </view>
 
       <view class="contentTitle">
-        <text>二、选择医院/科室/疾病</text>
+        <text user-select >二、选择医院/科室/疾病</text>
       </view>
       <view class="contents">
-        <text>您可以通过多种搜索方式找到您所要预约的医院。
+        <text user-select >您可以通过多种搜索方式找到您所要预约的医院。
           进入医院页面 选择需要预约的科室。</text>
       </view>
 
       <view class="contentTitle">
-        <text>三、选择日期/医生</text>
+        <text user-select >三、选择日期/医生</text>
       </view>
       <view class="contents">
-        <text>选择就诊日期，蓝色代表有可预约号源，点击预约；灰色代表号源已约满或停诊；白色代表无号源，无法点击。</text>
+        <text user-select >选择就诊日期，蓝色代表有可预约号源，点击预约；灰色代表号源已约满或停诊；白色代表无号源，无法点击。</text>
       </view>
 
       <view class="contentTitle">
-        <text>四、填写预约信息并短信验证</text>
+        <text user-select >四、填写预约信息并短信验证</text>
       </view>
       <view class="contents">
-        <text>填写”就诊卡号”，”医保卡号”，选择”报销类型”；（选填）
+        <text user-select >填写”就诊卡号”，”医保卡号”，选择”报销类型”；（选填）
 点击“获取”按钮，通过注册手机号接收短信验证码，并正确填写；（必填）
 点击”确认提交”在弹出本次预约成功信息时，即为成功预约。</text>
       </view>
 
       <view class="contentTitle">
-        <text>五、接收预约成功短信</text>
+        <text user-select >五、接收预约成功短信</text>
       </view>
       <view class="contents">
-        <text>用户手机接收到预约成功短信及唯一的8位数字预约识别码。</text>
+        <text user-select >用户手机接收到预约成功短信及唯一的8位数字预约识别码。</text>
       </view>
 
       <view class="contentTitle">
-        <text>六、医院就诊</text>
+        <text user-select >六、医院就诊</text>
       </view>
       <view class="contents">
-        <text>就诊当日，请用户在规定的时间段内，前往医院凭就诊者本人预约登记时的有效证件和预约识别码就诊。</text>
+        <text user-select >就诊当日，请用户在规定的时间段内，前往医院凭就诊者本人预约登记时的有效证件和预约识别码就诊。</text>
       </view>
 
       <view class="contentTitle">
-        <text>七、healthcare微信小程序挂号</text>
+        <text user-select >七、healthcare微信小程序挂号</text>
       </view>
       <view class="contents" style="padding-bottom: 100rpx;">
-        <text>流程和网站挂号流程操作类似，目前只支持支付宝支付。</text>
+        <text user-select >流程和网站挂号流程操作类似，目前只支持支付宝支付。</text>
       </view>
 
     </view>

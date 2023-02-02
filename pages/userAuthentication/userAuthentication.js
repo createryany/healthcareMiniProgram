@@ -13,10 +13,6 @@ Page({
     certificatesType: '', // 证件类型
     certificatesNo: '', // 证件号码
     certificatesUrl: '', // 证件url
-    hiddenDialog: true, //true-隐藏  false-显示
-    animationData: {},
-    ertificatesTypeModal: 'white',
-    currentTab: 20001,
     certificatesImgUploadStatus: false, // 人证合一图片提示
     certificatesImgUploadImgStatus: true, // 人证合一图片
     certificatesTypeStatus: false, // 证件类型提示
@@ -160,11 +156,6 @@ Page({
       certificatesSpecialStatus: true
     })
   },
-  handleCertificatesTypeSelection(event) {
-    this.setData({
-      currentTab: event.target.dataset.current
-    })
-  },
   // 获取输入值
   handleCertificatesNoInput(event) {
     this.setData({
@@ -295,72 +286,21 @@ Page({
       })
     }
   },
-  // 显示认证信息弹窗
-  handleCertificatesTypeModal() {
-    let that = this
-    if (!that.data.certificatesType) {
-      that.setData({
-        certificatesTypeStatus: true,
-      })
-    }
-    that.setData({
-      hiddenDialog: false,
-      ertificatesTypeModal: '#f7f5f6'
-    })
-    setTimeout(() => {
-      that.setData({
-        ertificatesTypeModal: 'white'
-      })
-    }, 100)
-    // 创建动画实例
-    let animation = wx.createAnimation({
-      duration: 300, //动画的持续时间
-      timingFunction: 'ease', //动画的效果 默认值是linear->匀速，ease->动画以低速开始，然后加快，在结束前变 慢
-    })
-    this.animation = animation; //将animation变量赋值给当前动画
-    that.slideIn();
-  },
-  // 确认类型选择
-  confirmSelection() {
+  // 选择证件类型
+  handleCertificatesType() {
+    let typeList = []
     let certificatesTypeList = this.data.certificatesTypeList
-    let currentId = this.data.currentTab
     for (let index = 0; index < certificatesTypeList.length; index++) {
       const element = certificatesTypeList[index];
-      if (currentId === element.id) {
-        this.setData({
-          certificatesType: element.name,
-          certificatesTypeStatus: false
-        })
-        this.hideModal()
-      }
+      typeList.push(element.name)
     }
-  },
-  // 隐藏遮罩层
-  hideModal() {
-    let that = this
-    let animation = wx.createAnimation({
-      duration: 200, //动画的持续时间 默认400ms
-      timingFunction: 'ease', //动画的效果 默认值是linear
-    })
-    this.animation = animation
-    that.slideDown(); //调用动画--滑出
-    that.setData({
-      hiddenDialog: true
-    })
-  },
-  //动画 -- 滑入
-  slideIn: function () {
-    this.animation.translateY(0).step() // 在y轴偏移，然后用step()完成一个动画
-    this.setData({
-      //动画实例的export方法导出动画数据传递给组件的animation属性
-      animationData: this.animation.export()
-    })
-  },
-  //动画 -- 滑出
-  slideDown: function () {
-    this.animation.translateY(300).step()
-    this.setData({
-      animationData: this.animation.export(),
+    wx.showActionSheet({
+      itemList: typeList,
+      success: (res) => {
+        this.setData({
+          certificatesType: certificatesTypeList[res.tapIndex].name
+        })
+      },
     })
   },
   /**

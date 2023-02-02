@@ -4,3 +4,7 @@
 page {
   height: 100%;
 }
+
+.bgw {
+  background-color: white;
+}

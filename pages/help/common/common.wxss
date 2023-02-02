@@ -17,7 +17,6 @@
   align-items: center;
   color: white;
   font-size: 30rpx;
-  line-height: 30rpx;
 }
 .commonContainer .body {
   height: 100%;
@@ -29,7 +28,6 @@
 
 .title {
   font-size: 30rpx;
-  line-height: 30rpx;
   font-weight: bold;
   color: #333;
   margin-bottom: 25rpx;
@@ -37,7 +35,6 @@
 
 .content {
   font-size: 25rpx;
-  line-height: 25rpx;
   color: #686868;
   margin-bottom: 25rpx;
 }

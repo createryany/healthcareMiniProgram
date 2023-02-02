@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "就诊信息",
+  "usingComponents": {
+    "i-spin": "../../dist/spin/index",
+    "i-page": "../../dist/page/index"
+  }
+}

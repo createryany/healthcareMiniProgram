@@ -1,0 +1,33 @@
+<view class="socialCardContainer">
+  <view class="header">
+    <text>healthcare预约挂号</text>
+  </view>
+  <view class="patientInfo">
+    <view class="name">
+      <text>{{patient.name}}</text>
+    </view>
+    <view class="info">
+      <text>{{patient.param.certificatesTypeString}}</text>\t
+      <text>{{patient.certificatesNo}}</text>
+    </view>
+  </view>
+  <view class="socialCard">
+    <text style="color: red;">*</text>
+    <text>社保卡号</text>
+    <input class="input" value="{{insureNum}}" maxlength="12" type="text" placeholder="请输入社保卡号" placeholder-class="inputText" bindinput="handleInput" bindblur="handleBlur"/>
+    <view class="inputInfo" wx:if="{{inputInfo}}">
+      请填写社保卡号
+    </view>
+  </view>
+  <view class="line"></view>
+  <view class="bindButton" bindtap="bindInsureNum">
+    绑定社保卡
+  </view>
+  <image class="img" src="../../../static/images/socialCardImage/socialCard.jpg" mode=""/>
+</view>
+
+<i-toast id="toast" />
+<!-- 绑定提示 -->
+<i-modal title="提示" visible="{{ visible }}" actions="{{ actions }}" bind:click="handlebindInsureNum">
+  <view>是否绑定社保卡：{{insureNum}}?</view>
+</i-modal>

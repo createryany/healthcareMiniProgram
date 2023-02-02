@@ -1,0 +1,184 @@
+<view class="fixPatientContainer">
+  <view class="header">
+    <text>healthcare预约挂号</text>
+  </view>
+  <view class="body">
+    <!-- 就诊人信息 -->
+    <view class="title">
+      <text class="titleText">就诊人信息</text>
+    </view>
+    <view class="info">
+      <view class="infoText">
+        <text class="star">*</text>
+        <text class="name">就诊人姓名</text>
+        <input class="input" placeholder-class="inputText" type="text" placeholder="请输入就诊人姓名" focus="{{isFocus}}" bindinput="handleNameInput" value="{{patient.name}}" bindtap="showSpecial" bindblur="nameBlur" />
+        <text class="special" bindtap="addSpecial" wx:if="{{nameSpecial}}">特殊字符</text>
+      </view>
+      <view class="specialNameInfo" wx:if="{{nameSpecial}}">
+        <text>如果姓名中含有特殊字符“·”，请点击右侧「特殊字符」添加</text>
+      </view>
+      <view class="dataInfo" wx:if="{{tipList[0]}}">
+        <text>请填写就诊人姓名</text>
+      </view>
+      <view class="line"></view>
+      <view class="infoText" style="position: relative;">
+        <text class="star">*</text>
+        <text class="name">证件类型</text>
+        <input class="input" placeholder-class="inputText" type="text" placeholder="点击选择证件类型" style="top: 18.8%;" value="{{certificatesTypeName}}" />
+        <text class="iconfont icon-xiayiyeqianjinchakangengduo certificatesTypeIconfont"></text>
+        <view class="certificatesType" bindtap="handleCertificatesType"></view>
+        <view class="dataInfo" wx:if="{{tipList[1]}}">
+          <text>请选择证件类型</text>
+        </view>
+      </view>
+      <view class="line"></view>
+      <view class="infoText">
+        <text class="star">*</text>
+        <text class="name">证件号码</text>
+        <input class="input" placeholder-class="inputText" maxlength="18" type="text" placeholder="请输入证件号码" style="top: 25.6%;" bindtap="maskClose" bindinput="handleCertificatesNo" bindblur="certificatesNoBlur" value="{{patient.certificatesNo}}" />
+        <view class="dataInfo" wx:if="{{tipList[2]}}">
+          <text>请填写证件号码</text>
+        </view>
+      </view>
+      <view class="line"></view>
+      <view class="infoText" style="position: relative;">
+        <text class="star">*</text>
+        <text class="name">性别</text>
+        <view class="input" style="margin-right: 36%;">
+          <text wx:if="{{!manStatus}}" class="iconfont icon-radio-unchecked-b-o"></text>
+          <text wx:if="{{manStatus}}" class="iconfont icon-xuanzhongduigou" style="color: #1a86fb;"></text>
+          <text style="padding-left: 10rpx;">男</text>
+          <text wx:if="{{!womanStatus}}" class="iconfont icon-radio-unchecked-b-o" style="margin-left: 100rpx;"></text>
+          <text wx:if="{{womanStatus}}" class="iconfont icon-xuanzhongduigou" style="color: #1a86fb;margin-left: 100rpx;"></text>
+          <text style="padding-left: 10rpx;">女</text>
+        </view>
+        <view class="man" bindtap="changeMan"></view>
+        <view class="woman" bindtap="changeWoman"></view>
+        <view class="dataInfo" wx:if="{{tipList[3]}}">
+          <text>请选择性别</text>
+        </view>
+      </view>
+      <view class="line"></view>
+      <view class="infoText" style="position: relative;">
+        <text class="star">*</text>
+        <text class="name">出生日期</text>
+        <input class="input" placeholder-class="inputText" type="text" placeholder="点击选择出生日期" style="top: 39.2%;" bindtap="maskClose" value="{{patient.birthdate}}" />
+        <text class="iconfont icon-xiayiyeqianjinchakangengduo certificatesTypeIconfont"></text>
+        <picker mode="date" start="1900-09-01" end="{{nowDate}}" bindchange="handleBirth">
+          <view class="picker certificatesType" bindtap="bindClickBirth"></view>
+        </picker>
+        <view class="dataInfo" wx:if="{{tipList[4]}}">
+          <text>请选择出生日期</text>
+        </view>
+      </view>
+      <view class="line"></view>
+      <view class="infoText">
+        <text class="star">*</text>
+        <text class="name">手机号码</text>
+        <input class="input" placeholder-class="inputText" maxlength="11" type="text" placeholder="请输入手机号码" style="top: 46%;" bindtap="maskClose" bindinput="handlePhone" value="{{patient.phone}}" bindblur="phoneBlur"/>
+        <view class="dataInfo" wx:if="{{tipList[5]}}">
+          <text>请输入手机号码</text>
+        </view>
+      </view>
+      <view class="line"></view>
+      <view class="infoText" style="position: relative;">
+        <text class="star">*</text>
+        <text class="name">当前住址</text>
+        <input class="input" placeholder-class="inputText" type="text" placeholder="点击选择当前住址" style="top: 52.8%;" bindtap="maskClose" value="{{currentAddress}}" />
+        <text class="iconfont icon-xiayiyeqianjinchakangengduo certificatesTypeIconfont"></text>
+        <picker mode="region" bindchange="handleCurrentAddress" value="{{region}}">
+          <view class="certificatesType picker" bindtap="bindCurrentAddressClick"></view>
+        </picker>
+        <view class="dataInfo" wx:if="{{tipList[6]}}">
+          <text>请选择当前住址</text>
+        </view>
+      </view>
+      <view class="line"></view>
+      <view class="infoText">
+        <text class="star">*</text>
+        <text class="name">详细地址</text>
+        <input style="float: right;width: 65%;margin-right: 5%;" placeholder-class="inputText" type="text" placeholder="应公安机关要求，请填写现真实住址" bindtap="maskClose" bindinput="handleAddress" value="{{patient.address}}" bindblur="addressBlur"/>
+        <view class="dataInfo" wx:if="{{tipList[7]}}">
+          <text>应公安机关要求，请填写现真实住址</text>
+        </view>
+      </view>
+    </view>
+    <!-- 建档信息 -->
+    <view class="title">
+      <text class="titleText">建档信息</text>
+    </view>
+    <view class="info">
+      <view class="infoText" style="position: relative;">
+        <text class="star">*</text>
+        <text class="name">婚姻状况</text>
+        <view class="input" style="margin-right: 28%;">
+          <text wx:if="{{!noMarryStatus}}" class="iconfont icon-radio-unchecked-b-o"></text>
+          <text wx:if="{{noMarryStatus}}" class="iconfont icon-xuanzhongduigou" style="color: #1a86fb;"></text>
+          <text style="padding-left: 10rpx;">未婚</text>
+          <text wx:if="{{!marryStatus}}" class="iconfont icon-radio-unchecked-b-o" style="margin-left: 100rpx;"></text>
+          <text wx:if="{{marryStatus}}" class="iconfont icon-xuanzhongduigou" style="color: #1a86fb;margin-left: 100rpx;"></text>
+          <text style="padding-left: 10rpx;">已婚</text>
+        </view>
+        <view class="man" style="width: 55px;right: 56%;" bindtap="noMarry"></view>
+        <view class="woman" style="width: 55px;right: 27%;" bindtap="marry"></view>
+        <view class="dataInfo" wx:if="{{tipList[8]}}">
+            <text>请选择婚姻状况</text>
+          </view>
+      </view>
+      <view class="line"></view>
+      <view class="infoText" style="position: relative;">
+        <text class="star">*</text>
+        <text class="name">民族</text>
+        <input class="input" placeholder-class="inputText" type="text" placeholder="点击选择民族" style="top: 18.8%;" value="{{nation}}" />
+        <text class="iconfont icon-xiayiyeqianjinchakangengduo certificatesTypeIconfont"></text>
+        <picker value="0" range="{{nationArray}}" range-key="name" bindchange="handleNation">
+          <view class="picker certificatesType" bindtap="bindNationClick"></view>
+        </picker>
+        <view class="dataInfo" wx:if="{{tipList[9]}}">
+          <text>请选择民族</text>
+        </view>
+      </view>
+    </view>
+    <!-- 联系人信息 -->
+    <view class="title">
+      <text class="titleText">联系人信息</text>
+    </view>
+    <view class="info">
+      <view class="infoText">
+        <text class="name">联系人姓名</text>
+        <input class="input" style="margin-right: 20%;" placeholder-class="inputText" type="text" placeholder="请输入联系人姓名" bindinput="handleContactsName" value="{{patient.contactsName}}" bindtap="showContactsSpecial" focus="{{isContactsFocus}}" />
+        <text class="special" bindtap="addContactsSpecial" wx:if="{{contactsNameSpecial}}">特殊字符</text>
+      </view>
+      <view class="specialNameInfo" wx:if="{{contactsNameSpecial}}">
+        <text>如果姓名中含有特殊字符“·”，请点击右侧「特殊字符」添加</text>
+      </view>
+      <view class="line"></view>
+      <view class="infoText" style="position: relative;">
+        <text class="name">联系人证件类型</text>
+        <input class="input" placeholder-class="inputText" type="text" placeholder="点击选择证件类型" style="top: 18.8%;margin-right: 20%;" value="{{contactsCertificatesTypeName}}" />
+        <text class="iconfont icon-xiayiyeqianjinchakangengduo certificatesTypeIconfont"></text>
+        <view class="certificatesType" bindtap="handleContactsCertificatesType"></view>
+      </view>
+      <view class="line"></view>
+      <view class="infoText">
+        <text class="name">联系人证件号码</text>
+        <input class="input" style="margin-right: 20%;" maxlength="18" placeholder-class="inputText" type="text" placeholder="请输入联系人证件号码" bindinput="handleContactsCertificatesNo" value="{{patient.contactsCertificatesNo}}" bindtap="maskClose" />
+      </view>
+      <view class="line"></view>
+      <view class="infoText">
+        <text class="name">联系人手机号码</text>
+        <input class="input" style="margin-right: 20%;" maxlength="11" placeholder-class="inputText" type="text" placeholder="请输入联系人手机号码" bindinput="handleContactsPhone" value="{{patient.contactsPhone}}" bindtap="maskClose" />
+      </view>
+      <view class="submit" bindtap="{{patientBtn}}">
+        <text>{{patientBtnText}}</text>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="mask" bindtap="maskClose" wx:if="{{mask}}"></view>
+
+<i-toast id="toast" />
+<!-- 绑定提示 -->
+<i-modal title="提示" visible="{{ visible }}" actions="{{ actions }}" bind:click="{{handleSelection}}">
+  <view>确定{{patientBtnText}}?</view>
+</i-modal>

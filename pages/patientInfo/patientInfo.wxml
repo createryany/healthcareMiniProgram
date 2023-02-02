@@ -1,0 +1,157 @@
+<view class="patientContainer">
+  <view class="header">
+    <text>healthcare预约挂号</text>
+  </view>
+  <view class="body">
+    <!-- 就诊人和挂号订单标题 -->
+    <view class="patient">
+      <view class="order {{isOrder? 'bgw' : ''}}" bindtap="order">
+        <text class="iconfont icon-order-fill"></text>
+        <text class="text">挂号订单</text>
+      </view>
+
+      <view class="visitor {{isOrder? '' : 'bgw'}}" bindtap="visitor">
+        <text class="iconfont icon-yonghu"></text>
+        <text class="text">就诊人</text>
+      </view>
+    </view>
+    <view class="line"></view>
+    <view class="noList" wx:if="{{isOrder && orderList.length == 0 && !noLogin}}">
+      <text class="iconfont icon-zanwusousuolishi"></text>
+      <text class="noOrderListText">暂无订单记录</text>
+    </view>
+    <!-- 根据就诊人查询订单 -->
+    <view class="patientClick" bindtap="searchOrderByPatient"></view>
+    <view class="patientOrder" wx:if="{{isOrder && !noLogin}}">
+      <text class="text">当前就诊人</text>
+      <text class="name">{{currentPatientName}}</text>
+      <text class="iconfont icon-xiangxia"></text>
+    </view>
+    <!-- 挂号订单 -->
+    <view class="orderNumInfo" wx:if="{{isOrder && !noLogin}}">
+      <text>仅提供查询近180天的订单</text>
+    </view>
+    <view class="orderMes" wx:if="{{isOrder && !noLogin}}" wx:for="{{orderList}}" wx:for-item="item" wx:key="id" data-index="{{index}}" bindtap="selected">
+      <view class="orderContent">     
+        <view class="orderItem">
+          <view class="orderHosp">
+            <block>
+              <view class="hospName">
+                <text class="name">{{item.hosname}}</text>
+                <text class="iconfont icon-xiayiyeqianjinchakangengduo"></text>
+              </view>
+              <text class="iconfont icon-xiayiyeqianjinchakangengduo" style="color: #999999;position: absolute;top: 3rpx;" wx:if="{{item.hosname.length > 9}}"></text>
+              <text class="orderStatus">{{item.param.orderStatusString == '已支付'? '预约成功' : item.param.orderStatusString}}</text>
+            </block>
+            <view class="depName">
+              <text>{{item.depname}}</text>
+            </view>
+            <view class="patientInfo">
+              <text>{{item.patientName}}</text>\t
+              <text>{{item.patientPhone}}</text>
+            </view>
+            <view class="amount">
+              <text class="iconfont icon-qian"></text>
+              <text class="amountNum">{{item.amount}}</text>
+            </view>
+            <view class="detail" data-currentOrder="{{item}}" bindtap="toDetail">详情</view>
+          </view>
+        </view>    
+      </view>
+    </view>
+    <!-- 就诊人 -->
+    <view class="numInfo" wx:if="{{!isOrder && !noLogin}}">
+      <text>就诊人（最多4人）</text>
+    </view>
+    <view class="patientMes" wx:if="{{!isOrder && !noLogin}}" wx:for="{{patientList}}" wx:key="id" data-index="{{index}}" bindtap="selection">
+      <view class="patientHeader">
+        <view class="patientName">
+          <view class="name">
+            <text>{{item.name}}</text>
+          </view>
+          <text class="type">{{item.param.certificatesTypeString}}</text>\t
+          <wxs src="./../../utils/subutil.wxs" module="tools"/>
+          <text class="type">{{tools.subCertificatesNo(item.certificatesNo)}}</text>
+        </view>
+        <view class="patientDetail" bindtap="toPatientDetail">
+          <text>查看详情</text>
+          <text class="iconfont icon-xiayiyeqianjinchakangengduo"></text>
+        </view>
+      </view>
+      <view class="divider"></view>
+      <view class="patientContent">
+
+        <view class="patientMessage" style="background-color: #76cdd4;" wx:if="{{item.isInsure == 1}}">
+          <view class="own">
+            <view class="ownText">
+              <text>医保</text>
+            </view>
+          </view>
+          <view class="unBind" bindtap="unBindSocialCard">
+            <text>解绑</text>
+          </view>
+          <view class="message">
+            <view class="typeNo">
+              <text>{{item.insureNum}}</text>
+            </view>
+            <text class="typeNum">社保卡</text>
+          </view>
+        </view>
+
+        <view class="patientMessage" wx:if="{{item.status == 1}}">
+          <view class="own">
+            <view class="ownText">
+              <text>自费</text>
+            </view>
+          </view>
+          <view class="unBind" bindtap="unBindPatientCard">
+            <text>解绑</text>
+          </view>
+          <view class="message">
+            <view class="typeNo">
+              <text>{{item.certificatesNo}}</text>
+            </view>
+            <text class="typeNum">{{item.param.certificatesTypeString}}</text>
+          </view>
+        </view>
+
+      </view>
+      <view class="footer">
+        <view class="bindSocialCard" wx:if="{{item.status == 0}}" bindtap="ownExpense">
+          <text class="iconfont icon-tianjia"></text>\t
+          <text>绑定就诊卡(自费就诊)</text>
+        </view>
+        <view class="bindSocialCard" wx:if="{{item.isInsure == 0}}" bindtap="bindInsure">
+          <text class="iconfont icon-tianjia"></text>\t
+          <text>绑定社保卡</text>
+        </view>
+      </view>
+    </view>
+    <view class="addPatient" wx:if="{{!isOrder && !noLogin && patientList.length < 4}}" bindtap="toAddPatient">
+      <view class="addPatientText">
+        <text class="iconfont icon-tianjia"></text>\t
+        <text>添加就诊人</text>
+      </view>
+    </view>
+    <!-- 没有登录展示 -->
+    <view class="content" wx:if="{{noLogin}}">
+      <view class="innerContent" >
+        <view class="info">
+          <text>请登录后再查看</text>
+          <view class="toLogin" bindtap="toLogin">登录</view>
+        </view>
+      </view>
+    </view>
+    <i-page wx:if="{{isOrder && !noLogin && orderList.length != 0}}" i-class="changePage" current="{{ page }}" total="{{ pages }}" bind:change="handleChange">
+      <view slot="prev">上一页</view>
+      <view slot="next">下一页</view>
+    </i-page>
+    <i-spin size="large" i-class="spinClass" fix wx:if="{{ spinShow }}"></i-spin>
+  </view>
+</view>
+
+<i-toast id="toast" />
+<!-- 绑定提示 -->
+<i-modal title="提示" visible="{{ visibleBindPatient }}" actions="{{ actionsBindPatient }}" bind:click="{{handleSelection}}">
+  <view>是否{{visibleBindText}}?</view>
+</i-modal>

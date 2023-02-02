@@ -1,8 +1,10 @@
-<view class="indexContainer">
+<view class="indexContainer bgw">
   <!-- 搜索框 -->
-  <view class="search" bindtap="toSearch">
-    <text class="iconfont icon-BAI-fangdajing"></text>
-    <text>搜索医院</text>
+  <view class="searchArea" bindtap="toSearch">
+    <view class="search">
+      <text class="iconfont icon-BAI-fangdajing"></text>
+      <text>搜索医院</text>
+    </view>
   </view>
   <!-- 首页图 -->
   <view class="indexImage" bindtap="help">
@@ -31,30 +33,45 @@
   <view class="line"></view>
   <!-- 医院信息区 -->
   <view class="hospitalInfo">
-    <view class="header">
-      <view class="area" bindtap="filterHospital">
-        <text>筛选</text>
-        <text class="iconfont icon-xiangxia {{isShowFilter?  'filterRote' : ''}}"></text>
-      </view>
-    </view>
-    <view class="filter" wx:if="{{isShowFilter}}">
-      
-    </view>
-    <view class="inner" wx:for="{{hospitalList}}" wx:key="id" wx:if="{{!isShowFilter}}">
-      <view class="hospital">
-        <view class="hospName">
-          <text class="hospitalName">{{item.hosname}}</text>
+    <i-sticky scrollTop="{{scrollTop}}">
+      <!-- <i-sticky-item></i-sticky-item> -->
+      <view slot="title">
+        <view class="header">
+          <view class="area" bindtap="filterHospital">
+            <text>筛选</text>
+            <text class="iconfont icon-xiangxia {{isShowFilter?  'filterRote' : ''}}"></text>
+          </view>
         </view>
-        <view class="hospitalOtherInfo">
-          <text class="iconfont icon-shijian" style="margin-right: 5rpx;"></text>
-          <text>{{item.param.hosptypeString}}</text>
-          <text class="iconfont icon-RectangleCopy" style="margin-right: 5rpx;margin-left: 15rpx;"></text>
-          <text>每天 {{item.bookingRule.releaseTime}} 放号</text></view>
+        <view class="filter" wx:if="{{isShowFilter}}">
+          
         </view>
-      <view class="avatar">
-        <view class="avatarBackground"></view>
-        <view class="avatarImg"><image src="data:image/png;base64, {{item.logoData}}"/></view>
       </view>
-    </view>
+      <view slot="content" class="inner" wx:for="{{hospitalList}}" wx:for-item="item" wx:key="index">
+        <view wx:for="{{item}}" wx:for-item="ele" wx:key="id">
+          <view class="hospital">
+          <view class="hospName">
+            <text class="hospitalName">{{ele.hosname}}</text>
+          </view>
+          <view class="hospitalOtherInfo">
+            <text class="iconfont icon-shijian" style="margin-right: 5rpx;"></text>
+            <text>{{ele.param.hosptypeString}}</text>
+            <text class="iconfont icon-RectangleCopy" style="margin-right: 5rpx;margin-left: 15rpx;"></text>
+            <text>每天 {{ele.bookingRule.releaseTime}} 放号</text></view>
+          </view>
+          <view class="avatar">
+            <view class="avatarBackground"></view>
+            <view class="avatarImg"><image src="data:image/png;base64, {{ele.logoData}}"/></view>
+          </view>
+        </view>
+      </view>
+      <view wx:if="{{ spinShow }}" class="loading">
+        <i-spin size="large" fix></i-spin>
+      </view>
+      <view class="loadingDown" wx:if="{{ !spinShow }}">
+        <text class="right"></text>
+        <text class="left"></text>
+        <text class="content">已经到底了</text>
+      </view>
+    </i-sticky>
   </view>
 </view>

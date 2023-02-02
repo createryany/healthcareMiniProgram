@@ -1,0 +1,61 @@
+<view class="patientContainer">
+  <view class="header">
+    <text>healthcare预约挂号</text>
+  </view>
+  <view class="title">
+    <text>就诊人信息</text>
+  </view>
+  <view class="content">
+    <view class="patient">
+      <view class="name">
+        <text>{{patient.name}}</text>
+      </view>
+      <text class="no">居民身份证</text>\t
+      <text class="no">{{patient.certificatesNo}}</text>
+    </view>
+    <view class="patientInfo">
+      <view class="item">
+        <text class="itemTitle textInner">性别</text>
+        <text class="text">{{patient.sex == 0? '女' : '男'}}</text>
+      </view>
+      <view class="item">
+        <text class="itemTitle">出生日期</text>
+        <text class="text">{{patient.birthdate}}</text>
+      </view>
+      <view class="item">
+        <text class="itemTitle textInner">民族</text>
+        <text class="text">{{patient.param.nationString}}</text>
+      </view>
+      <view class="item">
+        <text class="itemTitle">婚姻状况</text>
+        <text class="text">{{patient.isMarry == 0? '未婚' : '已婚'}}</text>
+      </view>
+      <view class="item">
+        <text class="itemTitle">当前住址</text>
+        <text class="text">{{patient.param.provinceString}}/{{patient.param.cityString}}/{{patient.param.districtString}}</text>
+      </view>
+      <view class="item">
+        <text class="itemTitle">详细地址</text>
+        <text class="text">{{patient.address}}</text>
+      </view>
+      <view class="item">
+        <text class="itemTitle">手机号码</text>
+        <text class="text">{{patient.phone}}</text>
+      </view>
+    </view>
+    <view class="edit" bindtap="editPatient">
+      <view class="editPatient">
+        编辑就诊人
+      </view>
+      <view class="deletePatient" bindtap="isDelete">
+        删除就诊人
+      </view>
+    </view>
+  </view>
+</view>
+
+<i-toast id="toast" />
+<!-- 绑定提示 -->
+<i-modal title="提示" visible="{{ visible }}" actions="{{ actions }}" bind:click="deletePatient">
+  <view>是否删除该就诊人信息?</view>
+</i-modal>

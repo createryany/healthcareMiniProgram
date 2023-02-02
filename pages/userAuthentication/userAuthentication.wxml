@@ -19,10 +19,9 @@
           <text>请填写您的真实姓名</text>
         </view>
         <view class="line" style="margin-bottom: 10rpx;"></view>
-        <view bindtap="handleCertificatesTypeModal" style="background-color: {{ertificatesTypeModal}};padding: 20rpx 0;">
+        <view style="background-color: {{ertificatesTypeModal}};padding: 20rpx 0;">
           <text class="title">证件类型</text>
           <input type="text" class="certificatesTypeInput" placeholder-class="inputText"  value="{{certificatesType}}" placeholder="点击选择证件类型"/>
-          <!-- <text class="certificatesTypeInput" >{{certificatesType? certificatesType : '点击选择证件类型'}}</text> -->
           <text class="iconfont icon-xiayiyeqianjinchakangengduo"></text>
         </view>
         <view class="certificatesTypeNumInfo" wx:if="{{certificatesTypeStatus}}">
@@ -60,20 +59,6 @@
       <view class="certificatesSubmit" bindtap="handleSubmit">
         <text>提交</text>
       </view>
-      <!-- 证件选择弹窗 -->
-      <view class="modal modal-bottom-dialog" hidden="{{hiddenDialog}}">
-          <view class="modal-cancel" bindtap="hideModal"></view>
-          <view class="bottom-dialog-body bottom-position" animation="{{animationData}}">
-            <view class="certificatesType">
-              <view class="option">
-                <text class="cancel" bindtap="hideModal">取消</text>
-                <text class="confirm" bindtap="confirmSelection">确认</text>
-              </view>
-              <view class="selection" wx:for="{{certificatesTypeList}}" wx:key="id" >
-                <view class="selectionText {{currentTab === item.id?'selectionBackground':''}}" data-current="{{item.id}}" bindtap="handleCertificatesTypeSelection">{{item.name}}</view>
-              </view>
-            </view>
-          </view>
-        </view>
     </view>
+    <view class="selectionCertificatesType" bindtap="handleCertificatesType"></view>
 </view>
