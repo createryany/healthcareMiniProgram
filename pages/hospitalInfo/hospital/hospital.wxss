@@ -1,0 +1,152 @@
+/* pages/hospitalInfo/hospital/hospital.wxss */
+
+.hospitalContainer .header {
+  position: fixed;
+  width: 100%;
+  height: 3%;
+  background-color: #9cc0fe;
+  padding-top: 10rpx;
+  margin-top: -1rpx;
+  z-index: 99999;
+}
+
+.hospitalContainer .header text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  font-size: 30rpx;
+  line-height: 30rpx;
+}
+
+.hospitalContainer .headerLine {
+  width: 100%;
+  height: 50rpx;
+}
+
+.title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 4%; 
+}
+
+.title .avatar {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 130rpx;
+  height: 130rpx;
+  border-radius: 50%;
+  box-shadow: 0 0 20rpx 15rpx #eee;
+}
+
+.title .avatar image {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+}
+
+.title .info {
+  margin-left: 25rpx;
+}
+
+.title .info .hospName {
+  width: 500rpx;
+  font-size: 30rpx;
+  line-height: 30rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 30rpx;
+}
+
+.title .info .otherInfo {
+  font-size: 25rpx;
+  line-height: 25rpx;
+  color: #999999;
+}
+
+.introduce {
+  position: relative;
+  width: 82%;
+  margin: 40rpx;
+  padding: 30rpx 30rpx;
+  background-color: #f6f6f6;
+  border-radius: 15rpx;  
+}
+
+.introduce .inner {
+  font-size: 28rpx;
+  line-height: 32rpx;
+  color: #999999;
+  width: 95%;
+  height: 85rpx;
+  overflow: hidden;
+} 
+
+.introduce .intr {
+  font-size: 40rpx;
+  color: #666;
+  position: absolute;
+  top: 32%;
+  right: 2%;
+}
+
+.guidance {
+  margin: 40rpx;
+}
+
+.guidance .guidanceTitle {
+  font-size: 40rpx;
+  line-height: 40rpx;
+  font-weight: bold;
+  color: #666;
+  margin-bottom: 50rpx;
+}
+
+.guidance .guidanceContent .contentTitle {
+  font-size: 30rpx;
+  line-height: 30rpx;
+  font-weight: bold;
+  color: #999999;
+  margin-bottom: 30rpx;
+}
+
+.guidance .guidanceContent .content {
+  font-size: 28rpx;
+  line-height: 32rpx;
+  color: #333;
+  margin-bottom: 30rpx;
+}
+
+.visibleHospInfo {
+  position: relative;
+  width: 475rpx;
+  height: 555rpx;
+  padding: 5%;
+  background-color: white;
+  border-top-left-radius: 30rpx;
+  border-bottom-left-radius: 30rpx;
+}
+
+.visibleHospInfo .hosp .title {
+  margin-left: 25%;
+  font-size: 40rpx;
+  line-height: 40rpx;
+  color: #333;
+}
+
+.visibleHospInfo .hosp .content {
+  width: 92%;
+  height: 400rpx;
+  font-size: 25rpx;
+  line-height: 28rpx;
+  color: #333;
+}
+
+.closeVisibleIntro {
+  position: absolute;
+  top: 5%;
+  right: 15%;
+}

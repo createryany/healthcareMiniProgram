@@ -1,0 +1,253 @@
+/* pages/hospitalInfo/index.wxss */
+
+page {
+  height: 100%;
+}
+
+.hospitalInfoContainer {
+  height: 100%;
+}
+
+.hospitalInfoContainer .header {
+  position: fixed;
+  width: 100%;
+  height: 3%;
+  background-color: #9cc0fe;
+  padding-top: 10rpx;
+  margin-top: -1rpx;
+  z-index: 99999;
+}
+
+.hospitalInfoContainer .header text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  font-size: 30rpx;
+  line-height: 30rpx;
+}
+
+.hospitalInfoContainer .headerLine {
+  width: 100%;
+  height: 50rpx;
+}
+
+.hospitalInfoContainer .body {
+  height: 89%;
+}
+
+.content {
+  position: relative;
+  height: 80%;
+}
+
+.title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 4%; 
+}
+
+.title .avatar {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 130rpx;
+  height: 130rpx;
+  border-radius: 50%;
+  box-shadow: 0 0 20rpx 15rpx #eee;
+}
+
+.title .avatar image {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+}
+
+.title .info {
+  margin-left: 25rpx;
+}
+
+.title .info .name {
+  width: 380rpx;
+  font-size: 42rpx;
+  line-height: 42rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 30rpx;
+}
+
+.title .info .level {
+  font-size: 25rpx;
+  line-height: 25rpx;
+  color: #999999;
+  margin: 20rpx 0;
+}
+
+.title .info .ruleDate {
+  font-size: 25rpx;
+  line-height: 25rpx;
+  color: #999999;
+}
+
+.title .detail {
+  position: absolute;
+  right: 4%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 25rpx;
+  color: #333;
+}
+
+.title .detail .iconfont {
+  font-size: 50rpx;
+  color: #3782ff;
+}
+
+.deptSearch {
+  box-shadow: 0 0 10rpx 10rpx rgba(238, 238, 238, .2) inset;
+}
+
+.searchBox {
+  height: 80rpx;
+  padding: 4%;
+}
+
+.searchInputTap {
+  width: 82%;
+}
+
+.searchInputCancel {
+  width: 100%;
+}
+
+.searchBox .cancelInput {
+  position: absolute;
+  top: 75%;
+  right: 6%;
+  font-size: 30rpx;
+  line-height: 30rpx;
+  color: #746666;
+}
+
+.searchBox .search {
+  width: 92%;
+  height: 80rpx;
+  border-radius: 50rpx;
+  font-size: 30rpx;
+  line-height: 30rpx;
+  color: #999999;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  box-shadow: 0 0 20rpx 20rpx rgba(238, 238, 238, .5);
+}
+
+.searchBox .search .searchInput {
+  width: 85%;
+}
+
+.searchBox .search .iconfont {
+  margin-left: 30rpx;
+  margin-right: 10rpx;
+  font-size: 30rpx;
+}
+
+.content .department {
+  height: 100%;
+}
+
+.content .department .bigDept {
+  float: left;
+  width: 34%;
+  height: 100%;
+  padding-bottom: 30rpx;
+  background-color: #f6f6f6;
+}
+
+.deptSelection {
+  background-color: white;
+  font-size: 30rpx;
+  line-height: 30rpx;
+  font-weight: bold;
+  color: #4b80ff;
+}
+
+.deptNoSelection {
+  font-size: 30rpx;
+  line-height: 30rpx;
+  color: #999999;
+}
+
+.content .department .bigDeptName {
+  width: 100%;
+  height: 100rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.content .department .deptChildren {
+  float: right;
+  width: 66%;
+  height: 100%;
+}
+
+.content .department .deptChildren .deptValue {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  height: 100rpx;
+  margin-left: 50rpx;
+  font-size: 30rpx;
+  line-height: 30rpx;
+  color: #333;
+}
+
+.noSearchContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10%;
+}
+
+.noSearchContent .iconfont {
+  font-size: 160rpx;
+  color: #d8b2fb;
+}
+
+.noSearchContent .text {
+  margin-top: 10rpx;
+  font-size: 30rpx;
+  line-height: 30rpx;
+  color: #999999;
+}
+
+.searchContent {
+  float: left;
+  width: 100%;
+  height: 40rpx;
+  padding: 2%;
+}
+
+.searchContent .iconfont {
+  font-size: 30rpx;
+  line-height: 30rpx;
+  color: #666666;
+  margin-left: 30rpx;
+}
+
+.searchContent .text {
+  margin-left: 30rpx;
+  font-size: 30rpx;
+  line-height: 30rpx;
+  color: #666666;
+}
+
+.searchDeptment {
+  /* position: absolute; */
+  padding-bottom: 150rpx;
+}

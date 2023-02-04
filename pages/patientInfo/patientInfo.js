@@ -33,7 +33,7 @@ Page({
     patientList: [], // 就诊人列表
     currentOrderIndex: -1, // 选择的订单索引值
     currentPatientIndex: -1, // 选择的就诊人索引值
-    currentPatientName: '',
+    currentPatientName: '全部',
   },
   // 查看用户是否登录
   isLogin() {
@@ -318,7 +318,7 @@ Page({
       itemList: patientList,
       success: async (res) => {
         let patientId = 0
-        let currentPatientName = ''
+        let currentPatientName = '全部'
         if (patientId != res.tapIndex) {
           patientId = this.data.patientList[res.tapIndex - 1].id
           currentPatientName = this.data.patientList[res.tapIndex - 1].name

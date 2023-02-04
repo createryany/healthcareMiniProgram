@@ -14,7 +14,12 @@ Page({
     isFocus: true,
     historyItem: ''
   },
-
+  // 跳转到医院详情页面
+  toHospitalInfo(e) {
+    wx.navigateTo({
+      url: '/pages/hospitalInfo/index?hoscode=' + e.currentTarget.dataset.hoscode,
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -43,7 +48,7 @@ Page({
     wx.showModal({
       title: '提示',
       content: '确认删除历史记录?',
-      complete: (res) => {    
+      complete: (res) => {
         if (res.confirm) {
           this.setData({
             historyList: [],
@@ -62,10 +67,9 @@ Page({
       searchContent: event.detail.value.trim()
     })
   },
-
   // 点击搜索发送请求
   async getSearchList() {
-    if(!this.data.searchContent) {
+    if (!this.data.searchContent) {
       this.setData({
         searchList: [],
         isSearchResult: false
@@ -77,13 +81,13 @@ Page({
     })
     let historyList = this.data.historyList
     let searchContent = this.data.searchContent
-    let searchResult = await request('/api/hosp/hospital/findByHosName/' + searchContent)
-    if(searchResult.code === 200) {
+    let searchResult = await request('/api/hosp/hospital/mpFindByHosName/' + searchContent)
+    if (searchResult.code === 200) {
       this.setData({
         searchList: searchResult.data
       })
       // 将搜索历史记录保存
-      if(this.data.historyList.indexOf(searchContent) !== -1) {
+      if (this.data.historyList.indexOf(searchContent) !== -1) {
         this.data.historyList.splice(this.data.historyList.indexOf(searchContent), 1)
       }
       if (historyList) {
@@ -95,11 +99,11 @@ Page({
         historyList
       })
       wx.setStorageSync('searchHistory', historyList)
-      
-      if(searchResult.data.length === 0) {
+
+      if (searchResult.data.length === 0) {
         this.setData({
           isSearchResult: true
-        }) 
+        })
       }
       wx.hideLoading()
     }
@@ -107,7 +111,7 @@ Page({
   async historySearch(e) {
     this.setData({
       isSearchResult: false
-    }) 
+    })
     wx.showLoading({
       title: '正在搜索...',
     })
@@ -116,10 +120,11 @@ Page({
     this.setData({
       searchContent
     })
-    let searchResult = await request('/api/hosp/hospital/findByHosName/' + searchContent)
-    if(searchResult.code === 200) {
+    let searchResult = await request('/api/hosp/hospital/mpFindByHosName/' + searchContent)
+    if (searchResult.code === 200) {
       this.setData({
-        searchList: searchResult.data
+        searchList: searchResult.data,
+        isSearchResult: false
       })
       // 将原来的记录删除
       for (let index = 0; index < historyList.length; index++) {
@@ -130,7 +135,7 @@ Page({
         }
       }
       // 将搜索历史记录保存
-      if(this.data.historyList.indexOf(searchContent) !== -1) {
+      if (this.data.historyList.indexOf(searchContent) !== -1) {
         this.data.historyList.splice(this.data.historyList.indexOf(searchContent), 1)
       }
       if (historyList) {
@@ -142,10 +147,10 @@ Page({
         historyList
       })
       wx.setStorageSync('searchHistory', historyList)
-      if(searchResult.data.length === 0) {
+      if (searchResult.data.length === 0) {
         this.setData({
           isSearchResult: true
-        }) 
+        })
       }
       wx.hideLoading()
     }

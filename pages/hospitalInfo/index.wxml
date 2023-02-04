@@ -1,0 +1,71 @@
+<view class="hospitalInfoContainer">
+  <view class="header">
+    <text>healthcare预约挂号</text>
+  </view>
+  <view class="headerLine"></view>
+  <view class="body" wx:if="{{ !visibleTips }}">
+    <view style="position: fixed;width: 100%;z-index: 9999;background-color: white;">
+      <view class="title">
+        <view class="avatar">
+          <!-- <image src="{{hospitalInfo.hospital.logoUrl}}" mode=""/> -->
+          <image src="https://img95.699pic.com/xsj/1l/fw/wd.jpg%21/fw/700/watermark/url/L3hzai93YXRlcl9kZXRhaWwyLnBuZw/align/southeast" mode="" />
+        </view>
+        <view class="info">
+          <view class="name"><text>{{hospitalInfo.hospital.hosname}}</text></view>
+          <view class="level">
+            <text class="iconfont icon-RectangleCopy" style="margin-right: 10rpx;"></text>{{hospitalInfo.hospital.param.hosptypeString}}
+          </view>
+          <view class="ruleDate">
+            <text class="iconfont icon-31shijian" style="margin-right: 10rpx;"></text>每日 {{hospitalInfo.bookingRule.releaseTime}} 开放第{{hospitalInfo.bookingRule.cycle}}日号源
+          </view>
+        </view>
+        <view class="detail" bindtap="hospitalDetail">
+          <text class="iconfont icon-xiangqing"></text>
+          <view>医院详情</view>
+        </view>
+      </view>
+      <view class="deptSearch">
+        <view class="searchBox {{isSearchDept? 'searchInputTap' : 'searchInputCancel'}}">
+          <view class="search">
+            <text class="iconfont icon-BAI-fangdajing"></text>
+            <input class="searchInput" bindtap="searchDeptTap" placeholder-class="searchInputText" placeholder="搜索科室" type="text" bindinput="handleSearchDept" value="{{searchText}}" />
+          </view>
+          <text class="cancelInput" wx:if="{{isSearchDept}}" bindtap="cancelSearchDept">取消</text>
+        </view>
+      </view>
+    </view>
+    <view style="height: 26%;"></view>
+    <view class="content" wx:if="{{!isSearchDept}}">
+      <view class="department">
+        <scroll-view scroll-y="true" enable-flex="true" class="bigDept">
+          <view class="bigDeptName {{item.checked? 'deptSelection' : 'deptNoSelection'}}" wx:for="{{departmentInfo}}" wx:key="depcode" data-index="{{index}}" bindtap="handleDeptValue">
+            <text style="margin-left: 20%;">{{item.depname}}</text>
+          </view>
+        </scroll-view>
+        <scroll-view scroll-y="true" enable-flex="true" class="deptChildren">
+          <view class="deptValue" wx:for="{{currentDeptList}}" wx:key="depcode" data-depcode="{{item.depcode}}" bindtap="handleDeptDetail">
+            <text>{{item.depname}}</text>
+          </view>
+        </scroll-view>
+      </view>
+    </view>
+    <view class="searchDeptment" wx:if="{{isSearchDept}}">
+        <scroll-view scroll-y="true" enable-flex="true">
+          <view class="searchContent" wx:for="{{searchList}}" wx:key="id" data-depcode="{{item.depcode}}" bindtap="handleDeptDetail">
+            <text class="iconfont icon-BAI-fangdajing"></text>
+            <text class="text">{{item.depname}}</text>
+          </view>
+          <view class="noSearchContent" wx:if="{{searchStatus}}">
+            <text class="iconfont icon-zanwusousuolishi"></text>
+            <text class="text">暂无搜索结果</text>
+          </view>
+        </scroll-view>
+      </view>
+  </view>
+</view>
+
+<i-toast id="toast" />
+<!-- 绑定提示 -->
+<i-modal i-class="tips" title="healthcare平台提示" visible="{{ visibleTips }}" actions="{{ actionsTips }}" bind:click="handleCloseTips">
+  <view>该平台为测试学习开发平台！</view>
+</i-modal>

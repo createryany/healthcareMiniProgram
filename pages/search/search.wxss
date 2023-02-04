@@ -53,6 +53,10 @@
   border-bottom: 1rpx solid #d8b2fb;
 }
 
+.searchList {
+  padding-bottom: 20%;
+}
+
 .searchItem {
   height: 100rpx;
   line-height: 100rpx;

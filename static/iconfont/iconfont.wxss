@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont"; /* Project id 3835497 */
-  src: url('//at.alicdn.com/t/c/font_3835497_isr421z5d0s.woff2?t=1675195953321') format('woff2'),
-       url('//at.alicdn.com/t/c/font_3835497_isr421z5d0s.woff?t=1675195953321') format('woff'),
-       url('//at.alicdn.com/t/c/font_3835497_isr421z5d0s.ttf?t=1675195953321') format('truetype');
+  src: url('//at.alicdn.com/t/c/font_3835497_vuec58mb37r.woff2?t=1675438396712') format('woff2'),
+       url('//at.alicdn.com/t/c/font_3835497_vuec58mb37r.woff?t=1675438396712') format('woff'),
+       url('//at.alicdn.com/t/c/font_3835497_vuec58mb37r.ttf?t=1675438396712') format('truetype');
 }
 
 .iconfont {
@@ -11,6 +11,18 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-xiangqing:before {
+  content: "\e61b";
+}
+
+.icon-31shijian:before {
+  content: "\e602";
+}
+
+.icon-shanchu-m:before {
+  content: "\e608";
 }
 
 .icon-tianjia:before {
@@ -59,10 +71,6 @@
 
 .icon-shanchu2:before {
   content: "\e604";
-}
-
-.icon-shanchu:before {
-  content: "\e74b";
 }
 
 .icon-gengduo:before {

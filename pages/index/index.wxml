@@ -8,7 +8,7 @@
   </view>
   <!-- 首页图 -->
   <view class="indexImage" bindtap="help">
-    <image src="/static/images/banner.png"/>
+    <image src="/static/images/banner.png" />
   </view>
   <!-- 通知导航区 -->
   <view class="notifyNav">
@@ -32,46 +32,77 @@
   <!-- 分割线 -->
   <view class="line"></view>
   <!-- 医院信息区 -->
-  <view class="hospitalInfo">
-    <i-sticky scrollTop="{{scrollTop}}">
-      <!-- <i-sticky-item></i-sticky-item> -->
-      <view slot="title">
-        <view class="header">
-          <view class="area" bindtap="filterHospital">
-            <text>筛选</text>
+  <view class="hospitalInfo" style="position: relative;">
+    <view class="{{fixedFilter}}">
+      <view class="header">
+        <view class="area" bindtap="filterHospital">
+          <text style="margin-right: 10rpx;color: #333;">筛选</text>
+          <view class="rotate" animation="{{animation}}">
             <text class="iconfont icon-xiangxia {{isShowFilter?  'filterRote' : ''}}"></text>
           </view>
         </view>
-        <view class="filter" wx:if="{{isShowFilter}}">
-          
+        <view class="tags">
+          <i-tag class="i-tags" type="dot" name="index" color="blue" wx:for="{{selectionLevelTags}}" wx:key="index" bindtap="filterHospital">
+            {{item.name}}
+          </i-tag>
+          <i-tag class="i-tags" type="dot" name="index" color="blue" wx:for="{{selectionCityTags}}" wx:key="index" bindtap="filterHospital">
+            {{item.name}}
+          </i-tag>
         </view>
       </view>
-      <view slot="content" class="inner" wx:for="{{hospitalList}}" wx:for-item="item" wx:key="index">
-        <view wx:for="{{item}}" wx:for-item="ele" wx:key="id">
-          <view class="hospital">
+      <view class="mask" wx:if="{{isShowFilter}}" bindtap="filterHospital"></view>
+      <view class="filter" wx:if="{{isShowFilter}}" animation="{{animationData}}">
+        <view class="selection">
+          <view class="selectionTitle" style="margin-right: 36rpx;">医院等级</view>
+          <view class="selectionTags">
+            <i-tag i-class="i-tags" type="border" name="{{index}}" color="blue" wx:for="{{levelList}}" wx:key="id" bindchange="levelTagChange" checkable="{{true}}" checked="{{item.checked}}">
+              {{item.name}}
+            </i-tag>
+          </view>
+        </view>
+        <view class="selection" style="margin-top: 3%;">
+          <view class="selectionTitle" style="margin-right: 90rpx;">城市</view>
+          <view class="selectionTags">
+            <i-tag i-class="i-tags" type="border" name="{{index}}" color="blue" wx:for="{{cityList}}" wx:key="id" bindchange="cityTagChange" checkable="{{true}}" checked="{{item.checked}}">
+              {{item.name}}
+            </i-tag>
+          </view>
+        </view>
+        <view wx:if="{{ spinFilterShow }}" class="filterLoading">
+          <i-spin size="large" fix></i-spin>
+        </view>
+      </view>
+    </view>
+    <view class="inner" wx:for="{{hospitalList}}" wx:for-item="item" wx:key="index">
+      <view wx:for="{{item}}" wx:for-item="ele" wx:key="id" data-hoscode="{{ele.hoscode}}" bindtap="toHospitalInfo">
+        <view class="hospital">
           <view class="hospName">
             <text class="hospitalName">{{ele.hosname}}</text>
           </view>
           <view class="hospitalOtherInfo">
-            <text class="iconfont icon-shijian" style="margin-right: 5rpx;"></text>
+            <text class="iconfont icon-RectangleCopy" style="margin-right: 5rpx;"></text>
             <text>{{ele.param.hosptypeString}}</text>
-            <text class="iconfont icon-RectangleCopy" style="margin-right: 5rpx;margin-left: 15rpx;"></text>
-            <text>每天 {{ele.bookingRule.releaseTime}} 放号</text></view>
+            <text class="iconfont icon-31shijian" style="margin-right: 5rpx;margin-left: 15rpx;"></text>
+            <text>每日 {{ele.bookingRule.releaseTime}} 放号</text>
           </view>
-          <view class="avatar">
-            <view class="avatarBackground"></view>
-            <view class="avatarImg"><image src="data:image/png;base64, {{ele.logoData}}"/></view>
+        </view>
+        <view class="avatar">
+          <view class="avatarBackground"></view>
+          <view>
+            <!-- <image class="avatarImg" src="{{ele.logoUrl}}" /> -->
+            <image class="avatarImg" src="https://img95.699pic.com/xsj/1l/fw/wd.jpg%21/fw/700/watermark/url/L3hzai93YXRlcl9kZXRhaWwyLnBuZw/align/southeast" />
           </view>
         </view>
       </view>
-      <view wx:if="{{ spinShow }}" class="loading">
-        <i-spin size="large" fix></i-spin>
-      </view>
-      <view class="loadingDown" wx:if="{{ !spinShow }}">
-        <text class="right"></text>
-        <text class="left"></text>
-        <text class="content">已经到底了</text>
-      </view>
-    </i-sticky>
+    </view>
+    <view wx:if="{{ spinShow }}" class="loading">
+      <i-spin size="large" fix></i-spin>
+    </view>
+    <view class="nullView" wx:if="{{ !noData }}"></view>
+    <view class="loadingDown" wx:if="{{ noData }}">
+      <text class="right"></text>
+      <text class="left"></text>
+      <text class="content">暂无数据</text>
+    </view>
   </view>
 </view>

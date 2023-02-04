@@ -1,0 +1,78 @@
+<view class="hospitalContainer">
+  <view class="header">
+    <text>healthcare预约挂号</text>
+  </view>
+  <view class="headerLine"></view>
+  <view class="body">
+    <view class="title">
+      <view class="avatar">
+        <!-- <image src="{{hospital.hospital.logoUrl}}" mode=""/> -->
+        <image src="https://img95.699pic.com/xsj/1l/fw/wd.jpg%21/fw/700/watermark/url/L3hzai93YXRlcl9kZXRhaWwyLnBuZw/align/southeast" mode="" />
+      </view>
+      <view class="info">
+        <view class="hospName">
+          <text>{{hospital.hospital.hosname}}</text>
+        </view>
+        <view class="otherInfo">
+          <text>{{hospital.hospital.param.hosptypeString}}</text>
+          <text style="margin-left: 20rpx;">每天 {{hospital.bookingRule.releaseTime}} 放号</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="introduce" bindtap="closeVisibleIntro">
+      <view class="inner">
+        <text user-select>{{hospital.hospital.intro? hospital.hospital.intro : '暂无介绍'}}</text>
+      </view>
+      <view class="intr">
+        <text class="iconfont icon-xiayiyeqianjinchakangengduo"></text>
+      </view>
+    </view>
+
+    <view class="guidance">
+      <view class="guidanceTitle">
+        <text>医院导引</text>
+      </view>
+      <view class="guidanceContent">
+        <view class="contentTitle">
+          <text>联系地址</text>
+        </view>
+        <view class="content">
+          <text>{{hospital.hospital.param.fullAddress}}</text>
+        </view>
+        <view class="contentTitle">
+          <text>交通指南</text>
+        </view>
+        <view class="content">
+          <text>{{hospital.hospital.route}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<i-drawer i-class="visibleIntro" mode="right" visible="{{visibleIntro}}" bind:close="closeVisibleIntro">
+  <view class="visibleHospInfo">
+    <view class="hosp">
+      <view class="title">
+        <text>医院介绍</text>
+      </view>
+      <view class="content">
+        <scroll-view scroll-y style="height: 278px;">
+          <view>
+            <text user-select>{{hospital.hospital.intro? hospital.hospital.intro : '暂无介绍'}}</text>
+          </view>
+        </scroll-view> 
+      </view>
+    </view>
+    <view class="closeVisibleIntro" bindtap="closeVisibleIntro">
+      <text class="iconfont icon-shanchu2"></text>
+    </view>
+  </view>
+</i-drawer>
+
+<i-toast id="toast" />
+<!-- 绑定提示 -->
+<i-modal i-class="tips" title="healthcare平台提示" visible="{{ visibleTips }}" actions="{{ actionsTips }}" bind:click="handleCloseTips">
+  <view>该平台为测试学习开发平台！</view>
+</i-modal>

@@ -4,26 +4,26 @@
     <view class="searchInput">
       <text class="searchIcon iconfont icon-BAI-fangdajing"></text>
       <input type="text" value="{{searchContent}}" bindinput="handleInputChange" placeholder="请输入医院名称" autofocus focus="{{isFocus}}"/>
-      <text wx:if="{{searchContent}}" class="clear iconfont icon-shanchu2" bindtap="clearSearchContent"></text>
+      <text wx:if="{{searchContent.length != 0}}" class="clear iconfont icon-shanchu2" bindtap="clearSearchContent"></text>
     </view>
     <text class="cancel" bindtap="getSearchList">搜索 </text>
   </view>
   <!-- 搜索历史记录 -->
   <block wx:if="{{historyList.length}}">
     <view class="history">
-    <view class="title">历史记录</view>
+    <view class="title">历史记录：</view>
     <view class="historyItem" wx:for="{{historyList}}" data-historyItem="{{item}}" wx:key="*this" bindtap="historySearch">
       {{item}}
     </view>
   </view>
-  <text class="iconfont icon-shanchu delete" bindtap="deleteSearchHistory"></text>
+  <text class="iconfont icon-shanchu-m delete" bindtap="deleteSearchHistory"></text>
   </block>
   <!-- 搜索内容展示 -->
   <view class="showSearchContent">
     <block wx:if='{{searchContent}}'>
       <view class="searchContent">搜索内容：{{searchContent}}</view>
       <view class="searchList">
-        <view class="searchItem" wx:for="{{searchList}}" wx:key="id">
+        <view class="searchItem" wx:for="{{searchList}}" wx:key="id" data-hoscode="{{item.hoscode}}" bindtap="toHospitalInfo">
           <text class="iconfont icon-BAI-fangdajing"></text>
           <text class="content">{{item.hosname}}</text>
         </view>
