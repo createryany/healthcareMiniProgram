@@ -90,15 +90,16 @@ Page({
   },
   // 查看科室详情
   handleDeptDetail(e) {
+    // 向缓存中保存选中科室数据
     if (!wx.getStorageSync('userInfo')) {
       // 去登录
-      wx.navigateTo({
-        url: '/pages/person/person',
+      wx.reLaunch({
+        url: '/pages/person/person?historyPath=' + '',
       })
     } else {
       this.cancelSearchDept()
       wx.navigateTo({
-        url: '/pages/hospitalInfo/department/department?depcode=' + e.currentTarget.dataset.depcode,
+        url: '/pages/hospitalInfo/department/department?depcode=' + e.currentTarget.dataset.depcode + '&hoscode=' + this.data.hospitalInfo.hospital.hoscode,
       })
     }
   },
@@ -167,6 +168,9 @@ Page({
     }
     if (wx.getStorageSync('departmentInfo')) {
       wx.removeStorageSync('departmentInfo')
+    }
+    if (wx.getStorageSync('department')) {
+      wx.removeStorageSync('department')
     }
   },
 

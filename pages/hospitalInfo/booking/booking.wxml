@@ -1,0 +1,71 @@
+<view class="bookingContainer">
+  <view class="header">
+    <text class="textTitle">healthcare预约挂号</text>
+    <view class="chosePatient" bindtap="handleChosePatient">
+      <text class="text" wx:if="{{!patientInfo.id}}">选择就诊人</text>
+      <text class="text" wx:if="{{patientInfo.id}}">{{patientInfo.name}}</text>
+      <text class="textNo" wx:if="{{patientInfo.id && insureUsed != 1}}">{{patientInfo.param.certificatesTypeString}}</text>
+      <text class="textNo" wx:if="{{patientInfo.id && insureUsed == 1}}">社保卡</text>
+      <text class="textNo" wx:if="{{patientInfo.id && insureUsed != 1}}">{{patientInfo.certificatesNo}}</text>
+      <text class="textNo" wx:if="{{patientInfo.id && insureUsed == 1}}">{{patientInfo.insureNum}}</text>
+      <view class="changePatient" wx:if="{{patientInfo.id}}">
+        <text>更换就诊人</text>
+      </view>
+      <view class="iconfont">
+        <text class="iconfont icon-xiayiyeqianjinchakangengduo"></text>
+      </view>
+    </view>
+  </view>
+  <view class="register">
+    <view class="registerTitle">
+      <text>挂号信息</text>
+    </view>
+    <view class="content">
+      <view class="contentTitle" style="margin-top: 30rpx;">
+        <text class="title">就诊日期</text>
+        <text class="info">{{deptInfo.workDateFormat}} {{deptInfo.param.dayOfWeek}} {{deptInfo.workTime == 0? '上午' : '下午'}}</text>
+      </view>
+      <view class="contentTitle">
+        <text class="title">就诊医院</text>
+        <text class="info">{{deptInfo.param.hosname}}</text>
+      </view>
+      <view class="contentTitle">
+        <text class="title">就诊科室</text>
+        <text class="info">{{deptInfo.param.depname}}</text>
+      </view>
+      <view class="contentTitle">
+        <text class="title">医生姓名</text>
+        <text class="info">{{deptInfo.docname}}</text>
+      </view>
+      <view class="contentTitle">
+        <text class="title">医生职称</text>
+        <text class="info">{{deptInfo.title}}</text>
+      </view>
+      <view class="contentTitle" style="margin-bottom: 30rpx;">
+        <text class="title">医事服务费</text>
+        <text class="info">{{deptInfo.amount}}元</text>
+      </view>
+      <view class="tips">
+        <text class="iconfont icon-tishi" style="margin-right: 10rpx;"></text>
+        <text>其它医事项目具体费用以取号当天医院收取为准，对您造成的不便敬请谅解</text>
+      </view>
+    </view>
+    <view class="submit" bindtap="handleSubmit">
+      <text>确认挂号</text>
+    </view>
+  </view>
+</view>
+
+<view wx:if="{{orderSpinShow}}" class="loading">
+  <i-spin size="large" fix></i-spin>
+</view>
+
+<!-- 绑定提示 -->
+<i-modal i-class="tips" title="绑定提示" visible="{{ visibleTips }}" actions="{{ actionsTips }}" bind:click="handleBinding">
+  <view style="width: 380rpx;margin-left: 46rpx;">该就诊人未绑定就诊卡，请绑定就诊卡后重新操作!</view>
+</i-modal>
+
+<!-- 提交订单提示 -->
+<i-modal i-class="tips" title="提示" visible="{{ visibleOrder }}" actions="{{ orderActions }}" bind:click="handleOrder">
+  <view style="width: 380rpx;margin-left: 46rpx;">是否确认挂号信息?</view>
+</i-modal>

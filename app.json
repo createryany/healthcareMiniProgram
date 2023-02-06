@@ -2,12 +2,13 @@
   "lazyCodeLoading": "requiredComponents",
   "pages": [
     "pages/index/index",
-    "pages/search/search",
-    "pages/patientInfo/patientInfo",
-    "pages/person/person",
-    "pages/hospitalInfo/hospital/hospital",
-    "pages/hospitalInfo/department/department",
+    "pages/hospitalInfo/booking/booking",
     "pages/hospitalInfo/index",
+    "pages/search/search",
+    "pages/person/person",
+    "pages/patientInfo/patientInfo",
+    "pages/hospitalInfo/department/department",
+    "pages/hospitalInfo/hospital/hospital",
     "pages/patientInfo/fixPatient/fixPatient",
     "pages/patientInfo/patient/patient",
     "pages/patientInfo/order/order",
@@ -38,8 +39,7 @@
     "selectedColor": "#839bfb",
     "borderStyle": "white",
     "backgroundColor": "#e1dcf1",
-    "list": [
-      {
+    "list": [{
         "pagePath": "pages/index/index",
         "text": "首页",
         "iconPath": "/static/images/selection/index.png",
@@ -58,6 +58,12 @@
         "selectedIconPath": "/static/images/selection/people-current.png"
       }
     ]
+  },
+  "plugins": {
+    "calendar": {
+      "version": "1.3.3",
+      "provider": "wx23a9cef3522e4f7c"
+    }
   },
   "usingComponents": {
     "i-toast": "./dist/toast/index",

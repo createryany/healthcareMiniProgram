@@ -2,6 +2,7 @@
   <view class="header">
     <text>healthcare预约挂号</text>
   </view>
+  <view class="headerLine"></view>
   <view class="body">
     <view class="status">
       <view wx:if="{{order.param.orderStatusString == '已支付'}}">
@@ -68,6 +69,9 @@
             </view>
           </view>
         </view>
+        <view class="closeDrawer" bindtap="showPatient">
+          <text class="iconfont icon-shanchu2"></text>
+        </view>
       </view>
     </i-drawer>
     <view class="registrationTitle">
@@ -88,6 +92,10 @@
           <text class="info">{{order.depname}}</text>
         </view>
         <view class="selection">
+          <text class="name">就诊类型</text>
+          <text class="info">{{order.isInsure == 1? '医保' : '自费'}}</text>
+        </view>
+        <view class="selection">
           <text class="name">医师名称</text>
           <text class="info">{{order.docname}}</text>
         </view>
@@ -106,9 +114,9 @@
     </view>
     <view class="matter">
       <text user-select>1、请确认就诊人信息是否准确，若填写错误将无法取号就诊，损失由本人承担 \n<text style="color: red;">2、【取号】就诊当天需在 {{order.fetchTime}} 在医院取号，未取号视为爽约，该号不退不换；</text>
-      3、【退号】在 {{order.quitTime}} 前可在线退号，逾期将不可办理退号退费；
-      4、healthcare预约挂号支持自费患者使用身份证预约，同时支持郑州市医保患者使用郑州社保卡在平台预约挂号。请于就诊当日，携带预约挂号所使用的有效身份证件到院取号；
-      5、请注意郑州市医保患者在住院期间不能使用社保卡在门诊取号。
+        3、【退号】在 {{order.quitTime}} 前可在线退号，逾期将不可办理退号退费；
+        4、healthcare预约挂号支持自费患者使用身份证预约，同时支持郑州市医保患者使用郑州社保卡在平台预约挂号。请于就诊当日，携带预约挂号所使用的有效身份证件到院取号；
+        5、请注意郑州市医保患者在住院期间不能使用社保卡在门诊取号。
       </text>
     </view>
     <view class="otherInfo">
@@ -121,5 +129,43 @@
         <text class="info">{{order.createTime}}</text>
       </view>
     </view>
+    <view class="options">
+      <view class="pay" wx:if="{{order.param.orderStatusString == '预约成功，待支付'}}" bindtap="alipayFacePay">
+        <text>支付</text>
+      </view>
+      <view class="cancel" bindtap="cancelOrder" wx:if="{{order.orderStatus != -1}}" >
+        <text>取消预约</text>
+      </view>
+    </view>
   </view>
 </view>
+
+<i-drawer i-class="visible" mode="bottom" visible="{{visiblePay}}" bind:close="closePay">
+  <view class="visibleAlipay">
+    <view class="alipayTitle">
+      <text class="iconfont icon-shanchu2" bindtap="closePay"></text>
+      <text class="iconfont icon-zhifubaozhifu"></text>
+      <view style="padding-top: 8%;">
+        <text>请使用支付宝扫码支付</text>
+      </view>
+    </view>
+    <view class="erCode">
+      <qr-container wx:if="{{visiblePay}}" class="image" text="{{qrCode}}" canvasMode="{{true}}" size="450"></qr-container>
+    </view>
+  </view>
+</i-drawer>
+
+
+<view class="spinContainer" wx:if="{{ spinShow }}">
+  <i-spin size="large" fix></i-spin>
+</view>
+
+<!-- 支付提示 -->
+<i-modal title="提示" visible="{{ visible }}" actions="{{ actions }}" bind:click="closeTips">
+  <view class="payTips">预约成功，待支付，请在就诊当天之前，完成支付！</view>
+</i-modal>
+
+<!-- 取消预约提示 -->
+<i-modal title="提示" visible="{{ visibleCancle }}" actions="{{ actionsCancle }}" bind:click="cancelOrderVisible">
+  <view class="payTips">是否取消当前预约信息！</view>
+</i-modal>

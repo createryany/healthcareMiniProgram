@@ -1,3 +1,7 @@
 {
-  "usingComponents": {}
+  "navigationBarTitleText": "科室详情",
+  "usingComponents": {
+    "i-spin": "../../../dist/spin/index",
+    "calendar": "plugin://calendar/calendar"
+  }
 }

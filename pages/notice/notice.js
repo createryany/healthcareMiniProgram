@@ -5,9 +5,27 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    visibleTips: false,
+    actionsTips: [{
+      name: '确定',
+      color: '#2d8cf0',
+    }],
+    index: '',
   },
-
+  // 查看公告内容
+  noticeDetail(e) {
+    this.setData({
+      visibleTips: true,
+      index: e.currentTarget.dataset.index
+    })
+  },
+  // 关闭提示
+  handleCloseTips() {
+    this.setData({
+      visibleTips: false,
+      index: ''
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

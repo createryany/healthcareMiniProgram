@@ -5,10 +5,18 @@
 }
 
 .userContainer .header {
+  position: fixed;
   width: 100%;
-  height: 140rpx;
+  height: 50rpx;
   background-color: #9cc0fe;
   padding-top: 10rpx;
+  margin-top: -1rpx;
+  z-index: 9999;
+}
+
+.userContainer .headerLine {
+  width: 100%;
+  height: 50rpx;
 }
 
 .userContainer .header text {
@@ -20,7 +28,6 @@
 }
 .userContainer .body {
   height: 100%;
-  margin: -13% 0 0;
   padding: 30rpx 20rpx;
   background-color: #fff;
 }

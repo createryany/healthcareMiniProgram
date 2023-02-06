@@ -2,6 +2,7 @@
   <view class="header">
     <text>healthcare预约挂号</text>
   </view>
+  <view class="headerLine"></view>
   <view class="body">
     <!-- 就诊人信息 -->
     <view class="title">

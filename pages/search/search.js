@@ -66,6 +66,11 @@ Page({
     this.setData({
       searchContent: event.detail.value.trim()
     })
+    if (this.data.searchContent.length == 0) {
+      this.setData({
+        searchList: []
+      })
+    }
   },
   // 点击搜索发送请求
   async getSearchList() {

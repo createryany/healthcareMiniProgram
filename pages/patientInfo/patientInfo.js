@@ -20,12 +20,12 @@ Page({
       }
     ],
     handleSelection: '', // 绑定事件名
-    spinShow: true, // 是否在加载数据
+    spinShow: false, // 是否在加载数据
     isOrder: true, // 选项卡
     noLogin: true, // 判断是否登录
     userId: '', // 用户id
-    userToken: '', // 用户登录唯一标识
     page: 1, // 当前页
+    pageForHandle: 1, // 条件查询
     limit: 5, // 每页记录数
     total: 0, // 总记录数
     pages: 0, // 总页数
@@ -34,17 +34,17 @@ Page({
     currentOrderIndex: -1, // 选择的订单索引值
     currentPatientIndex: -1, // 选择的就诊人索引值
     currentPatientName: '全部',
+    searchObj: {},
   },
   // 查看用户是否登录
   isLogin() {
     // 查看用户数据
     const userMessage = wx.getStorageSync('userMessage').trim()
     const userInfo = wx.getStorageSync('userInfo')
-    if (userMessage || userInfo) {
+    if (userMessage && userInfo) {
       this.setData({
         noLogin: false,
         userId: JSON.parse(userMessage).id,
-        userToken: JSON.parse(userInfo).token
       })
     } else {
       this.setData({
@@ -56,49 +56,35 @@ Page({
   // 切换选项卡
   order() {
     wx.setNavigationBarTitle({
-      title: '挂号订单'
+      title: '订单列表'
     })
     this.setData({
-      spinShow: true,
       isOrder: true,
     })
     this.isLogin()
-    setTimeout(() => {
-      this.setData({
-        spinShow: false
-      })
-    }, 500)
   },
   visitor() {
     wx.setNavigationBarTitle({
-      title: '就诊人'
+      title: '就诊人列表'
     })
     this.setData({
-      spinShow: true,
       isOrder: false,
     })
-    this.isLogin()
-    setTimeout(() => {
-      this.setData({
-        spinShow: false
-      })
-    }, 500)
   },
   // 获取挂号订单
-  async getOrderList(patientId) {
+  async getOrderList() {
     this.setData({
       spinShow: true
     })
-    let searchObj = {}
-    if (patientId) searchObj.patientId = patientId
-    let result = await request('/api/order/orderInfo/auth/' + this.data.page + '/' + this.data.limit, searchObj, 'GET', this.data.userToken)
+    let searchObj = this.data.searchObj
+    let result = await request('/api/order/orderInfo/auth/' + this.data.page + '/' + this.data.limit, searchObj)
     if (result.code == 200) {
       let orderList = result.data.records
       wx.setStorageSync('orderList', JSON.stringify(orderList))
       this.setData({
         orderList,
         total: result.data.total,
-        pages: result.data.pages
+        pages: result.data.pages,
       })
     } else {
       wx.showToast({
@@ -106,18 +92,16 @@ Page({
         icon: 'none'
       })
     }
-    setTimeout(() => {
-      this.setData({
-        spinShow: false
-      })
-    }, 500)
+    this.setData({
+      spinShow: false
+    })
   },
   // 获取就诊人信息
   async getPatientList() {
     this.setData({
       spinShow: true
     })
-    let result = await request('/api/user/patient/auth/findAll', {}, 'GET', this.data.userToken)
+    let result = await request('/api/user/patient/auth/findAll', {})
     if (result.code == 200) {
       let patientList = result.data
       wx.setStorageSync('patientList', JSON.stringify(patientList))
@@ -130,16 +114,14 @@ Page({
         icon: 'none'
       })
     }
-    setTimeout(() => {
-      this.setData({
-        spinShow: false
-      })
-    }, 500)
+    this.setData({
+      spinShow: false
+    })
   },
   // 去登录
   toLogin() {
     wx.reLaunch({
-      url: '/pages/person/person',
+      url: '/pages/person/person?historyPath=' + '/pages/patientInfo/patientInfo',
     })
   },
   // 解绑卡
@@ -170,18 +152,18 @@ Page({
         patient.id = this.data.patientList[this.data.currentPatientIndex].id
         patient.isInsure = 0
         patient.insureNum = ''
-        let result = await request('/api/user/patient/auth/bindPatientInsure', patient, 'POST', this.data.userToken)
+        let result = await request('/api/user/patient/auth/bindPatientInsure', patient, 'POST')
         if (result.code == 200) {
           this.getPatientList()
         } else {
+          this.setData({
+            spinShow: false,
+          })
           $Toast({
             content: result.message,
             type: 'error'
           });
         }
-        this.setData({
-          spinShow: false,
-        })
       }, 100)
     }
     this.setData({
@@ -200,12 +182,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    wx.setNavigationBarTitle({
-      title: '挂号订单'
-    })
-    this.setData({
-      spinShow: true
-    })
+    this.updateData()
+  },
+  // 更新所有页面数据
+  updateData() {
+    this.isLogin()
+    setTimeout(() => {
+      if (!this.data.noLogin) {
+        this.getOrderList()
+        this.getPatientList()
+      }
+    }, 100)
   },
   handleChange({
     detail
@@ -266,7 +253,7 @@ Page({
   handleBindOwnExpense({
     detail
   }) {
-    const index = detail.index;
+    const index = detail.index
     if (index === 1) {
       this.setData({
         spinShow: true,
@@ -278,7 +265,7 @@ Page({
         patient.status = currentPatient.status == 0 ? 1 : 0
         patient.isInsure = currentPatient.isInsure
         patient.insureNum = currentPatient.insureNum
-        let result = await request('/api/user/patient/auth/bindPatientStatus', patient, 'POST', this.data.userToken)
+        let result = await request('/api/user/patient/auth/bindPatientStatus', patient, 'POST')
         if (result.code == 200) {
           this.getPatientList()
         } else {
@@ -307,6 +294,11 @@ Page({
   },
   // 条件搜索订单
   searchOrderByPatient() {
+    // 初始化数据
+    this.setData({
+      searchObj: {},
+      pageForHandle: 1
+    })
     let patientList = []
     patientList.push('全部订单')
     for (let index = 0; index < this.data.patientList.length; index++) {
@@ -324,9 +316,33 @@ Page({
           currentPatientName = this.data.patientList[res.tapIndex - 1].name
         }
         this.setData({
-          currentPatientName
+          currentPatientName,
+          spinShow: true
         })
-        this.getOrderList(patientId)
+        // 获取订单信息
+        let searchObj = this.data.searchObj
+        if (patientId) {
+          searchObj.patientId = patientId
+        }
+        let result = await request('/api/order/orderInfo/auth/' + this.data.pageForHandle + '/' + this.data.limit, searchObj)
+        if (result.code == 200) {
+          let orderList = result.data.records
+          wx.setStorageSync('orderList', JSON.stringify(orderList))
+          this.setData({
+            orderList,
+            total: result.data.total,
+            pages: result.data.pages,
+            searchObj,
+          })
+        } else {
+          wx.showToast({
+            title: result.message,
+            icon: 'none'
+          })
+        }
+        this.setData({
+          spinShow: false
+        })
       }
     })
   },
@@ -339,9 +355,17 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    this.isLogin()
+    // 从缓存加载数据
+    if (wx.getStorageSync('orderList')) {
+      let orderList = JSON.parse(wx.getStorageSync('orderList'))
+      this.setData({
+        orderList
+      })
+    }
+    if (this.data.currentPatientName != '全部') {
+      this.updateData()
+    }
     if (!this.data.noLogin) {
-      this.getOrderList()
       this.getPatientList()
     }
   },
@@ -349,9 +373,7 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide() {
-
-  },
+  onHide() {},
 
   /**
    * 生命周期函数--监听页面卸载

@@ -22,7 +22,13 @@ Page({
       }
     ],
     currentPatientIndex: -1,
-    userToken: '', // 用户token
+  },
+  // 加载数据
+  getPatientInfo() {
+    let patient = JSON.parse(wx.getStorageSync('patientList').trim())[this.data.currentPatientIndex]
+    this.setData({
+      patient,
+    })
   },
   // 删除就诊人信息
   isDelete() {
@@ -46,7 +52,7 @@ Page({
       });
 
       setTimeout(async () => {
-        let result = await request('/api/user/patient/auth/remove/' + this.data.patient.id, {}, 'DELETE', this.data.userToken)
+        let result = await request('/api/user/patient/auth/remove/' + this.data.patient.id, {}, 'DELETE')
         action[1].loading = false;
         this.setData({
           visible: false,
@@ -77,26 +83,23 @@ Page({
       title: '就诊人详情'
     })
     let currentPatientIndex = options.currentPatientIndex
-    let patient = JSON.parse(wx.getStorageSync('patientList').trim())[currentPatientIndex]
     this.setData({
-      patient,
-      currentPatientIndex,
-      userToken: JSON.parse(wx.getStorageSync('userInfo').trim()).token
+      currentPatientIndex
     })
+    this.getPatientInfo()
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady() {
-
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
+    this.getPatientInfo()
   },
 
   /**

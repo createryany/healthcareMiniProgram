@@ -649,23 +649,32 @@ Page({
           actions: action
         });
         if (result.code == 200) {
-          $Toast({
-            content: '修改就诊人成功',
-            type: 'success'
-          });
-          // 初始化数据
-          this.setData({
-            patient: {},
-            nation: '',
-            currentAddress: '',
-            contactsCertificatesTypeName: '',
-            certificatesTypeName: '',
-            noMarryStatus: false,
-            marryStatus: false,
-            womanStatus: false,
-            manStatus: false,
-          })
-          wx.switchTab({ url: '/pages/patientInfo/patientInfo' })
+          let patientListResult = await request('/api/user/patient/auth/findAll')
+          if (patientListResult.code == 200) {
+            wx.setStorageSync('patientList', JSON.stringify(patientListResult.data))
+            $Toast({
+              content: '修改就诊人成功',
+              type: 'success'
+            });
+            // 初始化数据
+            this.setData({
+              patient: {},
+              nation: '',
+              currentAddress: '',
+              contactsCertificatesTypeName: '',
+              certificatesTypeName: '',
+              noMarryStatus: false,
+              marryStatus: false,
+              womanStatus: false,
+              manStatus: false,
+            })
+            wx.navigateBack()
+          } else {
+            $Toast({
+              content: patientListResult.message,
+              type: 'error'
+            });
+          }
         } else if (result.code == 213) {
           $Toast({
             content: '就诊人手机号码已被使用',

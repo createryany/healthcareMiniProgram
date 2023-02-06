@@ -1,1 +1,359 @@
 /* pages/hospitalInfo/department/department.wxss */
+
+.departmentContainer .header {
+  position: fixed;
+  width: 100%;
+  height: 3%;
+  background-color: #9cc0fe;
+  padding-top: 10rpx;
+  margin-top: -1rpx;
+  z-index: 99999;
+}
+
+.departmentContainer .header text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  font-size: 30rpx;
+  line-height: 30rpx;
+}
+
+.departmentContainer .headerLine {
+  width: 100%;
+  height: 50rpx;
+}
+
+.title {
+  padding: 3% 5%;
+}
+
+.title .hospInfo {
+  font-size: 28rpx;
+  line-height: 28rpx;
+  color: #999999;
+}
+
+.title .bigDepName {
+  font-size: 40rpx;
+  line-height: 40rpx;
+  color: #333333;
+  font-weight: bold;
+  margin: 20rpx 0;
+}
+
+.bookingSchedule {
+  width: 100%;
+  height: 180rpx;
+}
+
+.line {
+  width: 100%;
+  height: 20rpx;
+  box-shadow: 0 10rpx 10rpx -10rpx #C9C9C9;
+}
+
+.releaseSoon {
+  margin-top: 20rpx;
+  width: 90%;
+  padding: 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.releaseSoon .time {
+  font-size: 25rpx;
+  line-height: 25rpx;
+  color: #969696;
+}
+
+.releaseSoon .countDown {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20rpx;
+  font-size: 28rpx;
+  line-height: 28rpx;
+  color: #646464;
+}
+
+.releaseSoon .countDown .countDownTime {
+  width: 400rpx;
+  height: 80rpx;
+  margin-left: 20rpx;
+  background-color: #eff8ff;
+  border-radius: 25rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.releaseSoon .countDown .countDownTime .timeNum {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #4882ff;
+  margin-right: 5rpx;
+}
+
+.bookingSchedule .content {
+  float: left;
+  margin-top: 5%;
+  width: 85%;
+  height: 160rpx;
+  display: flex;
+  flex-direction: row;
+  white-space: nowrap;
+}
+
+.sceduleItem {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10rpx 20rpx 0;
+  border-radius: 10rpx;
+}
+
+.sceduleItem .item {
+  font-size: 28rpx;
+  line-height: 28rpx;
+  margin: 10rpx 0;
+}
+
+.status {
+  width: 134%;
+  height: 55rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10rpx;
+  color: #6e6e6e;
+  border-radius: 10rpx;
+}
+
+/* 选中状态 有号和即将放号 */
+.selection {
+  color: #4490f1;
+  background-color: #eff8ff;
+}
+
+.statusSelection {
+  color: white;
+  background-color: #4490f1;
+}
+
+/* 选中状态 无号和号满和停止挂号 */
+.noSelection {
+  color: #333;
+  background-color: #f6f6f6;
+}
+
+.noStatusSelection {
+  color: white;
+  background-color: #dddddd;
+}
+
+/* 未选中状态 无号和号满和停止挂号（默认状态） */
+/* 未选中状态 有号和即将放号 */
+.noSelectionHasStaus {
+  color: #4490f1;
+}
+
+.showDate {
+  float: right;
+  width: 15%;
+  height: 160rpx;
+  margin-top: 5%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  box-shadow: -10rpx 0 10rpx -10rpx #C9C9C9;
+  z-index: 999;
+}
+
+.showDate .dateDetail {
+  width: 60%;
+  margin-left: 40rpx;
+  font-size: 30rpx;
+  color: #666;
+}
+
+.noSource {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5%;
+  font-size: 28rpx;
+  line-height: 28rpx;
+  font-weight: bold;
+  color: #666;
+  padding: 0 5%;
+}
+
+.deptSource {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 60rpx;
+  padding: 3% 5%;
+  background-color: #f6f6f6;
+}
+
+.deptSource .timeTitle {
+  font-size: 30rpx;
+  line-height: 30rpx;
+  color: #666;
+  font-weight: bold;
+}
+
+.deptContent {
+  position: relative;
+  padding: 5%;
+  height: 100rpx;
+}
+
+.deptContent .docInfo {
+  width: 65%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 30rpx;
+  line-height: 30rpx;
+  color: #333;
+}
+
+.deptContent .skill {
+  width: 65%;
+  margin-top: 20rpx;
+  font-size: 25rpx;
+  color: #999999;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.deptContent .docInfo .job {
+  font-weight: bold;
+  color: #333;
+}
+
+.deptContent .docInfo .iconfont {
+  font-size: 30rpx;
+  color: #999;
+}
+
+.deptContent .introduce {
+  position: absolute;
+  bottom: 20%;
+  right: 5%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.deptContent .introduce .price {
+  float: left;
+  font-size: 30rpx;
+  line-height: 30rpx;
+  font-weight: bold;
+  color: #4d80fd;
+  margin-right: 30rpx;
+}
+
+.deptContent .introduce .priceNull {
+  float: left;
+  font-size: 30rpx;
+  line-height: 30rpx;
+  font-weight: bold;
+  color: #dddddd;
+  margin-right: 30rpx;
+}
+
+.deptContent .introduce .availableNumber {
+  float: right;
+  width: 100rpx;
+  height: 100rpx;
+  background-color: #4d7ffc;
+  font-size: 29rpx;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20rpx;
+}
+
+.deptContent .introduce .availableNoNumber {
+  float: right;
+  width: 100rpx;
+  height: 100rpx;
+  background-color: #dddddd;
+  font-size: 29rpx;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20rpx;
+}
+
+.deptSchduleContainer {
+  position: relative;
+  height: 310rpx;
+  overflow: hidden;
+}
+
+.moreDetail {
+  position: absolute;
+  top: 88%;
+  right: 42%;
+  font-size: 28rpx;
+  color: #4d7ffc;
+}
+
+.calendarContainer .mask {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, .6);
+}
+
+.calendarContainer .calendar-body {
+  position: fixed;
+  width: 94%;
+  border-top-left-radius: 5%;
+  border-top-right-radius: 5%;
+  z-index: 9999;
+  left: 0;
+  bottom: 0;
+  background-color: white;
+  padding: 6% 3%; 
+}
+
+.header-style {
+  font-weight: bold;
+  color: #333;
+}
+
+.datefont-style {
+  color: #ededed;
+}
+
+.txt_style {
+  font-size: 22rpx;
+  color: #fff;
+}

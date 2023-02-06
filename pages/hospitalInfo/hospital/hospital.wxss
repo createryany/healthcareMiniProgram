@@ -83,6 +83,7 @@
   width: 95%;
   height: 85rpx;
   overflow: hidden;
+  z-index: -9999;
 } 
 
 .introduce .intr {

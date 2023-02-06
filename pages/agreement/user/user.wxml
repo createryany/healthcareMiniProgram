@@ -2,6 +2,7 @@
   <view class="header">
     <text>healthcare预约挂号</text>
   </view>
+  <view class="headerLine"></view>
   <view class="body">
     <view class="title">
       <text>用户协议</text>

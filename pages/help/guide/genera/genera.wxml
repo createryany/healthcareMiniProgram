@@ -2,6 +2,7 @@
   <view class="header">
     <text user-select >healthcare预约挂号</text>
   </view>
+  <view class="headerLine"></view>
   <view class="body">
     <view class="title">
       <text user-select >预约挂号须知总则</text>

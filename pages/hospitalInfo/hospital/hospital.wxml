@@ -44,7 +44,7 @@
           <text>交通指南</text>
         </view>
         <view class="content">
-          <text>{{hospital.hospital.route}}</text>
+          <text user-select>{{hospital.hospital.route}}</text>
         </view>
       </view>
     </view>
@@ -58,7 +58,7 @@
         <text>医院介绍</text>
       </view>
       <view class="content">
-        <scroll-view scroll-y style="height: 278px;">
+        <scroll-view scroll-y style="height: 120%;">
           <view>
             <text user-select>{{hospital.hospital.intro? hospital.hospital.intro : '暂无介绍'}}</text>
           </view>

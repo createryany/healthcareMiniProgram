@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "就诊信息",
+  "navigationBarTitleText": "订单列表",
   "usingComponents": {
     "i-spin": "../../dist/spin/index",
     "i-page": "../../dist/page/index"

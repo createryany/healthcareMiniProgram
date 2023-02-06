@@ -1,0 +1,132 @@
+/* pages/hospitalInfo/booking/booking.wxss */
+
+page {
+  background-color: #f9f9f9;
+}
+
+.bookingContainer .header  {
+  width: 100%;
+  height: 10%;
+  background-color: #9cc0fe;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bookingContainer .header .textTitle {
+  margin-top: 10rpx;
+  font-size: 28rpx;
+  line-height: 28rpx;
+  color: white;
+}
+
+.bookingContainer .header .chosePatient {
+  position: relative;
+  margin: 30rpx 0;
+  width: 90%;
+  height: 135rpx;
+  background-color: white;
+  border-radius: 15rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.bookingContainer .header .chosePatient .text {
+  margin-left: 5%;
+  font-size: 28rpx;
+  line-height: 28rpx;
+  color: #333;
+  font-weight: bold;
+}
+
+.bookingContainer .header .chosePatient .textNo {
+  margin-top: 8rpx;
+  margin-left: 10rpx;
+  font-size: 25rpx;
+  line-height: 25rpx;
+  color: #999999;
+}
+
+.bookingContainer .header .chosePatient .iconfont {
+  position: absolute;
+  right: 5%;
+  top: 40%;
+  font-size: 30rpx;
+  line-height: 30rpx;
+  color: #999999;
+}
+
+.bookingContainer .header .chosePatient .changePatient {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 150rpx;
+  height: 35rpx;
+  font-size: 22rpx;
+  line-height: 22rpx;
+  color: #5881de;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: #f2f5fe;
+  border: 1rpx solid #d9e4f1;
+  border-bottom-left-radius: 20rpx;
+}
+
+.register .registerTitle {
+  width: 100%;
+  padding: 3% 5%;
+  background-color: #f6f6f6;
+  font-size: 28rpx;
+  line-height: 28rpx;
+  color: #666666;
+  font-weight: bold;
+}
+
+.register .content {
+  padding: 5%;
+  background-color: white;
+}
+
+.register .content .contentTitle {
+  margin: 50rpx 0;
+}
+
+.register .content .contentTitle .title {
+  font-size: 28rpx;
+  line-height: 28rpx;
+  color: #999999;
+}
+
+.register .content .contentTitle .info {
+  float: right;
+  margin-top: 8rpx;
+  margin-left: 100rpx;
+  width: 65%;
+  font-size: 28rpx;
+  line-height: 28rpx;
+  color: #333;
+}
+
+.register .content .tips {
+  font-size: 25rpx;
+  color: #e4e4e4;
+}
+
+.register .submit {
+  margin-left: 5%;
+  margin-top: 30rpx;
+  width: 90%;
+  padding: 3% 0;
+  background-color: #4d80fd;
+  border-radius: 50rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+}

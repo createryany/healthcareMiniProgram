@@ -65,7 +65,7 @@
 </view>
 
 <i-toast id="toast" />
-<!-- 绑定提示 -->
+<!-- 提示 -->
 <i-modal i-class="tips" title="healthcare平台提示" visible="{{ visibleTips }}" actions="{{ actionsTips }}" bind:click="handleCloseTips">
-  <view>该平台为测试学习开发平台！</view>
+  <view style="width: 380rpx;margin-left: 46rpx;">该平台为测试学习开发平台，所有数据为虚拟数据！</view>
 </i-modal>

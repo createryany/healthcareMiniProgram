@@ -2,6 +2,7 @@
   <view class="header">
     <text user-select>healthcare预约挂号</text>
   </view>
+  <view class="headerLine"></view>
   <view class="body">
     <view class="title">
       <text user-select>统一平台有几种预约方式？</text>

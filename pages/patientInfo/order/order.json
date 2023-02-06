@@ -1,5 +1,7 @@
 {
   "usingComponents": {
-    "i-drawer": "../../../dist/drawer/index"
+    "i-spin": "../../../dist/spin/index",
+    "i-drawer": "../../../dist/drawer/index",
+    "qr-container": "../../../dist/qrCode/index"
   }
 }

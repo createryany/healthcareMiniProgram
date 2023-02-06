@@ -1,6 +1,4 @@
 {
   "navigationBarTitleText": "医院详情",
-  "usingComponents": {
-    "i-spin": "../../dist/spin/index"
-  }
+  "usingComponents": {}
 }

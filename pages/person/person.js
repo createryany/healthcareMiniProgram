@@ -14,6 +14,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    historyPath: '', // 标记是否跳转路径
     userInfo: {}, // 用户信息
     userMessage: {}, // 用户实名信息
     phone: '', // 手机号
@@ -33,7 +34,8 @@ Page({
     codeInputBorder: ['1rpx solid #999', '1rpx solid #1a86fb'], // 输入框边框
     isFocus: true, //聚焦 
     ispassword: false, //是否密文显示 true为密文， false为明文。 
-    isAgree: true // 是否接受协议
+    isAgree: true, // 是否接受协议
+    spinShow: false,
   },
   // 是否接受协议
   agreeStatus() {
@@ -61,16 +63,16 @@ Page({
       code: inputValue,
     })
     if (this.data.code.length === 6) {
-      wx.showLoading({
-        title: '正在登录...',
+      this.setData({
+        spinShow: true
       })
       this.login()
     }
   },
   codeTap() {
-    let that = this;
-    that.setData({
-      isFocus: true,
+    this.setData({
+      spinShow: false,
+      isFocus: true
     })
   },
   handlePhoneInput(event) {
@@ -109,11 +111,25 @@ Page({
   },
   // 发送验证码
   async sendCode() {
+    this.setData({
+      spinShow: true
+    })
     if (!this.data.isAgree) {
       wx.showToast({
         title: '请确认已同意《预约挂号服务协议》和《隐私协议》',
         icon: 'none'
       })
+      return
+    }
+    let result = await request('/api/msm/sendCode/' + this.data.phone)
+    if (result.code != 200) {
+      this.setData({
+        spinShow: false
+      })
+      $Message({
+        content: result.message,
+        type: 'error'
+      });
       return
     }
     countDowmStop = true
@@ -127,7 +143,6 @@ Page({
       times: '(' + currentTime + ')',
       beforeBindtapClickBtnBorder: '1rpx solid #999'
     })
-    await request('/api/msm/sendCode/' + this.data.phone)
     this.codeTap()
   },
   // 倒计时
@@ -158,6 +173,9 @@ Page({
   },
   // 登录
   async login() {
+    this.setData({
+      spinShow: true
+    })
     let phone = this.data.phone
     let code = this.data.code
     let codeReg = /^\d{6}$/
@@ -191,13 +209,16 @@ Page({
           wx.setNavigationBarTitle({
             title: '个人中心'
           })
-          wx.hideLoading()
           wx.showToast({
             title: '登录成功',
             icon: 'success'
           })
+          if (this.data.historyPath) {
+            wx.reLaunch({
+              url: this.data.historyPath,
+            })
+          }
         } else {
-          wx.hideLoading()
           wx.showToast({
             title: '登录失败',
             icon: 'error'
@@ -211,26 +232,20 @@ Page({
             times: ''
           })
         }
-
       } else if (result.code === 210) {
-        wx.hideLoading()
         wx.showToast({
           title: '验证码不正确',
           icon: 'error'
         })
-      } else if (result.code === 23005) {
-        wx.hideLoading()
-        $Message({
-          content: '账号已在其它地方登录',
-          type: 'warning'
-        })
       } else {
-        wx.hideLoading()
         $Message({
           content: result.message,
           type: 'warning'
         })
       }
+      this.setData({
+        spinShow: false
+      })
     }, 500)
   },
   // 绑定微信号
@@ -283,8 +298,8 @@ Page({
     wx.getUserProfile({
       desc: '是否授权healthcare平台微信登录',
       success: res => {
-        wx.showLoading({
-          title: '正在登录...',
+        this.setData({
+          spinShow: true
         })
         let avatarUrl = res.userInfo.avatarUrl
         let userName = res.userInfo.nickName
@@ -295,52 +310,69 @@ Page({
         wx.login({
           success: async (res) => {
             let wxLoginResult = await request('/api/ucenter/wx/callback/' + res.code + '/' + Date.parse(new Date()), wxInfo, 'POST')
+            if (wxLoginResult.code != 200) {
+              this.setData({
+                spinShow: false
+              })
+              $Message({
+                content: wxLoginResult.message,
+                type: 'error'
+              });
+              return
+            }
             let openid = wxLoginResult.data.openid
-              if (wxLoginResult.data.phone) {
-                setTimeout(async () => {
-                  if (wxLoginResult.code === 200) {
-                    if (wxLoginResult.data.token) {
-                      let userMessageResult = await request('/api/user/auth/getUserInfo', {}, 'GET', wxLoginResult.data.token)
-                      if (userMessageResult.code == 200) {
-                        let userMessage = userMessageResult.data
-                        wx.setStorageSync('userMessage', JSON.stringify(userMessage))
-                        this.setData({
-                          userMessage
-                        })
-                        wx.showToast({
-                          title: '登录成功',
-                          icon: 'success'
-                        })
-                        wx.setStorageSync('userInfo', JSON.stringify(wxLoginResult.data))
-                        // 更新用户信息
-                        this.setData({
-                          userInfo: wxLoginResult.data,
-                          flag: true,
-                          isLogin: true
-                        })
-                        wx.hideLoading()
-                        wx.setNavigationBarTitle({
-                          title: '个人中心'
-                        })
-                      } else {
-                        wx.showToast({
-                          title: userMessageResult.message,
-                          icon: 'error'
+            if (wxLoginResult.data.phone) {
+              setTimeout(async () => {
+                if (wxLoginResult.code === 200) {
+                  if (wxLoginResult.data.token) {
+                    let userMessageResult = await request('/api/user/auth/getUserInfo', {}, 'GET', wxLoginResult.data.token)
+                    if (userMessageResult.code == 200) {
+                      let userMessage = userMessageResult.data
+                      wx.setStorageSync('userMessage', JSON.stringify(userMessage))
+                      this.setData({
+                        userMessage
+                      })
+                      wx.showToast({
+                        title: '登录成功',
+                        icon: 'success'
+                      })
+                      wx.setStorageSync('userInfo', JSON.stringify(wxLoginResult.data))
+                      // 更新用户信息
+                      this.setData({
+                        userInfo: wxLoginResult.data,
+                        flag: true,
+                        isLogin: true
+                      })
+                      this.setData({
+                        spinShow: false
+                      })
+                      wx.setNavigationBarTitle({
+                        title: '个人中心'
+                      })
+                      if (this.data.historyPath) {
+                        wx.reLaunch({
+                          url: this.data.historyPath,
                         })
                       }
+                    } else {
+                      wx.showToast({
+                        title: userMessageResult.message,
+                        icon: 'error'
+                      })
                     }
-                  } else {
-                    wx.showToast({
-                      title: wxLoginResult.message,
-                      icon: 'error'
-                    })
                   }
-                }, 500)
-              } else {
-                wx.reLaunch({
-                  url: `/pages/weixinLogin/weixinLogin?openid=${openid}`,
-                })
-              }
+                } else {
+                  wx.showToast({
+                    title: wxLoginResult.message,
+                    icon: 'error'
+                  })
+                }
+              }, 500)
+            } else {
+              wx.reLaunch({
+                url: `/pages/weixinLogin/weixinLogin?openid=${openid}&historyPath=${this.data.historyPath}`,
+              })
+            }
           },
         })
       }
@@ -356,7 +388,13 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) {},
+  onLoad(options) {
+    if (options.historyPath) {
+      this.setData({
+        historyPath: options.historyPath
+      })
+    }
+  },
   handleTouchStart(event) {
     this.setData({
       coverTransition: ''

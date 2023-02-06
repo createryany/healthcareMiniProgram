@@ -9,6 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    historyPath: '', // 标记路径跳转
     openid: '', // 绑定的微信
     phone: '', // 手机号
     code: '', // 验证码
@@ -19,9 +20,9 @@ Page({
     beforeBindtapClickBtnBorder: '1rpx solid #999', // 按钮
     times: '', // 倒计时
     currentTime: currentTime,
-    Length: 6,    //输入框个数
+    Length: 6, //输入框个数
     codeInputBorder: ['1rpx solid #999', '1rpx solid #1a86fb'], // 输入框边框
-    isFocus: true,  //聚焦 
+    isFocus: true, //聚焦 
     ispassword: false, //是否密文显示 true为密文， false为明文。 
     isAgree: false // 是否接受协议
   },
@@ -32,22 +33,22 @@ Page({
     })
   },
   // 收集登录信息
-  codeFocus(e){ 
+  codeFocus(e) {
     let that = this;
-    let inputValue = e.detail.value; 
+    let inputValue = e.detail.value;
     that.setData({
-      code: inputValue, 
+      code: inputValue,
     })
-    if(this.data.code.length === 6) {
+    if (this.data.code.length === 6) {
       this.login()
     }
-    }, 
-    codeTap(){ 
-    let that = this; 
-    that.setData({ 
-      isFocus: true, 
-    }) 
-    }, 
+  },
+  codeTap() {
+    let that = this;
+    that.setData({
+      isFocus: true,
+    })
+  },
   handlePhoneInput(event) {
     this.setData({
       phone: event.detail.value,
@@ -57,7 +58,7 @@ Page({
       beforeBindtapClickBtnBorder: '1rpx solid #999'
     })
     let phoneReg = /^1(3|4|5|6|7|8|9)\d{9}$/
-    if(phoneReg.test(this.data.phone)) {
+    if (phoneReg.test(this.data.phone)) {
       this.setData({
         bindtapClick: 'sendCode',
         beforeBindtapClickBtnText: 'white',
@@ -72,15 +73,19 @@ Page({
     let code = this.data.code
     let openid = this.data.openid
     let codeReg = /^\d{6}$/
-    if(!codeReg.test(code)) {
+    if (!codeReg.test(code)) {
       wx.showToast({
         title: '验证码为6位数',
         icon: 'none'
       })
       return
     }
-    let result = await request('/api/user/login', {phone, code, openid}, 'POST')
-    if(result.code === 213) {
+    let result = await request('/api/user/login', {
+      phone,
+      code,
+      openid
+    }, 'POST')
+    if (result.code === 213) {
       wx.showToast({
         title: '手机号已使用',
         icon: 'error'
@@ -88,7 +93,7 @@ Page({
       this.fixPhone()
       return
     }
-    if(result.data.token) {
+    if (result.data.token) {
       let userMessageResult = await request('/api/user/auth/getUserInfo', {}, 'GET', result.data.token)
       let userMessage = userMessageResult.data
       wx.setStorageSync('userMessage', JSON.stringify(userMessage))
@@ -96,7 +101,7 @@ Page({
         userMessage
       })
     }
-    if(result.code === 200) {
+    if (result.code === 200) {
       wx.showToast({
         title: '登录成功',
         icon: 'success'
@@ -108,10 +113,16 @@ Page({
         flag: true,
         isLogin: true
       })
-      // 跳转到个人中心页面
-      wx.reLaunch({
-        url: '/pages/person/person',
-      })
+      if (this.data.historyPath) {
+        wx.reLaunch({
+          url: this.data.historyPath,
+        })
+      } else {
+        // 跳转到个人中心页面
+        wx.reLaunch({
+          url: '/pages/person/person',
+        })
+      }
     } else {
       wx.showToast({
         title: result.message,
@@ -137,7 +148,7 @@ Page({
   },
   // 发送验证码
   async sendCode() {
-    if(!this.data.isAgree) {
+    if (!this.data.isAgree) {
       wx.showToast({
         title: '请确认已同意《预约挂号服务协议》和《隐私协议》',
         icon: 'none'
@@ -165,9 +176,9 @@ Page({
     this.timer()
   },
   timer() {
-    if(currentTime > 0 && countDowmStop) {
+    if (currentTime > 0 && countDowmStop) {
       setTimeout(this.countdown, 1000);
-    } else if(countDowmStop) {
+    } else if (countDowmStop) {
       currentTime = 60
       this.setData({
         times: '',
@@ -182,10 +193,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    wx.setNavigationBarTitle({ title: '绑定手机号码' })
+    wx.setNavigationBarTitle({
+      title: '绑定手机号码'
+    })
     let openid = options.openid
+    let historyPath = ''
+    if (options.historyPath) {
+      historyPath = options.historyPath
+    }
     this.setData({
-      openid
+      openid,
+      historyPath
     })
   },
 

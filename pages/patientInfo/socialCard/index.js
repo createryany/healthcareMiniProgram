@@ -11,7 +11,6 @@ Page({
    */
   data: {
     patient: {},
-    userToken: '',
     insureNum: '',
     visible: false,
     actions: [{
@@ -84,7 +83,7 @@ Page({
         patient.id = this.data.patient.id
         patient.insureNum = this.data.insureNum
         patient.isInsure = 1
-        let result = await request('/api/user/patient/auth/bindPatientInsure', patient, 'POST', this.data.userToken)
+        let result = await request('/api/user/patient/auth/bindPatientInsure', patient, 'POST')
         action[1].loading = false;
         this.setData({
           visible: false,
@@ -105,11 +104,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    let userToken = JSON.parse(wx.getStorageSync('userInfo').trim()).token
     let patient = JSON.parse(wx.getStorageSync('patientList').trim())[options.currentPatientIndex]
     this.setData({
-      patient,
-      userToken
+      patient
     })
   },
 

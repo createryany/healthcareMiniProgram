@@ -1,2 +1,139 @@
-<!--pages/hospitalInfo/department/department.wxml-->
-<text>pages/hospitalInfo/department/department.wxml</text>
+<view class="departmentContainer">
+  <view class="header">
+    <text>healthcare预约挂号</text>
+  </view>
+  <view class="headerLine"></view>
+  <view class="body">
+    <view class="title">
+      <view class="hospInfo">
+        <text>{{department.baseMap.hosname}}</text>
+        <text style="margin-left: 20rpx;">{{department.baseMap.bigname}}</text>
+      </view>
+      <view class="bigDepName">
+        <text>{{department.baseMap.depname}}</text>
+      </view>
+      <view class="bookingSchedule">
+        <scroll-view class="content" scroll-x="true" 	scroll-into-view="{{scrollItemId}}" enable-flex>
+          <view class="sceduleItem {{item.checked? 'selection' : 'selectionNoStatus'}} {{item.checked && item.status == -1? 'noSelection' : ''}} {{!item.checked? '' : item.availableNumber <= 0? 'noSelection' : ''}}" wx:for="{{department.bookingScheduleList}}" wx:key="index" id="s{{index}}" data-index="{{index}}" bindtap="handleChangeDate">
+            <view class="item">
+              <text>{{item.dayOfWeek}}</text>
+            </view>
+            <view class="item">
+              <text>{{item.workDateMd}}</text>
+            </view>
+            <!-- {{item.checked? 'statusSelection ' : ''}} -->
+            <view class="status {{item.checked? 'statusSelection' : item.availableNumber > 0 ? 'noSelectionHasStaus' : ''}} {{!item.checked? '' : item.availableNumber <= 0? 'noStatusSelection' : ''}}" wx:if="{{item.status == 0}}">
+              <text>{{ item.availableNumber === -1 ? '无号' : item.availableNumber === 0 ? '约满' : '有号' }}</text>
+            </view>
+            <view class="status  {{item.checked? 'statusSelection' : 'noSelectionHasStaus'}}" wx:if="{{item.status == 1}}">
+              <text>即将放号</text>
+            </view>
+            <view class="status  {{item.checked? 'noStatusSelection' : ''}}" wx:if="{{item.status == -1}}">
+              <text>停止挂号</text>
+            </view>
+          </view>
+        </scroll-view>
+        <view class="showDate" bindtap="handleDate">
+          <view class="dateDetail">
+            <text>查看日期</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="line"></view>
+    <view class="releaseSoon" wx:if="{{releaseSoonStaus}}">
+      <view class="time">
+        <text>{{morOrAft}}<text style="color: #4882ff;">{{department.baseMap.releaseTime}}</text>放号</text>
+      </view>
+      <view class="countDown">
+        <text>倒计时</text>
+        <view class="countDownTime">
+          <text class="timeNum">{{releaseDays}}</text><text style="margin-right: 20rpx;">天</text><text class="timeNum">{{releaseHours}}</text>时<text class="timeNum" style="margin-left: 20rpx;">{{releaseMinutes}}</text><text style="margin-right: 30rpx;">分</text><text class="timeNum">{{releaseSeconds}}</text>秒
+        </view>
+      </view>
+    </view>
+    <view style="padding-bottom: 150rpx;" wx:if="{{!releaseSoonStaus}}">
+      <view class="noSource" wx:if="{{false}}" wx:if="{{morDeptInfo.length == 0 && aftDeptInfo.length == 0}}">
+        <text>当天已无号源，请查看其它日期号源。</text>
+      </view>
+      <view>
+        <view class="{{showMoreDetail? 'deptSchduleContainer' : ''}}" wx:if="{{morDeptInfo.length != 0}}">
+          <view class="deptSource">
+            <view class="timeTitle">
+              <text>上午号源</text>
+            </view>
+          </view>
+          <view class="deptContent" data-index="{{index}}" bindtap="handleDeptIndex" wx:for="{{morDeptInfo}}" wx:key="index">
+            <view class="docInfo">
+              <text class="job">{{item.title}}</text>
+              <text class="iconfont icon-shuxian1"></text>
+              <text class="name">{{item.docname}}</text>
+            </view>
+            <view class="skill">{{item.skill}}</view>
+            <view class="introduce">
+              <view class="price" wx:if="{{item.availableNumber}}">
+                <text>￥ {{item.amount}}</text>
+              </view>
+              <view class="priceNull" wx:if="{{!item.availableNumber}}">
+                <text>￥ {{item.amount}}</text>
+              </view>
+              <view class="availableNumber" wx:if="{{item.availableNumber}}" data-day="0" bindtap="handleRegister">
+                <view><text>剩余</text></view>
+                <text>{{item.availableNumber}}</text>
+              </view>
+              <view class="availableNoNumber" wx:if="{{!item.availableNumber}}">
+                <view><text>约满</text></view>
+              </view>
+            </view>
+          </view>
+          <view class="moreDetail" wx:if="{{morDeptInfo.length > 1 && showMoreDetail}}" bindtap="handleMoreDetail">
+            <text>查看更多</text>
+          </view>
+        </view>
+        <view class="{{showMoreDetail? 'deptSchduleContainer' : ''}}" wx:if="{{aftDeptInfo.length != 0}}">
+          <view class="deptSource">
+            <view class="timeTitle">
+              <text>下午号源</text>
+            </view>
+          </view>
+          <view class="deptContent" data-index="{{index}}" bindtap="handleDeptIndex" wx:for="{{aftDeptInfo}}" wx:key="index">
+            <view class="docInfo">
+              <text class="job">{{item.title}}</text>
+              <text class="iconfont icon-shuxian1"></text>
+              <text class="name">{{item.docname}}</text>
+            </view>
+            <view class="skill">{{item.skill}}</view>
+            <view class="introduce">
+              <view class="price" wx:if="{{item.availableNumber}}">
+                <text>￥ {{item.amount}}</text>
+              </view>
+              <view class="priceNull" wx:if="{{!item.availableNumber}}">
+                <text>￥ {{item.amount}}</text>
+              </view>
+              <view class="availableNumber" wx:if="{{item.availableNumber}}" data-day="1"   bindtap="handleRegister">
+                <view><text>剩余</text></view>
+                <text>{{item.availableNumber}}</text>
+              </view>
+              <view class="availableNoNumber" wx:if="{{!item.availableNumber}}">
+                <view><text>约满</text></view>
+              </view>
+            </view>
+          </view>
+          <view class="moreDetail" wx:if="{{aftDeptInfo.length > 1 && showMoreDetail}}" bindtap="handleMoreDetail">
+            <text>查看更多</text>
+            <i-spin size="large" fix wx:if="{{moreDetailSpin}}"></i-spin>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view wx:if="{{spinShow}}" class="loading">
+  <i-spin size="large" fix></i-spin>
+</view>
+
+<view class="calendarContainer" wx:if="{{visibleCanlender}}">
+  <view class="mask" bindtap="handleDate"></view>
+  <calendar class="calendar-body" binddateChange="dateChange" bindselectDate="dayClick" weeks-type="cn" txt_type="cn-d" active-type="rounded" custom="{{true}}" switchover="{{['上一月','下一月']}}" next="{{calendarNext}}" prev="{{calendarPrev}}" speciallist="{{speciallist}}" header-style="header-style" datefont-style="datefont-style" txt_style="txt_style" colored="#ededed" allshow="{true}" weekheight="116" />
+</view>

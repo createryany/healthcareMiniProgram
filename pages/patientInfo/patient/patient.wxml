@@ -43,8 +43,8 @@
         <text class="text">{{patient.phone}}</text>
       </view>
     </view>
-    <view class="edit" bindtap="editPatient">
-      <view class="editPatient">
+    <view class="edit">
+      <view class="editPatient" bindtap="editPatient">
         编辑就诊人
       </view>
       <view class="deletePatient" bindtap="isDelete">

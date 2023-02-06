@@ -2,6 +2,7 @@
   <view class="header">
     <text>healthcare预约挂号</text>
   </view>
+  <view class="headerLine"></view>
   <view class="body">
     <!-- 就诊人和挂号订单标题 -->
     <view class="patient">
@@ -21,7 +22,7 @@
       <text class="noOrderListText">暂无订单记录</text>
     </view>
     <!-- 根据就诊人查询订单 -->
-    <view class="patientClick" bindtap="searchOrderByPatient"></view>
+    <view class="patientClick" bindtap="searchOrderByPatient" wx:if="{{isOrder && !noLogin}}"></view>
     <view class="patientOrder" wx:if="{{isOrder && !noLogin}}">
       <text class="text">当前就诊人</text>
       <text class="name">{{currentPatientName}}</text>
@@ -146,10 +147,12 @@
       <view slot="prev">上一页</view>
       <view slot="next">下一页</view>
     </i-page>
-    <i-spin size="large" i-class="spinClass" fix wx:if="{{ spinShow }}"></i-spin>
   </view>
 </view>
 
+<view class="spinContainer" wx:if="{{ spinShow }}">
+    <i-spin size="large" fix></i-spin>
+</view>
 <i-toast id="toast" />
 <!-- 绑定提示 -->
 <i-modal title="提示" visible="{{ visibleBindPatient }}" actions="{{ actionsBindPatient }}" bind:click="{{handleSelection}}">

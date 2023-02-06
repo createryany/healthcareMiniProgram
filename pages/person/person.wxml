@@ -8,7 +8,7 @@
         <text class="title">登录</text>
         <view class="input-content">
           <view class="input-item">
-            <input placeholder="请输入您的手机号码" maxlength="11" placeholder-class="placeholder-style" bindinput="handlePhoneInput" />
+            <input placeholder="请输入您的手机号码" placeholder-class="placeholder-style" bindinput="handlePhoneInput" />
           </view>
           <view class="line"></view>
         </view>
@@ -114,3 +114,7 @@
     </view>
   </view>
 </view>
+<view wx:if="{{spinShow}}" class="loading">
+      <i-spin size="large" fix></i-spin>
+</view>
+<i-message id="message" />
